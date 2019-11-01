@@ -1,0 +1,38 @@
+body{
+  margin: 0;
+  background-color: #FFFFFF;
+  font-family: 'Roboto';
+}
+
+/*cookies*/
+.cookie{
+  height: 5vh;
+  width: 100vw;
+  font-size: 2vh;
+  font-weight: 100;
+  color: #141414;
+  text-align: center;
+  background-color: #FFFBC4;
+  border: 1px solid #D4630C;
+}
+button.cookie_button{
+  height: 100%;
+  font-size: 1.8vh;
+  color: #3280C9;
+  text-decoration: underline;
+  background: none;
+  border:none;
+  transition: 0.1s;
+}
+button.cookie_button:hover{
+  transform: scale(1.05,1.05);
+}
+
+/*header*/
+.header{
+  position: absolute;
+  width: 100vw;
+  height: 7vh;
+  background-color: white;
+  color: #3280C9;
+}
