@@ -1,38 +1,298 @@
-body{
-  margin: 0;
-  background-color: #FFFFFF;
-  font-family: 'Roboto';
-}
-
-/*cookies*/
-.cookie{
-  height: 5vh;
-  width: 100vw;
-  font-size: 2vh;
-  font-weight: 100;
-  color: #141414;
-  text-align: center;
-  background-color: #FFFBC4;
-  border: 1px solid #D4630C;
-}
-button.cookie_button{
-  height: 100%;
-  font-size: 1.8vh;
-  color: #3280C9;
-  text-decoration: underline;
-  background: none;
-  border:none;
-  transition: 0.1s;
-}
-button.cookie_button:hover{
-  transform: scale(1.05,1.05);
-}
+  html{
+    margin: 0;
+  }
+  body{
+    width: 100vh;
+    overflow-x: hidden;
+    margin: 0;
+    background-color: #FFFFFF;
+    font-family: 'Roboto';
+  }
+  .text{
+    font-size: 1.8vw;
+    font-weight: 600;
+    color: black;
+  }
+  .blauw{
+    color: #3280C9;
+  }
+  /*cookies*/
+  .cookie{
+    position: relative;
+    height: 5vh;
+    width: 100vw;
+    font-size: 2vh;
+    font-weight: 100;
+    color: #141414;
+    text-align: center;
+    background-color: #FFFBC4;
+    border: 1px solid #e36b0e;
+  }
+  button.cookie_button{
+    height: 100%;
+    font-size: 1.8vh;
+    color: #3280C9;
+    text-decoration: underline;
+    background: none;
+    border:none;
+    transition: 0.1s;
+  }
+  button.cookie_button:hover{
+    transform: scale(1.05,1.05);
+  }
+  hr{
+    border:none;
+    height: 0.1vw;
+    background-color: gray;
+  }
 
 /*header*/
-.header{
-  position: absolute;
-  width: 100vw;
-  height: 7vh;
-  background-color: white;
-  color: #3280C9;
-}
+  .header{
+    top: 10vh;
+    position: relative;
+    width: 100vw;
+    height: 7vh;
+    background-color: white;
+    color: black;
+  }
+  .header_buttons{
+    position: absolute;
+    width: 80vw;
+    left: 1.4%;
+  }
+  .header_div{
+    margin-left: 0.8%;
+    font-size: 1.8vw;
+    display: inline-block;
+  }
+
+/*search bar*/
+  .searchbar{
+    position:absolute;
+    background: linear-gradient(180deg, rgba(245,169,91,1) 7%, rgba(247,150,51,1) 93%);
+    width: 97%;
+    height: 130%;
+    border-radius: 0.2vw;
+    left: 1.5%;
+    top: 100%;
+  }
+  .logotext{
+    display: inline-block;
+    font-family: 'Bitter';
+    position: absolute;
+    color: white;
+    font-size: 3vw;
+    font-weight: 500;
+    bottom:15%;
+    left: 1%;
+    transform: rotate(-4deg);
+  }
+  .header_in{
+    padding: 0.3vw;
+    font-size: 1.6vw;
+    border:none;
+    border-radius: 0.2vw;
+    width: 60%;
+    background-color: #FEF5EB;
+  }
+  .header_in:focus{
+    border:none;
+    box-shadow: 50%,50%,50%,50% white;
+    background-color: white;
+  }
+  .fa-1x{
+    border-left: 0.1vw solid rgba(0,0,0,0.3);
+    position: absolute;
+    left: 60%;
+    background-color: #FEF5EB;
+    padding: 2%;
+    padding-left: 5%;
+    color: gray;
+    width: 10%;
+    height: 68%;
+    font-size: 1.8vw!important;
+  }
+  .search{/*pos search bar*/
+    position: absolute;
+    top: 22%;
+    left: 11%;
+  }
+  /*inlog*/
+  .inlog_in{
+    margin-right: 3%;
+    height: 40%;
+    width: 33%;
+  }
+  .inlog{
+    padding: 0.5%;
+    border-radius: 0.2vw;
+    box-shadow: -1px 0px 3px black;
+    position: absolute;
+    right:2.5%;
+    top: 10%;
+    height: 4.5vw;
+    width: 45%;
+    z-index: 3;
+    background-color: #F9F8F8;
+  }
+  .inlog_ver{
+    margin-top: 1%;
+    background-color: inherit;
+    border: none;
+    font-size: 1.3vw;
+  }
+  .inlog_ver:hover{
+    color: #3280C9;
+    text-decoration: underline;
+  }
+  button.inlog_button{/*inlog button*/
+    position: relative;
+    top: 2.5%;
+    border-radius: 0.4vw;
+    height: 55%;
+    width: 20%;
+    color: white;
+    text-shadow: 1px 1px 2px #52831c;
+    border:0.2vw solid #4fd30b;
+    background: linear-gradient(180deg, rgba(74,198,10,1) 7%, rgba(52,128,15,1) 93%);
+    font: normal 12px/18px Arial,sans-serif;
+    font-size: 1.5vw;
+    transition: 0.3s
+  }
+  button.inlog_button:hover{
+    transform: scale(1.03,1.03);
+  }
+
+
+  /*Body section ---------------*/
+
+  .body{
+    width: 100vw;
+    position: relative;
+    top: 23vh;
+  }
+  .kop{
+    position: absolute;
+    font: bold 13px/18px sans-serif;
+    font-size: 2.8vw;
+    font-weight: 600;
+    left: 1.5%;
+    top: 2vh;
+  }
+  .poll{
+    background-color: #E4E4E5;
+    border: 1px solid #ececec;
+    padding: 1vw;
+    color: white;
+    position: absolute;
+    height: 22vw;
+    width: 33vw;
+    right: 1.5vw;
+    top: 7vw;
+  }
+  .procent{
+    color: gray;
+    width: 100%;
+    font-size: 1.3vw;
+    margin-top: 1%;
+  }
+  .procentages{
+    top: 9vw;
+    opacity: 0.5;
+    position: absolute;
+    width: 95%;
+    height: 10%;
+    /* height: 100%; */
+    background-color: blue;
+
+  }
+  .weer{
+    padding: 1vw;
+    color: white;
+    position: absolute;
+    height: 13vw;
+    width: 33vw;
+    top: 45vw;
+    right: 1.5vw;
+  }
+  .vandaag{
+    padding: 1vw;
+    color: white;
+    position: absolute;
+    height: 45vw;
+    width: 33vw;
+    top: 63vw;
+    right: 1.5vw;
+  }
+  /*nieuws*/
+  .niews{
+    padding: 1vw;
+    color: white;
+    position: absolute;
+    width: 58vw;
+    height: 24vw;
+    top: 5vw;
+    left: 1.5vw;
+  }
+  .nieuws_img{
+    height: 100%;
+    width: 100%;
+  }
+  .uitschuif{
+    overflow: hidden;
+    color: black;
+    position: absolute;
+    background-color: rgb(198, 209, 227,0.8);
+    height: 0%;
+    width: 100%;
+    left: 0;
+    bottom:0;
+    z-index: 5;
+    font-size: 2vw;
+    transition: 0.5s;
+  }
+  .nieuws_sec{
+    padding: 1vw;
+    color: white;
+    position: absolute;
+    width: 58vw;
+    height: 75vw;
+    top: 35vw;
+    left: 1.5vw;
+  }
+  .links{
+    position: relative;
+    width: 63%;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
+  .space{
+    height: 5%;
+  }
+  .rechts{
+    position: relative;
+    width: 36%;
+    height: 47.5%;
+    left: 64%;
+    top: -100%;
+    z-index: 2;
+    /* margin-left: 2%; */
+  }
+
+
+  /*aanmelden */
+  .aanmelden{
+    position: absolute;
+    right: 1.5%;
+  }
+  .aanmelden_button{
+    border-radius: 0.2vw;
+    color: #3F3F3F;
+    background: linear-gradient(180deg, rgba(255,255,255,1) 7%, rgba(234,234,234,1) 93%);
+    padding:0.4vw;
+    font-size: 1.3vw;
+  }
+  .aanmelden_button:hover{
+    border: 0.05vw solid gray!important;
+  }

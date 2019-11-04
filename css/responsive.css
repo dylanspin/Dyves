@@ -1,0 +1,91 @@
+
+
+@media only screen/*iphone 6/7/8*/
+and (min-device-width : 375px)
+and (max-device-width : 667px) {
+
+  body{
+    width: 78vw;
+  }
+  .iphone{/*hidden on iphone*/
+    display: none;
+  }
+  .cookie{
+
+  }
+  /*header*/
+  .header{
+    top: 3vh;
+  }
+  .header_div{
+    font-size: 3.8vw;
+  }
+  /*searchbar*/
+  .searchbar{
+    /* display: none; */
+    top: 4.8vw;
+    height: 10vw;
+    left: 2.5%;
+    width: 81%;
+  }
+  .search{
+    top: 18%;
+    left: 30%;
+  }
+  .logotext{
+    bottom:8%;
+    font-size: 460%;
+  }
+  .header_in{
+    width: 60%;
+    font-size: 5vw;
+  }
+  .header_buttons{
+    left: 2.6%;
+  }
+  .fa-1x{
+    border-left: 0.1vw solid rgba(0,0,0,0.3);
+    position: absolute;
+    background-color: #FEF5EB;
+    padding: 3%;
+    padding-left: 5%;
+    width: 10%;
+    height: 46%;
+    font-size: 3vw!important;
+  }
+
+
+  /*Body section ---------------*/
+  .body{
+    position: relative;
+    top: 8vh;
+  }
+  .kop{
+    position: absolute;
+    font-size: 3vw;
+    left: 20.5%;
+    top: -4vh;
+  }
+
+
+}
+
+@media only screen /*iphone X*/
+    and (device-width : 375px)
+    and (device-height : 812px)
+    and (-webkit-device-pixel-ratio : 3) {
+
+        /*cookies*/
+        .cookie{
+          height: 6vh;
+          font-size: 2vh;
+        }
+
+        /*header*/
+        .header_div{
+          font-size: 2.8vw;
+        }
+        .searchbar{
+          top: 2vh;
+        }
+    }
