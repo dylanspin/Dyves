@@ -37,8 +37,6 @@ function schuif(id,hoog){
   if(nieuws[id]){
     nieuws[id] = false;
     document.getElementById('info'+id).style.height = hoog+"%";
-    document.getElementById('info'+id).style.color = "#3280C9";
-    document.getElementById('info'+id).style.textDecoration = "underline";
     console.log("Id : "+ id + " Hoog :" + hoog)
   }
   else{
@@ -48,11 +46,9 @@ function schuif(id,hoog){
     //document.getElementById('info'+id).style.height = "0%";
 }
 
-function reset(){
-var i;
-  for(i=1; i<=3; i++){
-    document.getElementById('info'+i).style.height = "0%";
-    nieuws[i] = true;
-    console.log("test");
+  function inlog(){
+
+    if(inlog){
+      document.getElementById('inlog_div').style.display = "none";
+    }
   }
-}

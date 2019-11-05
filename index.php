@@ -32,7 +32,7 @@
           <div class="header_div iphone">meer...</div>
         </span>
       </div>
-      <div class="inlog iphone"> <!--Moet nog anders voor mobile met een mobile menu-->
+      <div class="inlog iphone" id='inlog_div'> <!--Moet nog anders voor mobile met een mobile menu-->
         <input type="text" name="gebruiker" id="gebruiker" class="inlog_in">
         <input type="password" name="wachtwoord" id="wachtwoord" class="inlog_in">
         <button class="inlog_button" id="inlog_button" name="inlog_button">Inloggen</button><br>
@@ -54,6 +54,7 @@
     </div>
 
 
+
     <div class="body">
       <div class="kop">
         <span class="blauw">Nu</span> Meest Besproken
@@ -61,21 +62,21 @@
 
       <div class="niews">
         <div class="links" onclick="schuif(1,20)">
-          <img src="pic/nieuws1.jpg" class="nieuws_img">
+          <img src="pic/nieuws/nieuws1.jpg" class="nieuws_img">
           <div class="uitschuif" id="info1">
               Defensie erkent burgerdoden F-16-aanval Irak
           </div>
         </div>
 
-        <div class="rechts" onclick="schuif(2,60)">
-          <img src="pic/nieuws2.jpg" class="nieuws_img">
+        <div class="rechts" onclick="schuif(2,62)">
+          <img src="pic/nieuws/nieuws2.jpg" class="nieuws_img">
           <div class="uitschuif" id="info2">
             Waar komt deze gigantische waterstraal vandaan?
           </div>
         </div>
         <div class="space"></div>
-        <div class="rechts" onclick="schuif(3,40)">
-          <img src="pic/nieuws3.jpg" class="nieuws_img">
+        <div class="rechts" onclick="schuif(3,45)">
+          <img src="pic/nieuws/nieuws3.jpg" class="nieuws_img">
           <div class="uitschuif" id="info3">
               Komt er nog een vervolg van de joker film?
           </div>
@@ -85,20 +86,77 @@
       <div class="nieuws_sec">
         <span class="text">Laatste nieuws</span>
         <hr>
+        <div class="space"></div>
+        <div class="artikel">
+          <img src="pic/nieuws/nieuws3.jpg" class="artikel_foto">
+          <div class="artikel_text">
+            <div class="datum">14:00</div>
+            <span class="underline blauw">
+              De nieuwe joker film is uit
+            </span>
+          </div>
+        </div>
+        <div class="artikel">
+          <img src="pic/nieuws/nieuws2.jpg" class="artikel_foto">
+          <div class="artikel_text">
+            <div class="datum">11:22</div>
+            <span class="underline blauw">
+              Gigantische waterstraal in Philadelphia
+            </span>
+          </div>
+        </div>
+        <div class="artikel">
+          <img src="pic/nieuws/nieuws1.jpg" class="artikel_foto">
+          <div class="artikel_text">
+            <div class="datum">11:30</div>
+            <span class="underline blauw">
+              Defensie erkent burgerdoden <span class="iphone">F-16-aanval Irak</span>
+            </span>
+          </div>
+        </div>
+        <div class="artikel">
+          <img src="pic/nieuws/nieuws4.jpg" class="artikel_foto">
+          <div class="artikel_text">
+            <div class="datum">10:05</div>
+            <span class="underline blauw">
+              Zo denkt Redbull dat Ferrari valspeelt
+            </span>
+          </div>
+        </div>
+        <div class="artikel">
+          <img src="pic/nieuws/nieuws5.jpg" class="artikel_foto">
+          <div class="artikel_text">
+            <div class="datum">09:45</div>
+            <span class="underline blauw">
+              Vodafoneziggo hoeft gegevens niet af te staan
+            </span>
+          </div>
+        </div>
+        <div class="artikel">
+          <img src="pic/nieuws/nieuws6.jpg" class="artikel_foto">
+          <div class="artikel_text">
+            <div class="datum">09:40</div>
+            <span class="underline blauw">
+              De quota arbeidsmigranten buiten de EU
+            </span>
+          </div>
+        </div>
       </div>
 
-      <div class="poll">
+
+
+      <div class="poll"> <!--moet nog met een js of met php gedaan worden-->
         <span class="text">Wat vind jij ?</span>
         <hr>
         <div class="space"></div>
-        <span class="text">Heb jij een kaartje gekocht voor het concert van Justin Bieber</span>
+        <span class="text2">Heb jij een kaartje gekocht voor het concert van Justin Bieber</span>
 
         <div class="procent">
-          <span class="blauw">9.7% </span>Ja, ik was er snel bij en heb er een weten te bemachtingen
+          <div class="blauw">9.7% </div><div class="pol_info">Ja, ik was er snel bij en heb er een weten te bemachtingen</div>
           <!-- <div class="procentages"></div> -->
         </div>
         <div class="procent">
-          <span class="blauw">6.3% </span>Nee, het is me helaas niet meer gelukt om er een op de kop te tikken
+          <div class="blauw">6.3% </div><div class="pol_info">Nee, het is me helaas niet meer gelukt om er een op de kop te tikken</div>
         </div>
         <div class="procent">
           <span class="blauw">23.1% </span>Nee, want ik heb niet zoveel met zijn muziek
@@ -109,16 +167,116 @@
         <div class="space"></div>
 
         <button class="inlog_ver">
-          <span class="blauw">Vragen of hulp nodig ?</span>
+          <span class="blauw">Lees meer of discussieer mee</span>
         </button>
       </div>
 
+
+
       <div class="weer">
-        <span class="text">Laatste nieuws</span>
-        <hr>
+        <span class="text">Weer in nederland</span>
+        <div class="space"></div>
+
+        <div class="dagen">
+          <div class="center">
+            <span class="text2">Maandag</span>
+            <div class="dag" id="temp">12°</div>
+            <div class="nacht" id="temp2">1°</div>
+          </div>
+        </div>
+        <div class="dagen">
+          <div class="center">
+            <span class="text2">Dinsdag</span>
+            <div class="dag" id="temp3">14°</div>
+            <div class="nacht" id="temp4">4°</div>
+          </div>
+        </div>
+        <div class="dagen">
+          <div class="center">
+            <span class="text2">Woensdag</span>
+            <div class="dag" id="temp5">16°</div>
+            <div class="nacht" id="temp6">1°</div>
+          </div>
+        </div>
+        <div class="dagen">
+          <div class="center">
+            <span class="text2">Donderdag</span>
+            <div class="dag" id="temp7">14°</div>
+            <div class="nacht" id="temp8">2°</div>
+          </div>
+        </div>
+        <div class="space"></div>
+        <button class="inlog_ver">
+          <span class="blauw">Bekijk de radarbeelden</span>
+        </button>
       </div>
-      <div class="vandaag">
+
+
+
+      <div class="vandaag iphone">
         <span class="text">Spotlight films</span>
+        <hr>
+        <div class="films">
+          <img src="pic/films/m1.jpg" class="artikel_foto">
+          <div class="artikel_text">
+            <div class="datum">5-11-2019</div>
+            <div class="space"></div>
+            <span class="underline blauw">
+              Ready Player One
+            </span>
+          </div>
+        </div>
+        <hr>
+        <div class="films">
+          <img src="pic/films/m2.jpg" class="artikel_foto">
+          <div class="artikel_text">
+            <div class="datum">5-11-2019</div>
+            <div class="space"></div>
+            <span class="underline blauw">
+              The Joker movie
+            </span>
+          </div>
+        </div>
+        <hr>
+        <div class="films">
+          <img src="pic/films/m3.jpg" class="artikel_foto">
+          <div class="artikel_text">
+            <div class="datum">5-10-2019</div>
+            <div class="space"></div>
+            <span class="underline blauw">
+              Vacation
+            </span>
+          </div>
+        </div>
+        <hr>
+        <div class="films">
+          <img src="pic/films/m5.jpg" class="artikel_foto">
+          <div class="artikel_text">
+            <div class="datum">5-9-2019</div>
+            <div class="space"></div>
+            <span class="underline blauw ">
+              White boy Ricky
+            </span>
+          </div>
+        </div>
+        <hr>
+        <div class="films">
+          <img src="pic/films/m7.jpg" class="artikel_foto">
+          <div class="artikel_text">
+            <div class="datum">5-9-2019</div>
+            <div class="space"></div>
+            <span class="underline blauw ">
+              Dunkirk
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+
+
+      <div class="recentchat">
+        <span class="text">Latest post</span>
         <hr>
       </div>
 
@@ -130,7 +288,6 @@
       </div>
 
     </div>
-
 
   </body>
 </html>
