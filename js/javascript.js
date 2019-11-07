@@ -15,9 +15,29 @@ function getCookie(cname) {
 }
 
 function checkCookie(){
+  //cookie melding
   var cookies = getCookie("cookies");//krijgt cookies
   if(cookies == "true"){
     document.getElementById('cookie').style.display = "none";
+  }
+
+  //wachtwoord foutmelding
+  var wachtwoord = getCookie("wachtwoordCheck");
+  if(wachtwoord == "true"){
+    //document.getElementById('inlogForm').style.display = "none"; //moet weer aan na dat de uitlog knop er is
+  }
+  else if (wachtwoord == "false") {
+    document.getElementById('fout').innerHTML = "Mislukt met Inloggen";
+  }
+}
+
+
+function checkInlog(){
+  if(getCookie("wachtwoordCheck") == "true"){
+    document.getElementById('body').style.display = "none";
+  }
+  else{
+    console.log("niet ingelogged");
   }
 }
 
@@ -43,7 +63,6 @@ function schuif(id,hoog){
     document.getElementById('info'+id).style.height = "0%";
     nieuws[id] = true;
   }
-    //document.getElementById('info'+id).style.height = "0%";
 }
 
   function inlog(){
