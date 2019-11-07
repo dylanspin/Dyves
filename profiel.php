@@ -11,15 +11,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="js/javascript.js"></script>
   </head>
-  <body onload="checkCookie(),checkInlog()">
-
-    <div class="cookie" id="cookie">
-      Dyves kan cookies gebruiken. Klik
-      <span class="iphone">
-        <button class="cookie_button">Hier</button> voor meer informatie.
-      </span>
-      <button class="cookie_button" onclick="cookies()">Sluiten</button>
-    </div>
+  <body onload="checkCookie(false)">
+    <?php
+      include 'php/login.php';
+      include 'parts/cookies.php';
+    ?>
 
     <div class="header">
       <?php
@@ -27,8 +23,8 @@
        ?>
 
        <form class="inlog iphone" action="" method="post" id="inlogForm">
-         <input type="text" name="gebruiker" id="gebruiker" class="inlog_in">
-         <input type="password" name="wachtwoord" id="wachtwoord" class="inlog_in">
+         <input type="text" name="gebruiker" id="gebruiker" class="inlog_in" placeholder="Gebruikersnaam">
+         <input type="password" name="wachtwoord" id="wachtwoord" class="inlog_in" placeholder="Wachtwoord">
          <button class="inlog_button" id="inlog_button" name="inlog_button">Inloggen</button><br>
          <button class="inlog_ver">
            <span class="blauw">Wachtwoord Vergeten ?</span>
@@ -47,6 +43,8 @@
         </div>
       </div>
     </div>
+
+    <div class="niet" id="niet">Niet ingelogd!</div><!--niet ingelogged melding-->
 
     <div class="body" id="body">
       <div class="kop">

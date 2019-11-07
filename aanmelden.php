@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Dyves</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="shortcut icon" type="image/png" href="pic/Dyves.png">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="js/javascript.js"></script>
+  </head>
+  <body onload="checkCookie()">
+    <?php
+      include 'php/login.php';
+      include 'php/aanmelden.php';
+      include 'parts/cookies.php';
+    ?>
+
+    <div class="header">
+      <?php
+        include 'parts/header.php';
+       ?>
+
+       <form class="inlog iphone" action="" method="post" id="inlogForm">
+         <input type="text" name="gebruiker" id="gebruiker" class="inlog_in">
+         <input type="password" name="wachtwoord" id="wachtwoord" class="inlog_in">
+         <button class="inlog_button" id="inlog_button" name="inlog_button">Inloggen</button><br>
+         <button class="inlog_ver" name="wachtwoordVer">
+           <span class="blauw">Wachtwoord Vergeten ?</span>
+         </button>
+         <div class="fout text2" id="fout"></div>
+       </form>
+      <div class="searchbar">
+        <div class="logotext">
+          Tyves
+        </div>
+        <div class="search">
+          <input type="text" class="header_in" id="header">
+          <label>
+            <i class="fa fa-search fa-1x" onclick="search()"></i>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="body">
+      <div class="aanmelden_info grijs">Maak een account voor Dyves</div>
+
+      <div class="text2 grijs">
+        <div class="space"></div>
+        <!-- Maak vrienden , stuur elkaar berichten en maak je eigen profiel. -->
+      </div>
+      <div>
+      </div>
+      <form class="aanmelden_form" action="" method="post">
+          <input type="text" name="voornaam" placeholder="Voornaam" class="aanmelden_in" id="naam">
+          <input type="text" name="achternaam" placeholder="Achternaam" class="aanmelden_in" id="achternaam">
+          <input type="text" name="woonplaats" placeholder="Woonplaats" class="aanmelden_in" id="woonplaats">
+          <input type="date" name="geboortedatum" placeholder="Geboortedatum"class="aanmelden_in" id="geboortedatum">
+          <input type="text" name="gebruikersnaam" placeholder="Gebruikersnaam"class="aanmelden_in" id="gebruikersnaam">
+          <input type="email" name="email" placeholder="Email"class="aanmelden_in" id="email">
+          <input type="password" name="password1" placeholder="Wachtwoord"class="aanmelden_in"id="wachtwoord1">
+          <input type="password" name="password2" placeholder="herhaal"class="aanmelden_in" id="wachtwoord2">
+      </form>
+      <button name="formSub" class="aanmelden_button2" onclick="aanmelden()">Registreren</button>
+    </div>
+    <div class="foutmelding">
+      <i class="fa fa-exclamation-circle fa-3x" id="0"></i>
+      <i class="fa fa-exclamation-circle fa-3x" id="1"></i>
+      <i class="fa fa-exclamation-circle fa-3x" id="2"></i>
+      <i class="fa fa-exclamation-circle fa-3x" id="3"></i>
+      <i class="fa fa-exclamation-circle fa-3x" id="4"></i>
+      <i class="fa fa-exclamation-circle fa-3x" id="5"></i>
+      <i class="fa fa-exclamation-circle fa-3x" id="6"></i>
+      <i class="fa fa-exclamation-circle fa-3x" id="7"></i>
+    </div>
+
+  </body>
+</html>

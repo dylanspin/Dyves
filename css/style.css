@@ -81,6 +81,11 @@
     font-weight: 600;
     color: black;
   }
+  .border{
+    box-shadow: -1px 0px 3px gray;
+    border: 1px solid #ececec;
+    background-color: #E4E4E5;
+  }
   .text2{
     font-size: 1.4vw;
     font-weight: 600;
@@ -89,8 +94,14 @@
   .blauw{
     color: #3280C9;
   }
+  .grijs{
+    color: gray;
+  }
   .space{
     height: 5%;
+  }
+  .hidden{
+    visibility: hidden;
   }
   .underline:hover{
     text-decoration: underline;
@@ -100,6 +111,16 @@
     left: 38%;
     top: 3.5vw;
     z-index: 40;
+    color: #F12424
+  }
+
+  .niet{
+    display: none;
+    position: relative;
+    width: 100vw;
+    top:20vw;
+    left: 27vw;
+    font-size: 8vw;
     color: #F12424
   }
   /*cookies*/
@@ -240,7 +261,7 @@
     color: #3280C9;
     text-decoration: underline;
   }
-  button.inlog_button{/*inlog button*/
+    button.inlog_button{/*inlog button*/
     position: relative;
     top: 2.5%;
     border-radius: 0.4vw;
@@ -275,9 +296,6 @@
     top: 2vh;
   }
   .poll{
-    box-shadow: -1px 0px 3px gray;
-    background-color: #E4E4E5;
-    border: 1px solid #ececec;
     padding: 1vw;
     color: white;
     position: absolute;
@@ -312,9 +330,6 @@
 
   /*Het weer*/
   .weer{
-    background-color: #E4E4E5;
-    border: 1px solid #ececec;
-    box-shadow: -1px 0px 3px gray;
     padding: 1vw;
     color: white;
     position: absolute;
@@ -353,9 +368,6 @@
 
   /*spotlight films*/
   .vandaag{
-    background-color: #E4E4E5;
-    border: 1px solid #ececec;
-    box-shadow: -1px 0px 3px gray;
     padding: 1vw;
     color: white;
     position: absolute;
@@ -432,8 +444,6 @@
     display: inline-block;
     margin-left: 2%;
     box-shadow: 1px 1px 3px black;
-    border: 1px solid #ececec;
-    background-color: #E4E4E5;
     position: relative;
     left: 1vw;
     width: 45%;
@@ -494,4 +504,56 @@
   }
   .aanmelden_button:hover{
     transform: scale(1.02,1.02);
+  }
+  .aanmelden_info{
+    height: 10vw;
+    position: relative;
+    left: 6.5vw;
+    font-size: 3.5vw;
+  }
+  form.aanmelden_form{
+    width: 30vw;
+    height: 50vw;
+    position: relative;
+    left: 65vw;
+    top: -11vw;
+  }
+  .aanmelden_in{
+    background-color: white;
+    border-radius: 0.2vw;
+    border:0.05vw solid gray;
+    left: 39%;
+    margin-top: 0.8vw;
+    position: relative;
+    width: 51%;
+    font-size: 1.4vw;
+    padding: 0.4vw;
+  }
+  .aanmelden_button2{
+    background: linear-gradient(180deg, rgba(74,198,10,1) 7%, rgba(52,128,15,1) 93%);
+    border:none;
+    border-radius: 0.2vw;
+    color: white;
+    font-size: 1.5vw;
+    position: relative;
+    width: 10vw;
+    height: 3vw;
+    top: -32vw;
+    right:-77%;
+    transition: 0.2s;
+  }
+  .aanmelden_button2:hover{
+    transform: scale(1.05,1.05);
+  }
+  .foutmelding{
+    position: absolute;
+    top: 14vw;
+    right: 21vw;
+    width: 5vw;
+  }
+  .fa-3x{
+    visibility: hidden;
+    margin-top: 0.28vw;
+    font-size: 6vw;
+    color: red;
   }

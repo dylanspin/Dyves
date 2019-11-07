@@ -11,19 +11,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="js/javascript.js"></script>
   </head>
-  <body onload="checkCookie()">
+  <body onload="checkCookie(true)">
     <?php
       include 'php/login.php';
-      include 'php/mail.php';
+      include 'parts/cookies.php';
     ?>
-
-    <div class="cookie" id="cookie">
-      Dyves kan cookies gebruiken. Klik
-      <span class="iphone">
-        <button class="cookie_button">Hier</button> voor meer informatie.
-      </span>
-      <button class="cookie_button" onclick="cookies()">Sluiten</button>
-    </div>
 
     <div class="header">
       <?php
@@ -31,8 +23,8 @@
        ?>
 
        <form class="inlog iphone" action="" method="post" id="inlogForm">
-         <input type="text" name="gebruiker" id="gebruiker" class="inlog_in">
-         <input type="password" name="wachtwoord" id="wachtwoord" class="inlog_in">
+         <input type="text" name="gebruiker" id="gebruiker" class="inlog_in" placeholder="Gebruikersnaam">
+         <input type="password" name="wachtwoord" id="wachtwoord" class="inlog_in" placeholder="Wachtwoord">
          <button class="inlog_button" id="inlog_button" name="inlog_button">Inloggen</button><br>
          <button class="inlog_ver" name="wachtwoordVer">
            <span class="blauw">Wachtwoord Vergeten ?</span>
@@ -52,7 +44,7 @@
       </div>
     </div>
 
-    <div class="body">
+    <div class="body" id="">
       <div class="kop">
         <span class="blauw">Nu</span> Meest Besproken
       </div>
@@ -69,19 +61,19 @@
         ?>
       </div>
 
-      <div class="poll">
+      <div class="poll border">
         <?php
           include 'parts/poll.php';
         ?>
       </div>
 
-      <div class="weer">
+      <div class="weer border">
         <?php
           include 'parts/weer.php';
         ?>
       </div>
 
-      <div class="vandaag iphone">
+      <div class="vandaag iphone border">
         <?php
           include 'parts/films.php';
         ?>
@@ -93,7 +85,9 @@
       </div>
 
       <div class="aanmelden iphone">
-        <button class="aanmelden_button">Geen account? Meld je gratis aan!</button><br>
+        <button class="aanmelden_button">
+          <a href="aanmelden.php">Geen account? Meld je gratis aan!</a>
+        </button><br>
         <button class="inlog_ver">
           <span class="blauw">Vragen of hulp nodig ?</span>
         </button>

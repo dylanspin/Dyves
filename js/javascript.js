@@ -14,7 +14,7 @@ function getCookie(cname) {
   return "";
 }
 
-function checkCookie(){
+function checkCookie(check){
   //cookie melding
   var cookies = getCookie("cookies");//krijgt cookies
   if(cookies == "true"){
@@ -23,21 +23,23 @@ function checkCookie(){
 
   //wachtwoord foutmelding
   var wachtwoord = getCookie("wachtwoordCheck");
-  if(wachtwoord == "true"){
-    //document.getElementById('inlogForm').style.display = "none"; //moet weer aan na dat de uitlog knop er is
+  if(wachtwoord == "true"){//als de inlog klopt
+    document.getElementById('inlogForm').style.display = "none";//maakt de inlog form display none
   }
-  else if (wachtwoord == "false") {
+  else if (wachtwoord == "false") { //als de pagina word ingeladen na dat er cookies zijn gezet
+    if(check == false){
+      document.getElementById('body').style.display = "none";
+      document.getElementById('niet').style.display = "flex";
+    }
     document.getElementById('fout').innerHTML = "Mislukt met Inloggen";
+    document.getElementById('profiel').style.visibility = "hidden";
   }
-}
-
-
-function checkInlog(){
-  if(getCookie("wachtwoordCheck") == "true"){
-    document.getElementById('body').style.display = "none";
-  }
-  else{
-    console.log("niet ingelogged");
+  else{//als de pagina voor het eerst word ingeladen
+    if(check == false){
+      document.getElementById('niet').style.display = "flex";
+      document.getElementById('body').style.display = "none";
+    }
+    document.getElementById('profiel').style.visibility = "hidden";
   }
 }
 

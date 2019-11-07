@@ -2,7 +2,7 @@
 
   include 'connect.php';
 
-  // error_reporting(0);
+  error_reporting(0);
 
   $username = $_POST['gebruiker'];  //krijgt de gebruikers naam input
   $password = $_POST['wachtwoord']; //Krijgt de wachtwoord input

@@ -29,7 +29,7 @@
         </button>
       </div>
     </div>
-    <div class="header_div">
+    <div class="header_div iphone">
       Games
       <div class="overlay iphone">
         <button class="overlay_button tweeBu">
@@ -60,14 +60,14 @@
         </button>
       </div>
     </div>
-    <div class="header_div">
+    <div class="header_div iphone">
       Meer...
-      <div class="overlay iphone">
+      <div class="overlay">
         <button class="overlay_button">
           <i class="fa fa-square icon"></i><div class="textbutton blauw">meldingen</div>
         </button>
         <button class="overlay_button">
-          <i class="fa fa-square icon"></i><div class="textbutton blauw">Nog</div>
+          <i class="fa fa-square icon"></i><div class="textbutton blauw"><a href="index.php">Menu</a></div>
         </button>
         <button class="overlay_button">
           <i class="fa fa-square icon"></i><div class="textbutton blauw">Nog</div>
@@ -88,6 +88,9 @@
           <i class="fa fa-square icon"></i><div class="textbutton blauw">Nog</div>
         </button>
       </div>
+    </div>
+    <div class="header_div" id="profiel">
+      <a href="profiel.php">Profiel</a>
     </div>
   </span>
 </div>
