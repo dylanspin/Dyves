@@ -515,8 +515,8 @@
     width: 30vw;
     height: 50vw;
     position: relative;
-    left: 65vw;
-    top: -11vw;
+    left: -5vw;
+    top: -5vw;
   }
   .aanmelden_in{
     background-color: white;
@@ -535,25 +535,39 @@
     border-radius: 0.2vw;
     color: white;
     font-size: 1.5vw;
-    position: relative;
+    position: absolute;
     width: 10vw;
     height: 3vw;
-    top: -32vw;
-    right:-77%;
+    top: 32vw;
+    right:8vw;
     transition: 0.2s;
   }
   .aanmelden_button2:hover{
     transform: scale(1.05,1.05);
   }
+  .gender{
+    position: relative;
+    left: 5vw;
+  }
   .foutmelding{
+    visibility: hidden;
+    font-size: 1.1vw;
+    color: red;
+  }
+  .label{
+    visibility: hidden;
     position: absolute;
-    top: 14vw;
-    right: 21vw;
-    width: 5vw;
+    margin-top: 2.2vw;
+    font-size: 1.1vw;
+    color: red;
+    height: 2vw;
+    width: 40vw;
+    left: 30vw;
+    margin-top: 0.5vw;
   }
   .fa-3x{
-    visibility: hidden;
-    margin-top: 0.28vw;
-    font-size: 6vw;
-    color: red;
+    width: 100%;
+  }
+  .inner{
+    width: 100%;
   }

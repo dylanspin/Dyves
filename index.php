@@ -84,7 +84,7 @@
         <hr>
       </div>
 
-      <div class="aanmelden iphone">
+      <div class="aanmelden iphone" id="aanmeldVak">
         <button class="aanmelden_button">
           <a href="aanmelden.php">Geen account? Meld je gratis aan!</a>
         </button><br>
