@@ -1,57 +1,57 @@
-<div class="over">
+<div class="over profielkleur2">
   <div class="watProfiel tweev">Over</div>
-  <div class="persoonlijke profielkleur2 anderhalfv">
-    <i class="fa fa-eye profielkleur3"></i>
+  <div class="persoonlijke profielkleur anderhalfv">
+    <i class="fa fa-eye"></i>
     <?php
-      echo "ProfielBezoekers : </span class='bold'>"."</span>";
+      echo "ProfielBezoekers : </span class='bold'>".$aantal_."</span>";
      ?>
   </div>
-  <div class="persoonlijke profielkleur2 anderhalfv">
-    <i class="fa fa-globe profielkleur3"></i>
+  <div class="persoonlijke profielkleur anderhalfv">
+    <i class="fa fa-globe"></i>
     <?php
       echo "Woonplaats : <span class='bold'>".$woonplaats_."</span>";
      ?>
   </div>
-  <div class="persoonlijke profielkleur2 anderhalfv">
-    <i class="fa fa-calendar profielkleur3"></i>
+  <div class="persoonlijke profielkleur anderhalfv">
+    <i class="fa fa-calendar"></i>
     <?php
       echo "Geboortedatum : <span class='bold'>".$geboortedatum_."</span>";
      ?>
   </div>
-  <div class="persoonlijke profielkleur2 anderhalfv">
+  <div class="persoonlijke profielkleur anderhalfv">
     <?php
       if($gender_){
-        echo "<i class='fa fa-mars profielkleur3'></i> ";
+        echo "<i class='fa fa-mars'></i> ";
         echo "Geslacht : <span class='bold'>Man</span>";
       }
       else{
-        echo "<i class='fa fa-venus profielkleur3'></i> ";
-        echo "Geslacht : <span class='bold'>Vrouw</span>";
+        echo "<i class='fa fa-venus'></i> ";
+        echo " Geslacht : <span class='bold'>Vrouw</span>";
       }
      ?>
   </div>
-  <div class="persoonlijke profielkleur2 anderhalfv">
-    <i class="fa fa-university"></i>
+  <div class="persoonlijke profielkleur anderhalfv">
+    <i class="fa fa-book"></i>
     <?php
-      echo "Opleiding : <span class='bold'>Mbo Aplicatie ontwikkelaar</span>";
+      echo "Opleiding : <span class='bold'>$opleiding_</span>";
      ?>
   </div>
-  <div class="persoonlijke profielkleur2 anderhalfv">
+  <div class="persoonlijke profielkleur anderhalfv">
     <i class="fa fa-money"></i>
     <?php
-      echo "Baan : <span class='bold'>Kookstudio schoonmaker</span>";
+      echo "Baan : <span class='bold'>$baan_</span>";
      ?>
   </div>
-  <div class="persoonlijke profielkleur2 anderhalfv">
+  <div class="persoonlijke profielkleur anderhalfv">
     <i class="fa fa-music"></i>
     <?php
-      echo "Muziek : <span class='bold'>iets</span>";
+      echo "Muziek : <span class='bold'>$muziek_</span>";
      ?>
   </div>
-  <div class="persoonlijke profielkleur2 anderhalfv">
+  <div class="persoonlijke profielkleur anderhalfv">
     <i class="fa fa-futbol-o"></i>
     <?php
-      echo "Sport : <span class='bold'>niks</span>";
+      echo "Sport : <span class='bold'>$sport_</span>";
      ?>
   </div>
 

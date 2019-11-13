@@ -13,7 +13,7 @@
         <button class="overlay_button tweeBu">
           <i class="fa fa-calendar icon"></i><div class="textbutton blauw">Vrienden verjaardag</div>
         </button>
-        <button class="overlay_button tweeBu">
+        <button class="overlay_button tweeBu" onclick="goto('zoeken')">
           <i class="fa fa-plus icon"></i><div class="textbutton blauw">Vrienden toevoegen</div>
         </button>
       </div>
@@ -60,6 +60,9 @@
         </button>
       </div>
     </div>
+    <div class="header_div" id="profiel">
+      <a href="profiel.php">Profiel</a>
+    </div>
     <div class="header_div iphone">
       Meer...
       <div class="overlay">
@@ -88,9 +91,6 @@
           <i class="fa fa-square icon"></i><div class="textbutton blauw">Nog</div>
         </button>
       </div>
-    </div>
-    <div class="header_div" id="profiel">
-      <a href="profiel.php">Profiel</a>
     </div>
   </span>
 </div>

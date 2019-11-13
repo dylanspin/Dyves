@@ -34,7 +34,7 @@
        </form>
       <div class="searchbar">
         <div class="logotext">
-          Tyves
+          Dyves
         </div>
         <div class="search">
           <input type="text" class="header_in" id="header">

@@ -1,5 +1,6 @@
 <?php
   error_reporting(0);
+  include 'block.php';
 ?>
 <script>
   function aanmelden(){
@@ -83,3 +84,4 @@
     }
   }
 </script>
+<?php  ?>

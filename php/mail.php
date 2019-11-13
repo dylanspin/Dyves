@@ -1,5 +1,6 @@
 
 <?php
+    include 'block.php';
     $button2 = $_POST['wachtwoordVer']; //krijgt de button
 
     if(isset($button2)){
@@ -18,4 +19,5 @@
         header('Location: '.$_SERVER['PHP_SELF']);
         die;
     }
+
  ?>

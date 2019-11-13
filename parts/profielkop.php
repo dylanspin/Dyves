@@ -1,4 +1,4 @@
-<div class="profielKop">
+<div class="profielKop profielkleur2">
   <img src="pic/<?php echo "profilepics/g".$liveFoto.".jpg";?>" class="profielImage">
   <div class="innerProfiel">
     <span class="profielkleur tweev">
@@ -12,8 +12,8 @@
         echo "Leeftijd: ".$leeftijd;
        ?>
     </span>
-    <button class="buttonProfiel profielkleur3 anderhalfv">Profiel Pimpen</button>
-    <button class="buttonProfiel profielkleur3 anderhalfv">Mijn Gadgets</button>
-    <button class="buttonProfiel profielkleur3 anderhalfv">Mijn Bezokers</button>
+    <button class="buttonProfiel profielkleur anderhalfv underline" onclick="goto('instellingen')">Profiel Pimpen</button>
+    <button class="buttonProfiel profielkleur anderhalfv underline">Mijn Gadgets</button>
+    <button class="buttonProfiel profielkleur anderhalfv underline">Mijn Bezoekers</button>
   </div>
 </div>

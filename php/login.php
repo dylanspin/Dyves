@@ -1,6 +1,7 @@
 <?php
 
   include 'connect.php';
+  include 'block.php';
 
   error_reporting(0);
 

@@ -37,7 +37,7 @@
        </form>
       <div class="searchbar">
         <div class="logotext">
-          Tyves
+          Dyves
         </div>
         <div class="search">
           <input type="text" class="header_in" id="header">
@@ -96,8 +96,9 @@
           <span class="blauw">Vragen of hulp nodig ?</span>
         </button>
       </div>
-
     </div>
-
+    <?php
+      include 'parts/footer.php';
+     ?>
   </body>
 </html>

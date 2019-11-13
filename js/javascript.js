@@ -26,7 +26,7 @@ function checkCookie(check){
 
   if(wachtwoord == "true"){//als de inlog klopt
     document.getElementById('inlogForm').style.display = "none";//maakt de inlog form display none
-    document.getElementById('aanmeldVak').style.display = "none";//maakt de aanmeld vraag display none  
+    document.getElementById('aanmeldVak').style.display = "none";//maakt de aanmeld vraag display none
   }
   else if (wachtwoord == "false") { //als de pagina word ingeladen na dat er cookies zijn gezet
     if(check == false){
@@ -43,6 +43,10 @@ function checkCookie(check){
     }
     document.getElementById('profiel').style.visibility = "hidden";
   }
+}
+
+function goto(loc){
+  window.location.href = loc+".php";
 }
 
 function cookies(){

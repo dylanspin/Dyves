@@ -1,5 +1,6 @@
 <?php
   include 'connect.php';
+  include 'block.php';
 
   $voornaam  = $_POST['voornaam'];
   $achternaam =  $_POST['achternaam'];
@@ -49,19 +50,12 @@
       setcookie("aanmeld", "true");
       $goed = 0;
       $sql = "INSERT INTO `notusers` (`Gebruikersnaam`,`Wachtwoord`,`Email`,`Geboortedatum`,`ProfielFoto`,`Achtergrond`,`Permisie`,`Voornaam`,`Achternaam`,`Woonplaats`,`Man`) VALUES ('".$gebruiker."','".$wachtwoord."','".$email."','".$geboortedatum."','1','1','0','".$voornaam."','".$achternaam."','".$woonplaats."','".$gender."');";
-      $sql2 = "CREATE TABLE $gebruiker (
-        Id INT(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        Vrienden VARCHAR(255) NOT NULL,
-      )";
-      if ($conn->query($sql) === true && $conn->query($sql2) === true) {
+      if ($conn->query($sql) === true) {
       }
-
     }
-
     $goed = 0;
     header('Location: '.$_SERVER['PHP_SELF']);
     die;
 
   }
-
  ?>

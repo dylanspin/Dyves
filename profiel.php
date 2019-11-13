@@ -17,6 +17,7 @@
       include 'php/login.php';
       include 'php/uitloggen.php';
       include 'php/get.php';
+      include 'php/style.php';
       include 'parts/cookies.php';
     ?>
 
@@ -34,12 +35,12 @@
          </button>
          <div class="fout text2" id="fout"></div>
        </form>
-       <form action="" method="post">
+       <form action="" method="post" class="uitlog">
          <button class="uitloggen blauw underline" name="uitloggen">Uitloggen</button>
        </form>
       <div class="searchbar">
         <div class="logotext">
-          Tyves
+          Dyves
         </div>
         <div class="search">
           <input type="text" class="header_in" id="header">
@@ -55,18 +56,23 @@
     <div class="body" id="body">
       <div class="kop">
         <?php
-          echo $gebruikersnaam_;
+          echo $gebruikersnaam_; //krijgt de Gebruikers naam van de database
         ?>
       </div>
 
       <?php
       	 include 'parts/profielKop.php';//De main div van het profiel
       	 include 'parts/over.php'; //De basic informatie div
-         include 'parts/vrienden.php'; //De basic informatie div
+         include 'parts/vrienden.php'; //De vrienden div
+         include 'parts/fotos.php'; //De basic informatie div
+         include 'parts/krabels.php'; //De krabel post div
+         include 'parts/muziek.php'; //De krabel post div
+         include 'parts/profFilms.php'; //De krabel post div
       ?>
-      <img src="pic/profilepics/g1.jpg" class="vriendenImage">
     </div>
-
+  <?php
+    include 'parts/footer.php';
+   ?>
 
   </body>
 </html>

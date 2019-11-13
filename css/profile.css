@@ -7,14 +7,20 @@
   height: 27vw;
   left: 1.5vw;
   top: 5vw;
-  background-color: blue; /*Moet aangepast worden in settings*/
+  background-color: #E4E4E5;
 }
 .profielImage{
   width: 100%;
   height: 40%;
 }
 .profielkleur{
-  color: red; /*Moet aangepast worden in settings*/
+  color: black;
+}
+.profielkleur2{
+
+}
+.profielkleur3{
+
 }
 .innerProfiel{
   position: relative;
@@ -29,9 +35,6 @@
   border: none;
   width: 100%;
 }
-.buttonProfiel:hover{
-  color: white;
-}
 .tweev{
   font-size: 2vw;
 }
@@ -44,12 +47,12 @@
 .watProfiel{
   position: relative;
   color: black;
+  background-color: #d1d1d1;
   top: 0;
   left: 0;
   width: 93%;
   height: 2.5vw;
   padding: 0.5vw 5% 0.5vw 2%;
-  background-color: red;
 }
 .over{
   position: absolute;
@@ -59,7 +62,7 @@
   padding-bottom: 1vw;
   top: 5vw;
   left: 15%;
-  background-color: blue; /*Moet aangepast worden in settings*/
+  background-color: #E4E4E5;
 }
 /*De rest*/
 .persoonlijke{
@@ -69,10 +72,10 @@
 .vrienden{
   position: absolute;
   width: 40vw;
-  height: 40vw;
+  height: 42vw;
   right: 2vw;
   top: 5vw;
-  background-color: blue; /*moet aangepast worden*/
+  background-color: #E4E4E5;
 }
 .vrienden_inner{
   position: absolute;
@@ -93,4 +96,66 @@
 }
 .vriendenImage{
   width: 100%;
+}
+.fotos{
+  position: absolute;
+  left: 1.5vw;
+  top: 35vw;
+  width: 54vw;
+  height: 17vw;
+  background-color: #E4E4E5;
+}
+.krabels{
+  position: absolute;
+  left: 1.5vw;
+  top: 55vw;
+  width: 54vw;
+  height: 40vw;
+  background-color: #E4E4E5;
+}
+.profiel_films{
+  position: absolute;
+  right: 2vw;
+  top: 72vw;
+  width: 40vw;
+  height: 23vw;
+  background-color: #E4E4E5;
+}
+.foto{
+  position: relative;
+  margin: 1vw 0vw 1vw 1vw;
+  height: 9vw;
+  width: 9vw;
+  display: inline-block;
+  background-color: white;
+}
+.profiel_muziek{
+  position: absolute;
+  right: 2vw;
+  top: 55vw;
+  width: 40vw;
+  height: 15vw;
+  background-color: #E4E4E5;
+}
+.muziek{
+  margin: 1.5vw 0vw 0vw 1.5vw;
+  height: 7vw;
+  width: 7vw;
+  background-color: white;
+  display: inline-block;
+}
+.whitespace{
+  position: relative;
+  top:80vw;
+  height: 20vw;
+  width: 100vw;
+}
+.footer{
+  top: 85vw;
+}
+.meer{
+  position: absolute;
+  color: black;
+  bottom: 0.5vw;
+  left: 1vw;
 }
