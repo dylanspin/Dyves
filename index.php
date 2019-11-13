@@ -14,6 +14,7 @@
   <body onload="checkCookie(true)">
     <?php
       include 'php/login.php';
+      include 'php/uitloggen.php';
       include 'parts/cookies.php';
     ?>
 
@@ -30,6 +31,9 @@
            <span class="blauw">Wachtwoord Vergeten ?</span>
          </button>
          <div class="fout text2" id="fout"></div>
+       </form>
+       <form action="" method="post">
+         <button class="uitloggen blauw underline" name="uitloggen">Uitloggen</button>
        </form>
       <div class="searchbar">
         <div class="logotext">

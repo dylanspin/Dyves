@@ -49,8 +49,13 @@
       setcookie("aanmeld", "true");
       $goed = 0;
       $sql = "INSERT INTO `notusers` (`Gebruikersnaam`,`Wachtwoord`,`Email`,`Geboortedatum`,`ProfielFoto`,`Achtergrond`,`Permisie`,`Voornaam`,`Achternaam`,`Woonplaats`,`Man`) VALUES ('".$gebruiker."','".$wachtwoord."','".$email."','".$geboortedatum."','1','1','0','".$voornaam."','".$achternaam."','".$woonplaats."','".$gender."');";
-      if ($conn->query($sql) === true) {
+      $sql2 = "CREATE TABLE $gebruiker (
+        Id INT(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        Vrienden VARCHAR(255) NOT NULL,
+      )";
+      if ($conn->query($sql) === true && $conn->query($sql2) === true) {
       }
+
     }
 
     $goed = 0;

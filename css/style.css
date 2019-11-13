@@ -91,11 +91,17 @@
     font-weight: 600;
     color: black;
   }
+  .bold{
+    font-weight: 600;
+  }
   .blauw{
     color: #3280C9;
   }
   .grijs{
     color: gray;
+  }
+  .black{
+    color: black;
   }
   .space{
     height: 5%;
@@ -570,4 +576,16 @@
   }
   .inner{
     width: 100%;
+  }
+  .uitloggen{
+    position: absolute;
+    right: 4vw;
+    background-color: inherit;
+    border:none;
+    transition: 0.1s;
+    font-size: 1.5vw;
+    top: 30%;
+  }
+  .uitloggen:hover{
+    color:orange;
   }

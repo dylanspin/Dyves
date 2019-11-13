@@ -4,7 +4,7 @@
 
   $current = $_COOKIE["nu"];
 
-  $sql = "SELECT Gebruikersnaam,Email,Geboortedatum,ProfielFoto,Achtergrond,AanmeldTijd,Woonplaats,Voornaam,Achternaam,Man FROM `notusers` WHERE Gebruikersnaam = '$current';";
+  $sql = "SELECT Gebruikersnaam,Email,Geboortedatum,ProfielFoto,Achtergrond,AanmeldTijd,Woonplaats,Voornaam,Achternaam,Man,AantalVrienden FROM `notusers` WHERE Gebruikersnaam = '$current';";
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
@@ -18,6 +18,7 @@
       $voornaam_ = ucfirst($row['Voornaam']);
       $achternaam_ = $row['Achternaam'];
       $gender_ = $row['Man'];
+      $aantalVrienden = $row['AantalVrienden'];
     }
   }
   if($profielfoto_ >= 1){
@@ -39,5 +40,4 @@
     }
   }
   $leeftijd =  ageCalculator($geboortedatum_);
-
  ?>

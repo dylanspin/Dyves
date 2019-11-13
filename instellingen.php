@@ -15,7 +15,6 @@
   <body onload="checkCookie(false)">
     <?php
       include 'php/login.php';
-      include 'php/uitloggen.php';
       include 'php/get.php';
       include 'parts/cookies.php';
     ?>
@@ -34,9 +33,6 @@
          </button>
          <div class="fout text2" id="fout"></div>
        </form>
-       <form action="" method="post">
-         <button class="uitloggen blauw underline" name="uitloggen">Uitloggen</button>
-       </form>
       <div class="searchbar">
         <div class="logotext">
           Tyves
@@ -53,20 +49,8 @@
     <div class="niet" id="niet">Niet ingelogd!</div><!--niet ingelogged melding-->
 
     <div class="body" id="body">
-      <div class="kop">
-        <?php
-          echo $gebruikersnaam_;
-        ?>
-      </div>
 
-      <?php
-      	 include 'parts/profielKop.php';//De main div van het profiel
-      	 include 'parts/over.php'; //De basic informatie div
-         include 'parts/vrienden.php'; //De basic informatie div
-      ?>
-      <img src="pic/profilepics/g1.jpg" class="vriendenImage">
     </div>
-
 
   </body>
 </html>
