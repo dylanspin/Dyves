@@ -171,17 +171,16 @@
     position: relative;
     width: 100vw;
     height: 7vh;
-    background-color: inherit;
+    background-color: none;
     color: black;
   }
   .header_div:hover .overlay  {
-    top: 2.65vw;
+    top: 2.5vw;
     min-height: 5vw;
     height: auto;
     visibility: visible;
   }
   .header_buttons{
-    background-color: inherit;
     position: absolute;
     width: 80vw;
     left: 1.4%;

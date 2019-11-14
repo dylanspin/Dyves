@@ -34,14 +34,14 @@ function checkCookie(check){
       document.getElementById('niet').style.display = "flex";
     }
     document.getElementById('fout').innerHTML = "Mislukt met Inloggen";
-    document.getElementById('profiel').style.visibility = "hidden";
+    document.getElementById('profiel').style.display = "none";
   }
   else{//als de pagina voor het eerst word ingeladen
     if(check == false){
       document.getElementById('niet').style.display = "flex";
       document.getElementById('body').style.display = "none";
     }
-    document.getElementById('profiel').style.visibility = "hidden";
+    document.getElementById('profiel').style.display = "flex";
   }
 }
 

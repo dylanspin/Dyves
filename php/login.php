@@ -34,7 +34,6 @@
         else{
           setcookie("wachtwoordCheck", "false", time() + (86400 * 30), "/");
           echo "<script>console.log('mislukt')</script>";
-          echo "<div class='fout text2'>Mislukt met inloggen</div>";
           header('Location: '.$_SERVER['PHP_SELF']);
           die;
         }
@@ -42,7 +41,6 @@
   }
   else {
     setcookie("wachtwoordCheck", "false", time() + (86400 * 30), "/");
-    echo "<div class='fout text2'>Mislukt met inloggen</div>";
     header('Location: '.$_SERVER['PHP_SELF']);
     die;
   }

@@ -56,8 +56,5 @@
       $sport_ = $row['Sport'];
     }
   }
-  else{
-    echo "mislukt";
-  }
 
  ?>
