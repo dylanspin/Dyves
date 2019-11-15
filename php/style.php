@@ -10,10 +10,10 @@
 4 = logotext kleur
 
 */
-  //disney theme
+  //standaard thema
   $t0 = "";
-
-  $t1 =  ["#380CE9","rgb(148, 178, 216,0.6)","white","linear-gradient(180deg, rgba(0,92,187,0.8) 7%, rgba(41,43,151,1) 60%, rgba(142,9,128,1) 93%);","white","background-image: url('pic/back/disney.jpg');",];
+  //disney theme
+  $t1 =  ["#380CE9","rgb(148, 178, 216,0.6)","white","linear-gradient(180deg, rgba(15,97,231,1) 10%, rgba(1,59,133,1) 96%);","white","background-image: url('pic/back/disney.jpg');",];
   //Pink theme
   $t2 =  ["#600033","rgb(254, 4, 137,0.4)","black","linear-gradient(180deg, rgba(160,0,92,0.8) 7%, rgba(122,9,86,1) 93%);","white","background-image: url('pic/back/pink.jpg');",];
   //Dark theme

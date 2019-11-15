@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="js/javascript.js"></script>
   </head>
-  <body onload="checkCookie(false)">
+  <body onload="checkCookie(false)" class="intel">
     <?php
       include 'php/login.php';
       include 'php/uitloggen.php';
@@ -54,11 +54,21 @@
     <div class="niet" id="niet">Niet ingelogd!</div><!--niet ingelogged melding-->
 
     <div class="body" id="body">
+
+      <div class="intelKop">
+          Mijn Menu
+      </div>
       <!--De profiel pagina instellingen-->
       <form class="intellingenForm" action="" method="post">
         <div class="sectie blauw">Over: </div>
         <div class="intellinginner">
           <label class="instelLabel">Gebruiker</label><input type="text" name="Gebruikersnaam" class="instelling">
+        </div>
+        <div class="intellinginner">
+          <label class="instelLabel">Voornaam</label><input type="text" name="Voornaam" class="instelling">
+        </div>
+        <div class="intellinginner">
+          <label class="instelLabel">Achternaam</label><input type="text" name="Achternaam" class="instelling">
         </div>
         <div class="intellinginner">
           <label class="instelLabel">Woonplaats</label><input type="text" name="Woonplaats" class="instelling">
@@ -70,13 +80,17 @@
           <label class="instelLabel">Baan</label><input type="text" name="Baan" class="instelling">
         </div>
         <div class="intellinginner">
-          <label class="instelLabel">Film</label><input type="text" name="Film" class="instelling">
+          <label class="instelLabel">Fav Muziek</label><input type="text" name="MuziekU" class="instelling">
+        </div>
+        <div class="intellinginner">
+          <label class="instelLabel">Fav Film</label><input type="text" name="Film" class="instelling">
         </div>
         <div class="intellinginner">
           <label class="instelLabel">Sport</label><input type="text" name="Sport" class="instelling">
         </div>
 
-        <div class="sectie blauw">Profiel: </div>
+      <div class="enter"></div>
+      <div class="sectie blauw">Profiel: </div>
         <label class="instelLabel">Private</label>
         <input type="radio" name="Aanprive" value="1" class="instellingRadio" <?php if($private_){echo "checked";}else{echo "";}?>>
         <span class="text3">Aan</span>
@@ -89,8 +103,8 @@
         <input type="radio" name="AanVrienden" value="0" class="instellingRadio"<?php if(!$vrienAan_){echo "checked";}else{echo "";}?>>
         <span class="text3">Uit</span>
 
+      <div class="enter"></div>
       <div class="sectie blauw">Favoriete Nummers: </div>
-      <div class="space"></div>
         <label class="instelLabel">Nummers</label><input type="text" name="Muziek" value="" class="instelling">
         <label class="instelLabel">Status</label>
         <input type="radio" name="AanMuziek" value="1" class="instellingRadio"<?php if($muziekAan_){echo "checked";}else{echo "";}?>>
@@ -98,6 +112,7 @@
         <input type="radio" name="AanMuziek" value="0" class="instellingRadio"<?php if(!$muziekAan_){echo "checked";}else{echo "";}?>>
         <span class="text3">Uit</span>
 
+      <div class="enter"></div>
       <div class="sectie blauw">Films: </div>
         <label class="instelLabel">Film</label><input type="text" name="Film" value="" class="instelling">
         <label class="instelLabel">Status</label>

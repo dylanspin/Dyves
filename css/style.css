@@ -641,7 +641,7 @@
     font-size: 1.5vw;
     width: 58%;
     display: inline-block;
-    border: 0.1vw solid black;
+    border:none;
   }
   .instellingRadio{
     position: relative;
@@ -673,4 +673,23 @@
   }
   .slaOp:hover{
     transform: scale(1.05,1.05);
+  }
+  .enter{
+    height: 3vw;
+    width: 100vw;
+  }
+  .intel{
+    background-color: #E4E4E5;
+    color: #152962;
+  }
+  .intelKop{
+    color: white;
+    border-radius: 0.20vw;
+    padding: 1vw 0vw 2vw 2%;
+    font-size: 1.5vw;
+    position: relative;
+    height: 0.8vw;
+    width: 94%;
+    left: 2%;
+    background: linear-gradient(180deg, rgba(102,137,194,1) 10%, rgba(132,162,200,1) 96%);
   }

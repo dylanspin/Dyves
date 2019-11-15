@@ -5,22 +5,21 @@
 
   $t1 = 0;
 
-  // $GebruikerU  = $_POST['Gebruikersnaam'];
-  // $WoonplaatsU  = $_POST['Wooonplaats'];
+  $GebruikerU  = $_POST['Gebruikersnaam'];
+  $WoonplaatsU  = $_POST['Wooonplaats'];
+  $Voornaam  = $_POST['Voornaam'];
+  $achternaam  = $_POST['Achternaam'];
   $OpleidingU = $_POST['Opleiding'];
   $BaanU = $_POST['Baan'];
   $FilmU = $_POST['Film'];
   $SportU = $_POST['Sport'];
+  $MuziekU = $_POST['MuziekU'];
   $Private = $_POST['Aanprive'];
   $VriendenAan = $_POST['AanVrienden'];
   $MuziekAan = $_POST['AanMuziek'];
   $FilmAan = $_POST['AanFilms'];
   $Muziek = $_POST['Muziek'];
   $Film = $_POST['Film'];
-
-  echo "Film :".$Film." ".$FilmAan."<br>Muziek : ".$Muziek." ".$MuziekAan."<br> Private : ".$Private." Vrienden : ".$VriendenAan."<br>";
-  echo "Test".$private_." ".$filmAan_." ".$muziekAan_." ".$vrienAan_."<br>";
-
 
   $current = $_COOKIE["nu"];
 
