@@ -61,17 +61,8 @@
       </div>
     </div>
     <div class="header_div" id="profiel">
-      Profiel
-      <div class="overlay" id="profiel">
-        <button class="overlay_button" onclick="goto('profiel.php')">
-          <i class="fa fa-cog icon"></i><div class="textbutton blauw">Instellingen</div>
-        </button>
-        <button class="overlay_button" onclick="goto('instellingen.php')">
-          <i class="fa fa-user icon"></i><div class="textbutton blauw"><a href="index.php">Pagina</a></div>
-        </button>
-      </div>
+      <a href="profiel.php">Profiel</a>
     </div>
-
     <div class="header_div iphone">
       Meer...
       <div class="overlay">

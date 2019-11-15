@@ -49,6 +49,12 @@
      ?>
   </div>
   <div class="persoonlijke profielkleur anderhalfv">
+    <i class="fa fa-film"></i>
+    <?php
+      echo "Fav Film : <span class='bold'>$sport_</span>";
+     ?>
+  </div>
+  <div class="persoonlijke profielkleur anderhalfv">
     <i class="fa fa-futbol-o"></i>
     <?php
       echo "Sport : <span class='bold'>$sport_</span>";

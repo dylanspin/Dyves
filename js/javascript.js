@@ -41,7 +41,7 @@ function checkCookie(check){
       document.getElementById('niet').style.display = "flex";
       document.getElementById('body').style.display = "none";
     }
-    document.getElementById('profiel').style.display = "flex";
+    document.getElementById('profiel').style.display = "none";
   }
 }
 

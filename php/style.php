@@ -11,11 +11,13 @@
 
 */
   //disney theme
+  $t0 = "";
+
   $t1 =  ["#380CE9","rgb(148, 178, 216,0.6)","white","linear-gradient(180deg, rgba(0,92,187,0.8) 7%, rgba(41,43,151,1) 60%, rgba(142,9,128,1) 93%);","white","background-image: url('pic/back/disney.jpg');",];
   //Pink theme
   $t2 =  ["#600033","rgb(254, 4, 137,0.4)","black","linear-gradient(180deg, rgba(160,0,92,0.8) 7%, rgba(122,9,86,1) 93%);","white","background-image: url('pic/back/pink.jpg');",];
   //Dark theme
-  $t3 =  ["gray","#282828","white","linear-gradient(180deg, rgba(8,8,8,0.8) 7%, rgba(17,17,17,1) 93%)","blue","background-color:#191919;",];
+  $t3 =  ["gray","#282828","white","linear-gradient(180deg, rgba(8,8,8,0.8) 7%, rgba(17,17,17,1) 93%)","white","background-color:#191919;",];
   //fanta theme
   $t4 = ["#FE3C01","rgb(254, 151, 47,0.6)","white","linear-gradient(180deg, rgba(232,97,7,1) 10%, rgba(239,80,1,1) 51%, rgba(255,102,0,1) 93%);","white","background-image: url('pic/back/fanta.jpg');",];
   //netflix theme

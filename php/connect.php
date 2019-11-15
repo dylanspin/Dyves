@@ -1,6 +1,6 @@
 <?php
   /*include file*/
-  include 'block.php';
+  // include 'block.php';
 
   $dbServername = 'localhost';
   $dbUsername = 'root';
@@ -8,5 +8,6 @@
   $dbName = 'dyves'; /*folder waar de table in staat*/
 
   $conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
+
 
 ?>

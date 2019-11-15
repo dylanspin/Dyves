@@ -44,7 +44,7 @@
   $leeftijd =  ageCalculator($geboortedatum_);
 
 
-  $sql2 = "SELECT Aantal,Baan,Opleiding,Muziek,Film,Sport FROM `over` WHERE Wie = '$gebruikersnaam_';";
+  $sql2 = "SELECT Aantal,Baan,Opleiding,Muziek,Film,Sport,Private,FilmAan,MuziekAan,VriendenAan FROM `over` WHERE Wie = '$gebruikersnaam_';";
   $result2 = $conn->query($sql2);
   if ($result2->num_rows > 0) {
     while($row = $result2->fetch_assoc()) {
@@ -54,6 +54,10 @@
       $muziek_ = $row['Muziek'];
       $film_ = $row['Film'];
       $sport_ = $row['Sport'];
+      $private_ = $row['Private'];
+      $filmAan_ = $row['FilmAan'];
+      $muziekAan_ = $row['MuziekAan'];
+      $vrienAan_ = $row['VriendenAan'];
     }
   }
 

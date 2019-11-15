@@ -97,6 +97,9 @@
     font-weight: 600;
     color: black;
   }
+  .text3{
+    font-size: 1vw;
+  }
   .bold{
     font-weight: 600;
   }
@@ -618,4 +621,56 @@
     position: relative;
     margin-left: 1vw;
     font-size: 1.3vw;
+  }
+  /*instellingen*/
+  .sectie{
+    position: relative;
+    left: -1vw;
+    font-size: 2vw;
+  }
+  form.intellingenForm{
+    margin-top: 1vw;
+    position: relative;
+    left: 2vw;
+    width: 20vw;
+    height: auto;
+    padding: 1vw;
+  }
+  .instelling{
+    position: relative;
+    font-size: 1.5vw;
+    width: 58%;
+    display: inline-block;
+    border: 0.1vw solid black;
+  }
+  .instellingRadio{
+    position: relative;
+    height: 1vw;
+    width: 1vw;
+    display: inline-block;
+  }
+  .instelLabel{
+    width: 40%;
+    position: relative;
+    display: inline-block;
+    font-size: 1.3vw;
+    left: 0;
+    top: 50%;
+  }
+  .intellinginner{
+    margin-top: 0.25vw;
+  }
+  .slaOp{
+    right: 10%;
+    bottom: 2vw;
+    font-size: 2vw;
+    line-height: 1vw;
+    position: fixed;
+    height: 2vw;
+    border: 0.1vw solid black;
+    background-color: white;
+    transition: 0.2s;
+  }
+  .slaOp:hover{
+    transform: scale(1.05,1.05);
   }
