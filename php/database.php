@@ -55,6 +55,11 @@
 
       if ($conn->query($sql) === true) {
       }
+
+      $sql2 = "INSERT INTO `over` (`Aantal`,`Opleiding`,`Baan`,`Muziek`,`Sport`,`Wie`,`Film`,`Private`,`FilmAan`,`MuziekAan`,`VriendenAan`) VALUES
+      ('','','','','','$gebruiker','','0','0','0','1');";
+      if ($conn->query($sql2) === true) {
+      }
     }
     $goed = 0;
     header('Location: '.$_SERVER['PHP_SELF']);

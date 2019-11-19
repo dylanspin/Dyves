@@ -35,9 +35,6 @@
          </button>
          <div class="fout text2" id="fout"></div>
        </form>
-       <form action="" method="post" class="uitlog">
-         <button class="uitloggen blauw underline" name="uitloggen">Uitloggen</button>
-       </form>
       <div class="searchbar">
         <div class="logotext">
           Dyves
@@ -63,11 +60,19 @@
       <?php
       	 include 'parts/profielKop.php';//De main div van het profiel
       	 include 'parts/over.php'; //De basic informatie div
-         include 'parts/vrienden.php'; //De vrienden div
+         if($vrienAan_){
+           include 'parts/vrienden.php'; //De vrienden div
+         }
          include 'parts/fotos.php'; //De basic informatie div
-         include 'parts/krabels.php'; //De krabel post div
-         include 'parts/muziek.php'; //De krabel post div
-         include 'parts/profFilms.php'; //De krabel post div
+         if(true){
+           include 'parts/krabels.php'; //De krabel post div
+          }
+         if($muziekAan_){
+           include 'parts/muziek.php'; //De krabel post div
+         }
+         if($filmAan_){
+           include 'parts/profFilms.php'; //De krabel post div
+         }
       ?>
     </div>
   <?php

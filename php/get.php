@@ -2,7 +2,7 @@
 <?php
   include 'connect.php';
   include 'block.php';
-
+  error_reporting(0);
   $current = $_COOKIE["nu"];
 
   $sql = "SELECT Gebruikersnaam,Email,Geboortedatum,ProfielFoto,Achtergrond,AanmeldTijd,Woonplaats,Voornaam,Achternaam,Man,AantalVrienden,Permisie FROM `notusers` WHERE Gebruikersnaam = '$current';";
@@ -23,7 +23,7 @@
       $per = $row['Permisie'];
     }
   }
-  if($profielfoto_ >= 1){
+  if($profielfoto_ <= 1){
     $liveFoto = $gender_;
   }
   else{

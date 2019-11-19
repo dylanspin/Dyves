@@ -114,3 +114,17 @@ function schuif(id,hoog){
       document.getElementById('inlog_div').style.display = "none";
     }
   }
+
+  var latest = "";
+
+  function checkbox(id){
+    if(latest.length > 0){
+      document.getElementById(latest).style.width = "10vw";
+      document.getElementById(latest).style.height = "15vw";
+    }
+    document.getElementById(id).style.width = "11vw";
+    document.getElementById(id).style.height = "16vw";
+    document.getElementById('Hidden').value = id;
+
+    latest = id;
+  }

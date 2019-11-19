@@ -4,6 +4,7 @@
   error_reporting(0);
 
   $t1 = 0;
+  $t2 = 0;
 
   $GebruikerU  = $_POST['Gebruikersnaam'];
   $WoonplaatsU  = $_POST['Wooonplaats'];
@@ -20,6 +21,7 @@
   $FilmAan = $_POST['AanFilms'];
   $Muziek = $_POST['Muziek'];
   $Film = $_POST['Film'];
+  $inputVal = $_POST['Hidden'];
 
   $current = $_COOKIE["nu"];
 
@@ -28,7 +30,6 @@
 
   // $updated .= "`Gebruikersnaam` = 'Dylan'";
   // $updated .= "`Woonplaats` = 'gieterveen'";
-  // $updated .= "`Achtergrond` = 't2'";
 
   // if (strlen($GebruikerU) > 0) {
   // }
@@ -71,8 +72,15 @@
     $update[$t1] = "`MuziekAan` = '$MuziekAan'";
     $t1 ++;
   }
+  if ($inputVal != $achtergrond_) {
+    if($inputVal != ""){
+      $update2[$t2] = "`Achtergrond` = '$inputVal'";
+      $t2 ++;
+    }
+  }
 
   $t1 --;
+  $t2 --;
   if($t1 >0){
     for($i=0; $i<=$t1-1; $i++){
       $updated2 .= $update[$i].",";
@@ -82,17 +90,37 @@
   else if($t1 == 0){
     $updated2 .= $update[$t1];
   }
+  if($t2 >0){
+    for($i=0; $i<=$t2-1; $i++){
+      $updated .= $update2[$i].",";
+    }
+    $updated .= $update2[$t2];
+  }
+  else if($t2 == 0){
+    $updated .= $update2[$t2];
+  }
 
-
-  if($t1 >= 0){
-    if (isset($_POST['update'])){
-      $sql = "UPDATE `over` SET $updated2 WHERE Wie = '$current';";/*sql code */
+  if (isset($_POST['update'])){
+    if($t1 >= 0){
+      $sql = "UPDATE `over` SET $updated2 WHERE Wie = '$current';";
       if ($conn->query($sql) === true) {
         header("Refresh:0");
         echo "Updated";
       }
       else {
         echo "mislukt". $sql . "<br>" . $conn->error;
+      }
+    }
+
+    if($t2 >= 0){
+      echo "test";
+      $sql2 = "UPDATE `notusers` SET $updated WHERE Gebruikersnaam = '$current';";
+      if ($conn->query($sql2) === true) {
+        header("Refresh:0");
+        echo "Updated";
+      }
+      else {
+        echo "mislukt". $sql2 . "<br>" . $conn->error;
       }
     }
   }

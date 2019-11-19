@@ -21,7 +21,7 @@
   //fanta theme
   $t4 = ["#FE3C01","rgb(254, 151, 47,0.6)","white","linear-gradient(180deg, rgba(232,97,7,1) 10%, rgba(239,80,1,1) 51%, rgba(255,102,0,1) 93%);","white","background-image: url('pic/back/fanta.jpg');",];
   //netflix theme
-  $t5 = ["white","rgb(25, 25, 25,0.9)","#E50914","linear-gradient(180deg, rgba(0,0,0,1) 10%, rgba(13,13,13,1) 93%);","#E50914","background-color:#141414;",];
+  $t5 = ["white","rgb(25, 25, 25,0.9)","white","linear-gradient(180deg, rgba(0,0,0,1) 10%, rgba(13,13,13,1) 93%);","#E50914","background-color:#141414;",];
   //smurf theme
   $t6 = ["#DBDADB","rgb(1, 182, 202,0.5)","white","linear-gradient(180deg, rgba(31,125,204,1) 10%, rgba(175,175,175,1) 93%);","#015EFE","background-image: url('pic/back/smurf.jpg');",];
   //starwars theme
@@ -32,7 +32,13 @@
   $t9 = ["#DBDADB","rgb(0, 0, 0,0.5)","black","linear-gradient(180deg, rgba(176,176,176,1) 10%, rgba(66,66,66,1) 87%);","#515151","background-image: url('pic/back/game.jpg'); background-repeat: repeat-x; background-color:black;",];
   //wedding thema
   $t10 = ["black","rgb(255, 255, 255,0.5)","black"," linear-gradient(180deg, rgba(247,247,247,1) 10%, rgba(204,204,204,1) 87%);","#515151","background-image: url('pic/back/wed.jpg');",];
-
+  //hamburger thema
+  $t11 =  ["#ec3521","rgb(229,203,122,0.5)","#32c704","linear-gradient(180deg, rgba(236,53,33,1) 10%, rgba(69,1,1,1) 96%);","#e5cb7a","background-image: url('pic/back/ham.jpg');",];
+  //rick theme
+  $t12 =  ["#38eb00","rgb(38,107,10,0.5)","#32c704","linear-gradient(180deg, rgba(124,19,72,1) 10%, rgba(163,0,123,1) 96%);","#75b6b5","background-image: url('pic/back/rick.jpg');",];
+  //southpark theme
+  $t13 = ["white","rgb(94, 81, 64,0.5)","black","linear-gradient(180deg, rgba(122,104,82,1) 10%, rgba(94,81,64,1) 96%);","black","background-image: url('pic/back/south.jpg');",];
+  // $kleuren =
   $kleuren = $$achtergrond_;
 
   echo "<style media='screen'>

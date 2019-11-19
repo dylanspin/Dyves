@@ -35,9 +35,6 @@
          </button>
          <div class="fout text2" id="fout"></div>
        </form>
-       <form action="" method="post">
-         <button class="uitloggen blauw underline" name="uitloggen">Uitloggen</button>
-       </form>
       <div class="searchbar">
         <div class="logotext">
           Dyves
@@ -102,6 +99,56 @@
         <span class="text3">Aan</span>
         <input type="radio" name="AanVrienden" value="0" class="instellingRadio"<?php if(!$vrienAan_){echo "checked";}else{echo "";}?>>
         <span class="text3">Uit</span>
+
+      <div class="enter"></div>
+      <div class="sectie blauw">Thema: </div>
+      <input type="hidden" name="Hidden" value="" id="Hidden">
+      <div class="themas">
+        <div class="thema" name="button" id="t0" onclick="checkbox('t0')">
+          <img src="pic/themas/thema0.png" class="nieuws_img">
+        </div>
+        <div class="thema" name="button" id="t1" onclick="checkbox('t1')">
+          <img src="pic/themas/thema1.png" class="nieuws_img">
+        </div>
+        <div class="thema" name="button" id="t2" onclick="checkbox('t2')">
+          <img src="pic/themas/thema2.png" class="nieuws_img">
+        </div>
+        <div class="thema" name="button" id="t3" onclick="checkbox('t3')">
+          <img src="pic/themas/thema3.png" class="nieuws_img">
+        </div>
+        <div class="thema" name="button" id="t5" onclick="checkbox('t5')">
+          <img src="pic/themas/thema5.png" class="nieuws_img">
+        </div>
+        <div class="thema" name="button" id="t7" onclick="checkbox('t7')">
+          <img src="pic/themas/thema7.png" class="nieuws_img">
+        </div>
+        <div class="thema" name="button" id="t12" onclick="checkbox('t12')">
+          <img src="pic/themas/thema12.png" class="nieuws_img">
+        </div>
+        <div class="thema" name="button" id="t4" onclick="checkbox('t4')">
+          <img src="pic/themas/thema4.png" class="nieuws_img">
+        </div>
+        <div class="thema" name="button" id="t8" onclick="checkbox('t8')">
+          <img src="pic/themas/thema8.png" class="nieuws_img">
+        </div>
+        <div class="thema" name="button" id="t9" onclick="checkbox('t9')">
+          <img src="pic/themas/thema9.png" class="nieuws_img">
+        </div>
+        <div class="thema" name="button" id="t6" onclick="checkbox('t6')">
+          <img src="pic/themas/thema6.png" class="nieuws_img">
+        </div>
+        <div class="thema" name="button" id="t10" onclick="checkbox('t10')">
+          <img src="pic/themas/thema10.png" class="nieuws_img">
+        </div>
+        <div class="thema" name="button" id="t11" onclick="checkbox('t11')">
+          <img src="pic/themas/thema11.png" class="nieuws_img">
+        </div>
+        <div class="thema" name="button" id="t13" onclick="checkbox('t13')">
+          <img src="pic/themas/thema13.png" class="nieuws_img">
+        </div>
+      </div>
+
+
 
       <div class="enter"></div>
       <div class="sectie blauw">Favoriete Nummers: </div>

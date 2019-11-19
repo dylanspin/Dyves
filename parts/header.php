@@ -60,9 +60,7 @@
         </button>
       </div>
     </div>
-    <div class="header_div" id="profiel">
-      <a href="profiel.php">Profiel</a>
-    </div>
+
     <div class="header_div iphone">
       Meer...
       <div class="overlay">
@@ -92,5 +90,26 @@
         </button>
       </div>
     </div>
+
+    <div class="header_div iphone uitlogg" id="profiel">
+      <div class="uitlogimg">
+        <img src="pic/profilepics/g<?php echo $liveFoto ?>.jpg" class="nieuws_img">
+      </div>Dylan
+      <div class="overlay">
+        <button class="overlay_button" onclick="goto('profiel')">
+          <i class="fa fa-user icon"></i><div class="textbutton blauw">Profiel</div>
+        </button>
+        <button class="overlay_button" onclick="goto('instellingen')">
+          <i class="fa fa-cog icon"></i><div class="textbutton blauw">Instellingen</div>
+        </button>
+        <form action="" method="post" class="uitlog">
+          <button class="overlay_button" name="uitloggen">
+            <i class="fa fa-sign-out icon"></i><div class="textbutton blauw">Uitloggen</div>
+          </button>
+        </form>
+      </div>
+    </div>
+
+
   </span>
 </div>

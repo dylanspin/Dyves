@@ -13,7 +13,7 @@
        ?>
     </span>
     <button class="buttonProfiel profielkleur anderhalfv underline" onclick="goto('instellingen')">Profiel Pimpen</button>
-    <button class="buttonProfiel profielkleur anderhalfv underline">Mijn Gadgets</button>
+    <button class="buttonProfiel profielkleur anderhalfv underline" onclick="goto('cv')">Mijn CV</button>
     <button class="buttonProfiel profielkleur anderhalfv underline">Mijn Bezoekers</button>
   </div>
 </div>
