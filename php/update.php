@@ -22,20 +22,12 @@
   $Muziek = $_POST['Muziek'];
   $Film = $_POST['Film'];
   $inputVal = $_POST['Hidden'];
+  $profielfoto = $_POST['fileToUpload'];
 
   $current = $_COOKIE["nu"];
 
   $updated = "";
   $updated2 = "";
-
-  // $updated .= "`Gebruikersnaam` = 'Dylan'";
-  // $updated .= "`Woonplaats` = 'gieterveen'";
-
-  // if (strlen($GebruikerU) > 0) {
-  // }
-  //
-  // if (strlen($WoonplaatsU) > 0) {
-  // }
 
   if (strlen($OpleidingU) > 0) {
     $update[$t1] = "`Opleiding` = '$OpleidingU'";
@@ -104,7 +96,6 @@
     if($t1 >= 0){
       $sql = "UPDATE `over` SET $updated2 WHERE Wie = '$current';";
       if ($conn->query($sql) === true) {
-        header("Refresh:0");
         echo "Updated";
       }
       else {
@@ -116,13 +107,13 @@
       echo "test";
       $sql2 = "UPDATE `notusers` SET $updated WHERE Gebruikersnaam = '$current';";
       if ($conn->query($sql2) === true) {
-        header("Refresh:0");
         echo "Updated";
       }
       else {
         echo "mislukt". $sql2 . "<br>" . $conn->error;
       }
     }
+    header("Refresh:0");
   }
 
  ?>

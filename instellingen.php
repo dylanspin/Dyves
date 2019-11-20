@@ -17,6 +17,7 @@
       include 'php/login.php';
       include 'php/uitloggen.php';
       include 'php/get.php';
+      include 'php/foto.php';
       include 'php/update.php';
       include 'parts/cookies.php';
     ?>
@@ -55,8 +56,14 @@
       <div class="intelKop">
           Mijn Menu
       </div>
+
       <!--De profiel pagina instellingen-->
-      <form class="intellingenForm" action="" method="post">
+      <form class="intellingenForm" method="post" enctype="multipart/form-data">
+        <div class="sectie blauw">Profiel Foto: </div>
+          <input type="file" name="fileToUpload" id="fileToUpload" class="instelling">
+
+      <!-- <form class="intellingenForm" action="" method="post"> -->
+        <div class="enter"></div>
         <div class="sectie blauw">Over: </div>
         <div class="intellinginner">
           <label class="instelLabel">Gebruiker</label><input type="text" name="Gebruikersnaam" class="instelling">
@@ -168,7 +175,7 @@
         <input type="radio" name="AanFilms" value="0" class="instellingRadio"<?php if(!$filmAan_){echo "checked";}else{echo "";}?>>
         <span class="text3">Uit</span>
 
-        <button type ="submit" class="slaOp" name="update">Save</button>
+        <input type="submit" value="Save" name="update" class="slaOp" >
     </div>
 
   </body>

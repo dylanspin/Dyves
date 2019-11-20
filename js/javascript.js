@@ -118,6 +118,12 @@ function schuif(id,hoog){
   var latest = "";
 
   function checkbox(id){
+    if(latest == id){
+      console.log("test");
+    }
+    else{
+      console.log("test2");
+    }
     if(latest.length > 0){
       document.getElementById(latest).style.width = "10vw";
       document.getElementById(latest).style.height = "15vw";
