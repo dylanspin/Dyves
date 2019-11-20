@@ -712,5 +712,12 @@
     height: 2vw;
   }
   .uitlogg{
-    left: 52%;
+    left: 47%;
+  }
+  .naam{
+    position: relative;
+    top:7%;
+    display: inline-block;
+    width: 10vw;
+    overflow:hidden;
   }

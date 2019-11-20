@@ -37,8 +37,10 @@
   //rick theme
   $t12 =  ["#38eb00","rgb(38,107,10,0.5)","#32c704","linear-gradient(180deg, rgba(124,19,72,1) 10%, rgba(163,0,123,1) 96%);","#75b6b5","background-image: url('pic/back/rick.jpg');",];
   //southpark theme
-  $t13 = ["white","rgb(94, 81, 64,0.5)","black","linear-gradient(180deg, rgba(122,104,82,1) 10%, rgba(94,81,64,1) 96%);","black","background-image: url('pic/back/south.jpg');",];
-  // $kleuren =
+  $t13 = ["white","rgb(94,81,64,0.5)","black","linear-gradient(180deg, rgba(122,104,82,1) 10%, rgba(94,81,64,1) 96%);","black","background-image: url('pic/back/south.jpg');",];
+  //krijt thema
+  $t14 = ["white","rgb(57,57,57,0.5)","white","#282828;","black","background-image: url('pic/back/krijt.jpg');",];
+
   $kleuren = $$achtergrond_;
 
   echo "<style media='screen'>

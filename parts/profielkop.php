@@ -1,5 +1,5 @@
 <div class="profielKop profielkleur2">
-  <img src="pic/<?php echo "profilepics/g".$liveFoto.".jpg";?>" class="profielImage">
+  <img src="pic/<?php echo "profilepics/".$liveFoto;?>" class="profielImage">
   <div class="innerProfiel">
     <span class="profielkleur tweev">
       <?php

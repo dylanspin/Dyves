@@ -25,17 +25,8 @@
     <div class="header">
       <?php
         include 'parts/header.php';
+        include 'parts/inlog.php';
        ?>
-
-       <form class="inlog iphone" action="" method="post" id="inlogForm">
-         <input type="text" name="gebruiker" id="gebruiker" class="inlog_in" placeholder="Gebruikersnaam">
-         <input type="password" name="wachtwoord" id="wachtwoord" class="inlog_in" placeholder="Wachtwoord">
-         <button class="inlog_button" id="inlog_button" name="inlog_button">Inloggen</button><br>
-         <button class="inlog_ver">
-           <span class="blauw">Wachtwoord Vergeten ?</span>
-         </button>
-         <div class="fout text2" id="fout"></div>
-       </form>
       <div class="searchbar">
         <div class="logotext">
           Dyves
@@ -60,7 +51,7 @@
       <!--De profiel pagina instellingen-->
       <form class="intellingenForm" method="post" enctype="multipart/form-data">
         <div class="sectie blauw">Profiel Foto: </div>
-          <input type="file" name="fileToUpload" id="fileToUpload" class="instelling">
+          <input type="file" name="fileToUpload" id="fileToUpload" class="instelling" accept="image/*">
 
       <!-- <form class="intellingenForm" action="" method="post"> -->
         <div class="enter"></div>
@@ -87,7 +78,7 @@
           <label class="instelLabel">Fav Muziek</label><input type="text" name="MuziekU" class="instelling">
         </div>
         <div class="intellinginner">
-          <label class="instelLabel">Fav Film</label><input type="text" name="Film" class="instelling">
+          <label class="instelLabel">Fav Film</label><input type="text" name="FilmU" class="instelling">
         </div>
         <div class="intellinginner">
           <label class="instelLabel">Sport</label><input type="text" name="Sport" class="instelling">
@@ -107,52 +98,11 @@
         <input type="radio" name="AanVrienden" value="0" class="instellingRadio"<?php if(!$vrienAan_){echo "checked";}else{echo "";}?>>
         <span class="text3">Uit</span>
 
-      <div class="enter"></div>
+      <div class="enter"></div><!--Moet nog met php-->
       <div class="sectie blauw">Thema: </div>
       <input type="hidden" name="Hidden" value="" id="Hidden">
       <div class="themas">
-        <div class="thema" name="button" id="t0" onclick="checkbox('t0')">
-          <img src="pic/themas/thema0.png" class="nieuws_img">
-        </div>
-        <div class="thema" name="button" id="t1" onclick="checkbox('t1')">
-          <img src="pic/themas/thema1.png" class="nieuws_img">
-        </div>
-        <div class="thema" name="button" id="t2" onclick="checkbox('t2')">
-          <img src="pic/themas/thema2.png" class="nieuws_img">
-        </div>
-        <div class="thema" name="button" id="t3" onclick="checkbox('t3')">
-          <img src="pic/themas/thema3.png" class="nieuws_img">
-        </div>
-        <div class="thema" name="button" id="t5" onclick="checkbox('t5')">
-          <img src="pic/themas/thema5.png" class="nieuws_img">
-        </div>
-        <div class="thema" name="button" id="t7" onclick="checkbox('t7')">
-          <img src="pic/themas/thema7.png" class="nieuws_img">
-        </div>
-        <div class="thema" name="button" id="t12" onclick="checkbox('t12')">
-          <img src="pic/themas/thema12.png" class="nieuws_img">
-        </div>
-        <div class="thema" name="button" id="t4" onclick="checkbox('t4')">
-          <img src="pic/themas/thema4.png" class="nieuws_img">
-        </div>
-        <div class="thema" name="button" id="t8" onclick="checkbox('t8')">
-          <img src="pic/themas/thema8.png" class="nieuws_img">
-        </div>
-        <div class="thema" name="button" id="t9" onclick="checkbox('t9')">
-          <img src="pic/themas/thema9.png" class="nieuws_img">
-        </div>
-        <div class="thema" name="button" id="t6" onclick="checkbox('t6')">
-          <img src="pic/themas/thema6.png" class="nieuws_img">
-        </div>
-        <div class="thema" name="button" id="t10" onclick="checkbox('t10')">
-          <img src="pic/themas/thema10.png" class="nieuws_img">
-        </div>
-        <div class="thema" name="button" id="t11" onclick="checkbox('t11')">
-          <img src="pic/themas/thema11.png" class="nieuws_img">
-        </div>
-        <div class="thema" name="button" id="t13" onclick="checkbox('t13')">
-          <img src="pic/themas/thema13.png" class="nieuws_img">
-        </div>
+        <?php include 'parts/themas.php'; ?>
       </div>
 
 

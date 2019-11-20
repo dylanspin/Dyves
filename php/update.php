@@ -5,7 +5,6 @@
 
   $t1 = 0;
   $t2 = 0;
-
   $GebruikerU  = $_POST['Gebruikersnaam'];
   $WoonplaatsU  = $_POST['Wooonplaats'];
   $Voornaam  = $_POST['Voornaam'];
@@ -20,9 +19,8 @@
   $MuziekAan = $_POST['AanMuziek'];
   $FilmAan = $_POST['AanFilms'];
   $Muziek = $_POST['Muziek'];
-  $Film = $_POST['Film'];
   $inputVal = $_POST['Hidden'];
-  $profielfoto = $_POST['fileToUpload'];
+  $profielfoto = $_FILES["fileToUpload"]["name"];
 
   $current = $_COOKIE["nu"];
 
@@ -43,10 +41,20 @@
     $update[$t1] = "`Muziek` = '$MuziekU'";
     $t1 ++;
   }
+  if (strlen($FilmU) > 0) {
+    echo "test";
+    $update[$t1] = "`Film` = '$FilmU'";
+    $t1 ++;
+  }
 
   if (strlen($SportU) > 0) {
     $update[$t1] = "`Sport` = '$SportU'";
     $t1 ++;
+  }
+  if(strlen($profielfoto) > 0){
+    $update2[$t2] = "`ProfielFoto` = '$profielfoto'";
+    unlink("pic/profilepics/".$gebruikersnaam_.$profielfoto_);
+    $t2 ++;
   }
   if (!$Private == $private_) {
     $update[$t1] = "`Private` = '$Private'";
@@ -108,6 +116,7 @@
       $sql2 = "UPDATE `notusers` SET $updated WHERE Gebruikersnaam = '$current';";
       if ($conn->query($sql2) === true) {
         echo "Updated";
+        rename("pic/profilepics/$profielfoto","pic/profilepics/$gebruikersnaam_$profielfoto");
       }
       else {
         echo "mislukt". $sql2 . "<br>" . $conn->error;

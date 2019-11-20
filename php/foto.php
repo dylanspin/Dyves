@@ -23,12 +23,13 @@
     }
     else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            // echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " Is geuploaded.";
+            // echo "The file ". basename($_FILES["fileToUpload"]["name"]). " Is geuploaded.";
         }
         else {
             // echo "Er was een Probleem";
         }
     }
+
   }
 
 ?>

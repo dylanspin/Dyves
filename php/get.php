@@ -23,11 +23,11 @@
       $per = $row['Permisie'];
     }
   }
-  if($profielfoto_ <= 1){
-    $liveFoto = $gender_;
+  if(strlen($profielfoto_) <= 1){
+    $liveFoto = "g".$gender_.".jpg";
   }
   else{
-    $liveFoto = $profielfoto_;
+    $liveFoto = $gebruikersnaam_.$profielfoto_;
   }
 
   function ageCalculator($geboortedatum_){
