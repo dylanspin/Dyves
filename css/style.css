@@ -236,18 +236,22 @@
     box-shadow: 50%,50%,50%,50% white;
     background-color: white;
   }
-  .fa-1x{
+  .header_zoek{
+    border:none;
     border-left: 0.1vw solid rgba(0,0,0,0.3);
     border-radius: 0% 10% 10% 0%;
     position: absolute;
     left: 60%;
     background-color: #FEF5EB;
-    padding: 2%;
-    padding-left: 5%;
+    padding: 1%;
+    padding-left: 2%;
     color: gray;
-    width: 10%;
-    height: 68%;
-    font-size: 1.8vw!important;
+    width: 20%;
+    height: 100%;
+    font-size: 1.8vw;
+  }
+  .header_zoek:hover{
+    transform: scale(1.03,1.03);
   }
   .search{/*pos search bar*/
     position: absolute;
@@ -707,7 +711,6 @@
     top: 7%;
     margin-right: 0.5vw;
     display: inline-block;
-    background-color: red;
     width: 2vw;
     height: 2vw;
   }
@@ -720,4 +723,90 @@
     display: inline-block;
     width: 10vw;
     overflow:hidden;
+  }
+
+  /*Zoeken van mensen:*/
+  .zoekheader{
+    padding: 1.3vw;
+    position: relative;
+    width: 94%;
+    height: 2.4vw;
+    top:5vw;
+    left:1vw;
+    border-radius: 0.25vw;
+    background:linear-gradient(180deg, rgba(102,137,194,1) 10%, rgba(132,162,200,1) 96%);
+  }
+  .zoek{
+    position: relative;
+    left: 2vw;
+  }
+  .zoekbalk{
+    padding-left: 0.5vw;
+    position: relative;
+    border:none;
+    width: 15vw;
+    font-size: 1.8vw;
+  }
+  .zoekButton{
+    position: absolute;
+    width: 10vw;
+    top:-3%;
+    margin-left: 0.5%;
+    font-size: 1.4vw;
+    padding: 0.2vw;
+    transition: 0.2s;
+  }
+  .zoekButton:hover{
+    transform: scale(1.05,1.05);
+  }
+  .Vrienden{
+    padding-bottom: 2vw;
+    padding-top: 2vw;
+    width: 97%;
+    left:1vw;
+    background-color: #f2f1f1;
+    position: relative;
+    top: 8vw;
+  }
+  .VriendVak{
+    position: relative;
+    padding: 1vw;
+    background-color: #e2e2e2;
+  	height: 7vw;
+    width: 96%;
+    left: 1vw;
+  }
+  .vriendText{
+    position: absolute;
+    font-size: 2vw;
+    left: 10%;
+    top: 15%;
+  }
+  .addV{
+    border:none;
+    background-color: inherit;
+    cursor: default;
+    position: relative;
+    font-size: 2vw;
+  }
+  .voegF{
+    position: absolute;
+    right: 2%;
+    top: 40%;
+  }
+  .backgroundV{
+    background-color: #d0ddff;
+  }
+  .icon2{
+    position: absolute;
+    top:15%;
+    left:6%;
+  }
+  .footer2{
+    top:none;
+    position: relative;
+  }
+  .profielVriend{
+    height: 7vw;
+    width: 8%;
   }

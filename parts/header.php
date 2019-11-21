@@ -1,33 +1,31 @@
-
-<!--nieuws sectie-->
-
+<?php include 'php/goto.php'; ?>
 <div class="header_buttons">
-  <div class="header_div">HOOFD MENU</div>
+  <div class="header_div">Hoofd Menu</div>
   <span class="blauw">
     <div class="header_div">
       Vrienden
-      <div class="overlay iphone twee">
-        <button class="overlay_button tweeBu">
+      <form class="overlay iphone twee" method="post">
+        <button class="overlay_button tweeBu" value="beheeren">
           <i class="fa fa-list icon"></i><div class="textbutton blauw">Vrienden beheeren</div>
         </button>
-        <button class="overlay_button tweeBu">
+        <button class="overlay_button tweeBu" value="verjaardag">
           <i class="fa fa-calendar icon"></i><div class="textbutton blauw">Vrienden verjaardag</div>
         </button>
-        <button class="overlay_button tweeBu" onclick="goto('zoeken')">
+        <button class="overlay_button tweeBu" type="submit" name="ganaar" value="zoeken">
           <i class="fa fa-plus icon"></i><div class="textbutton blauw">Vrienden toevoegen</div>
         </button>
-      </div>
+      </form>
     </div>
     <div class="header_div">
       Agenda
-      <div class="overlay iphone twee">
-        <button class="overlay_button tweeBu">
+      <form class="overlay iphone twee">
+        <button class="overlay_button tweeBu" type="submit" name="ganaar">
           <i class="fa fa-calendar icon"></i><div class="textbutton blauw">Vrienden verjaardag</div>
         </button>
-        <button class="overlay_button tweeBu">
+        <button class="overlay_button tweeBu" type="submit" name="ganaar">
           <i class="fa fa-plus icon"></i><div class="textbutton blauw">Persoonlijk</div>
         </button>
-      </div>
+      </form>
     </div>
     <div class="header_div iphone">
       Games
@@ -63,12 +61,9 @@
 
     <div class="header_div iphone">
       Meer...
-      <div class="overlay">
-        <button class="overlay_button">
-          <i class="fa fa-square icon"></i><div class="textbutton blauw">meldingen</div>
-        </button>
-        <button class="overlay_button">
-          <i class="fa fa-square icon"></i><div class="textbutton blauw"><a href="index.php">Menu</a></div>
+      <form class="overlay" method="post">
+        <button class="overlay_button" type="submit" value="index" name="ganaar">
+          <i class="fa fa-square icon"></i><div class="textbutton blauw">Menu</div>
         </button>
         <button class="overlay_button">
           <i class="fa fa-square icon"></i><div class="textbutton blauw">Nog</div>
@@ -88,29 +83,32 @@
         <button class="overlay_button">
           <i class="fa fa-square icon"></i><div class="textbutton blauw">Nog</div>
         </button>
-      </div>
+      </form>
     </div>
 
     <?php
       if($_COOKIE["wachtwoordCheck"] == "true"){
      ?>
-        <div class="header_div iphone uitlogg" id="profiel">
+        <form class="header_div iphone uitlogg" id="profiel" method="post">
           <div class="uitlogimg">
             <img src="pic/profilepics/<?php echo $liveFoto ?>" class="nieuws_img">
           </div><div class="naam"><?php echo $gebruikersnaam_; ?></div>
           <div class="overlay">
-            <button class="overlay_button" onclick="goto('profiel')">
+            <button class="overlay_button"name="ganaar"type="submit" value="profiel">
               <i class="fa fa-user icon"></i><div class="textbutton blauw">Profiel</div>
             </button>
-            <button class="overlay_button" onclick="goto('instellingen')">
+            <button class="overlay_button" name="ganaar" type="submit" value="meldingen">
+              <i class="fa fa-bell icon"></i><div class="textbutton blauw">meldingen</div>
+            </button>
+            <button class="overlay_button" type="submit" name="ganaar" value="instellingen">
               <i class="fa fa-cog icon"></i><div class="textbutton blauw">Instellingen</div>
             </button>
-            <form action="" method="post" class="uitlog">
+            <div action="" method="post" class="uitlog">
               <button class="overlay_button" name="uitloggen">
                 <i class="fa fa-sign-out icon"></i><div class="textbutton blauw">Uitloggen</div>
               </button>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
     <?php
       }

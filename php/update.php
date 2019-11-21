@@ -1,6 +1,6 @@
 <?php
   include 'connect.php';
-
+  include 'block.php';
   error_reporting(0);
 
   $t1 = 0;
@@ -11,7 +11,7 @@
   $achternaam  = $_POST['Achternaam'];
   $OpleidingU = $_POST['Opleiding'];
   $BaanU = $_POST['Baan'];
-  $FilmU = $_POST['Film'];
+  $FilmU = $_POST['FilmU'];
   $SportU = $_POST['Sport'];
   $MuziekU = $_POST['MuziekU'];
   $Private = $_POST['Aanprive'];
@@ -42,7 +42,6 @@
     $t1 ++;
   }
   if (strlen($FilmU) > 0) {
-    echo "test";
     $update[$t1] = "`Film` = '$FilmU'";
     $t1 ++;
   }

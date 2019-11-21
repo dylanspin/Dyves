@@ -17,37 +17,25 @@
       include 'php/login.php';
       include 'php/uitloggen.php';
       include 'php/get.php';
+      include 'php/searchbar.php';
+      include 'php/style.php';
       include 'parts/cookies.php';
     ?>
 
     <div class="header">
       <?php
         include 'parts/header.php';
+        include 'parts/inlog.php';
        ?>
-
-       <form class="inlog iphone" action="" method="post" id="inlogForm">
-         <input type="text" name="gebruiker" id="gebruiker" class="inlog_in" placeholder="Gebruikersnaam">
-         <input type="password" name="wachtwoord" id="wachtwoord" class="inlog_in" placeholder="Wachtwoord">
-         <button class="inlog_button" id="inlog_button" name="inlog_button">Inloggen</button><br>
-         <button class="inlog_ver">
-           <span class="blauw">Wachtwoord Vergeten ?</span>
-         </button>
-         <div class="fout text2" id="fout"></div>
-       </form>  
       <div class="searchbar">
         <div class="logotext">
           Dyves
         </div>
-        <div class="search">
-          <input type="text" class="header_in" id="header">
-          <label>
-            <i class="fa fa-search fa-1x" onclick="search()"></i>
-          </label>
-        </div>
+        <?php include 'parts/search.php'; ?>
       </div>
     </div>
 
-    <div class="niet" id="niet">Niet ingelogd!</div><!--niet ingelogged melding-->
+    <?php if($_COOKIE["wachtwoordCheck"] == "true"){?>
 
     <div class="body" id="body">
       <div class="kop">
@@ -55,28 +43,13 @@
           echo $gebruikersnaam_; //krijgt de Gebruikers naam van de database
         ?>
       </div>
-
-      <?php
-      	 include 'parts/profielKop.php';//De main div van het profiel
-      	 include 'parts/over.php'; //De basic informatie div
-         if($vrienAan_){
-           include 'parts/vrienden.php'; //De vrienden div
-         }
-         include 'parts/fotos.php'; //De basic informatie div
-         if(true){
-           include 'parts/krabels.php'; //De krabel post div
-          }
-         if($muziekAan_){
-           include 'parts/muziek.php'; //De krabel post div
-         }
-         if($filmAan_){
-           include 'parts/profFilms.php'; //De krabel post div
-         }
-      ?>
     </div>
-  <?php
-    include 'parts/footer.php';
-   ?>
+    <?php
+      }
+      else{
+        header ('location:index.php');
+      }
+     ?>
 
   </body>
 </html>

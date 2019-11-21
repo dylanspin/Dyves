@@ -1,6 +1,6 @@
 <?php
   /*include file*/
-  // include 'block.php';
+  include 'block.php';
 
   $dbServername = 'localhost';
   $dbUsername = 'root';

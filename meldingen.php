@@ -33,25 +33,11 @@
       </div>
     </div>
 
-    <div class="body" id="">
+    <div class="body">
       <div class="kop">
-        <span class="blauw">Vrienden</span> Zoeken
+        <span class="blauw">Meldingen</span>
       </div>
 
-      <div class="zoekheader">
-        <form class="" action="" method="post">
-          <div class="zoek">
-            <input type="text" class="zoekbalk" name="zoekResultaat" placeholder="Zoek...">
-            <button type="submit" name="Zoek" class="zoekButton"><i class="fa fa-search icon2"></i>Zoek</button>
-          </div>
-        </form>
-      </div>
-        <?php
-          include 'parts/zoekV.php';
-        ?>
     </div>
-    <?php
-        // include 'parts/footer.php';
-    ?>
   </body>
 </html>

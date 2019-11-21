@@ -27,7 +27,7 @@
   //starwars theme
   $t7 = ["#DBDADB","rgb(0, 0, 0,0.5)","white","linear-gradient(180deg, rgba(0,0,0,1) 10%, rgba(13,13,13,1) 93%);","#FFE81F","background-image: url('pic/back/starwars.jpg'); background-repeat: repeat-x; background-color:black;",];
   //cristmas theme
-  $t8 = ["#F8B229","rgb(187, 37, 40,0.8)","#146B3A; font-weight:600;","linear-gradient(180deg, rgba(194,29,32,1) 10%, rgba(237,66,44,1) 87%);","#165B33","background-image: url('pic/back/crist.jpg');",];
+  $t8 = ["#F8B229","rgb(187, 37, 40,0.8)","orange; font-weight:600;","linear-gradient(180deg, rgba(194,29,32,1) 10%, rgba(237,66,44,1) 87%);","#165B33","background-image: url('pic/back/crist.jpg');",];
   //game thema
   $t9 = ["#DBDADB","rgb(0, 0, 0,0.5)","black","linear-gradient(180deg, rgba(176,176,176,1) 10%, rgba(66,66,66,1) 87%);","#515151","background-image: url('pic/back/game.jpg'); background-repeat: repeat-x; background-color:black;",];
   //wedding thema

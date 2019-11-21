@@ -31,12 +31,7 @@
         <div class="logotext">
           Dyves
         </div>
-        <div class="search">
-          <input type="text" class="header_in" id="header">
-          <label>
-            <i class="fa fa-search fa-1x" onclick="search()"></i>
-          </label>
-        </div>
+        <?php include 'parts/search.php'; ?>
       </div>
     </div>
 
@@ -45,7 +40,7 @@
     <div class="body" id="body">
 
       <div class="intelKop">
-          Mijn Menu
+          Mijn Instellingen
       </div>
 
       <!--De profiel pagina instellingen-->

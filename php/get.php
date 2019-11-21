@@ -3,6 +3,7 @@
   include 'connect.php';
   include 'block.php';
   error_reporting(0);
+  session_start();
   $current = $_COOKIE["nu"];
 
   $sql = "SELECT Gebruikersnaam,Email,Geboortedatum,ProfielFoto,Achtergrond,AanmeldTijd,Woonplaats,Voornaam,Achternaam,Man,AantalVrienden,Permisie FROM `notusers` WHERE Gebruikersnaam = '$current';";

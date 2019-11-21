@@ -1,4 +1,5 @@
 <?php
+  include 'block.php';
   $target_dir = "pic/profilepics/";//locatie image
   $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
   $uploadOk = 1;

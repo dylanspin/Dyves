@@ -25,13 +25,7 @@ function goto(loc){
   window.location.href = loc+".php";
 }
 
-function cookies(){
-  document.cookie = "cookies=true";
-  var cookies = getCookie("cookies");
-  document.getElementById('cookie').style.display = "none";
-}
-
-
+//aanmelden functie die je terug brengt naar het hoofd menu
 function aangemeld(){
   var aanmelgemeld = getCookie("aanmeld");
 
@@ -43,7 +37,6 @@ function aangemeld(){
 }
 
 function checkdouble(){
-
   var checkGebruiker = getCookie("Gebruikers");
   var email = getCookie("email");
 
@@ -83,13 +76,11 @@ function schuif(id,hoog){
     nieuws[id] = true;
   }
 }
-
-  function inlog(){
-
-    if(inlog){
-      document.getElementById('inlog_div').style.display = "none";
-    }
-  }
+function cookies(){
+  document.cookie = "cookies=true";
+  var cookies = getCookie("cookies");
+  document.getElementById('cookie').style.display = "none";
+}
 
   var latest = "";
 

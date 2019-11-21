@@ -17,6 +17,7 @@
       include 'php/login.php';
       include 'php/uitloggen.php';
       include 'php/get.php';
+      include 'php/searchbar.php';
       include 'php/style.php';
       include 'parts/cookies.php';
     ?>
@@ -30,12 +31,7 @@
         <div class="logotext">
           Dyves
         </div>
-        <div class="search">
-          <input type="text" class="header_in" id="header">
-          <label>
-            <i class="fa fa-search fa-1x" onclick="search()"></i>
-          </label>
-        </div>
+        <?php include 'parts/search.php'; ?>
       </div>
     </div>
 

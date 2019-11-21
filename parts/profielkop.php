@@ -12,8 +12,16 @@
         echo "Leeftijd: ".$leeftijd;
        ?>
     </span>
-    <button class="buttonProfiel profielkleur anderhalfv underline" onclick="goto('instellingen')">Profiel Pimpen</button>
-    <button class="buttonProfiel profielkleur anderhalfv underline" onclick="goto('cv')">Mijn CV</button>
-    <button class="buttonProfiel profielkleur anderhalfv underline">Mijn Bezoekers</button>
+    <form method="post">
+      <button class="buttonProfiel profielkleur anderhalfv underline" type="submit" name="ganaar" value="instellingen">
+        Profiel Pimpen
+      </button>
+      <button class="buttonProfiel profielkleur anderhalfv underline" type="submit" name="ganaar" value="cv">
+        Mijn CV
+      </button>
+      <button class="buttonProfiel profielkleur anderhalfv underline">
+        Mijn Bezoekers
+      </button>
+    </form>
   </div>
 </div>
