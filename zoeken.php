@@ -35,7 +35,7 @@
 
     <div class="body" id="">
       <div class="kop">
-        <span class="blauw">Vrienden</span> Zoeken
+        <span class="blauw">Accounts</span> Zoeken
       </div>
 
       <div class="zoekheader">

@@ -1,7 +1,9 @@
 
 <?php
+session_start();
 
-  if($_COOKIE["wachtwoordCheck"] != "true"){
+    $checkwachtwoord = $_SESSION["wachtwoordCheck"];
+  if($checkwachtwoord != "true"){
     echo "
     <form class='inlog iphone' action='' method='post' id='inlogForm'>
       <input type='text' name='gebruiker' id='gebruiker' class='inlog_in' placeholder='Gebruikersnaam'>
@@ -13,7 +15,7 @@
       <div class='fout text2' id='fout'></div>
     </form>";
   }
-  elseif ($_COOKIE["wachtwoordCheck"] == "false") {
+  elseif ($checkwachtwoord == "false") {
     echo "
     <form class='inlog iphone' action='' method='post' id='inlogForm'>
       <input type='text' name='gebruiker' id='gebruiker' class='inlog_in' placeholder='Gebruikersnaam'>

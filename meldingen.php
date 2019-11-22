@@ -37,7 +37,7 @@
       <div class="kop">
         <span class="blauw">Meldingen</span>
       </div>
-
+      <?php include 'parts/melding.php'; ?>
     </div>
   </body>
 </html>

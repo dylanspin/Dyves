@@ -35,7 +35,7 @@
       </div>
     </div>
 
-    <?php if($_COOKIE["wachtwoordCheck"] == "true"){?>
+    <?php if($_SESSION["wachtwoordCheck"] == "true"){?>
 
     <div class="body" id="body">
       <div class="kop">

@@ -36,6 +36,7 @@
 
       $number = 0;
       $zoek = $_SESSION["zoek"];
+
       $sql = "SELECT Gebruikersnaam,Man,ProfielFoto FROM `notusers` WHERE Gebruikersnaam LIKE '%$zoek%'"; /*pakt de opties uit de tabel*/
       $result = $conn->query($sql);
       if ($result->num_rows > 0) {
@@ -48,6 +49,22 @@
           $naam = $row['Gebruikersnaam'];
           $foto = $row['ProfielFoto'];
 
+          if($naam == $current){
+            $check_ = false;
+          }
+
+        $sql2 = "SELECT Vriend FROM `vrienden` WHERE User = '$current';";
+        $result2 = $conn->query($sql2);
+        if ($result2->num_rows > 0) {
+          while($row = $result2->fetch_assoc()) {
+            $vriend = $row['Vriend'];
+
+            if($vriend == $naam){
+                $check_ = false;
+            }
+          }
+        }
+
           $sql3 = "SELECT To_user FROM `friend_invite` WHERE User = '$current';";
           $result2 = $conn->query($sql3);
           if ($result2->num_rows > 0) {
@@ -58,7 +75,9 @@
               }
             }
           }
-
+          if(strlen($current)== 0){
+              $check_ = false;
+          }
           if(strlen($foto) <= 1){
             $liveFoto = "g".$gender.".jpg";
           }

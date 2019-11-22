@@ -4,10 +4,11 @@
   include 'connect.php';
   include 'block.php';
   error_reporting(0);
-  $current = $_SESSION["nu"];
+  // $current = $_SESSION["nu"];
+  $bezoek = $_SESSION["bezoek"];
 
 
-  $sql = "SELECT Gebruikersnaam,Email,Geboortedatum,ProfielFoto,Achtergrond,AanmeldTijd,Woonplaats,Voornaam,Achternaam,Man,AantalVrienden,Permisie FROM `notusers` WHERE Gebruikersnaam = '$current';";
+  $sql = "SELECT Gebruikersnaam,Email,Geboortedatum,ProfielFoto,Achtergrond,AanmeldTijd,Woonplaats,Voornaam,Achternaam,Man,AantalVrienden FROM `notusers` WHERE Gebruikersnaam = '$bezoek';";
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {

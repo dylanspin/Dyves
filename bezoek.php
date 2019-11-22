@@ -16,7 +16,8 @@
     <?php
       include 'php/login.php';
       include 'php/uitloggen.php';
-      include 'php/get.php';
+      include 'php/get2.php';
+      include 'php/searchbar.php';
       include 'php/style.php';
       include 'parts/cookies.php';
     ?>
@@ -31,9 +32,10 @@
           Dyves
         </div>
         <?php include 'parts/search.php'; ?>
+      </div>
     </div>
 
-    <?php if($_COOKIE["wachtwoordCheck"] == "true"){?>
+    <?php if($_SESSION["wachtwoordCheck"] == "true"){?>
 
     <div class="body" id="body">
       <div class="kop">
@@ -42,7 +44,7 @@
         ?>
       </div>
       <?php
-      	 include 'parts/profielKop.php';//De main div van het profiel
+      	 include 'parts/profielKop2.php';//De main div van het profiel
       	 include 'parts/over.php'; //De basic informatie div
          if($vrienAan_){
            include 'parts/vrienden.php'; //De vrienden div

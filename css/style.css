@@ -120,6 +120,7 @@
   }
   .underline:hover{
     text-decoration: underline;
+    cursor: default;
   }
   .fout{
     position: absolute;
@@ -809,4 +810,44 @@
   .profielVriend{
     height: 7vw;
     width: 8%;
+  }
+  /*Meldingen*/
+  .Meldingen{
+    position: relative;
+    padding:2vw 5vw 2vw 2vw;
+    top: 5vw;
+    width: 96%;
+  }
+  .Melding{
+    position: relative;
+    margin-top: 0.1vw;
+    padding:1%;
+    margin-left: 0.5vw;
+    left:10%;
+    width: 40%;
+    height: 10vw;
+    display: inline-block;
+    background-color: #D0DDFF;
+  }
+  .meldingButton{
+    top: 6vw;
+    width: 30%;
+    height: 3vw;
+    font-size: 2vw;
+    border:none;
+    border-radius: 0.25vw;
+    color: white;
+  }
+  .meldingButton:hover{
+    transform: scale(1.02,1.03);
+  }
+  .accepteer{
+    position: relative;
+    left: 1vw;
+    background-color: #449D44;
+  }
+  .negeer{
+    position: relative;
+    right: -13vw;
+    background-color: #C9302C;
   }

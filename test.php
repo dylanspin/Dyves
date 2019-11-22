@@ -1,16 +1,14 @@
 <?php
-
-
-function go($loc){
-  header ("location:$loc.php");
-}
-$regex = "/php|part/";
-$test = "ok";
-echo "test".preg_match($regex,$test);
-// if(isset($_POST['ganaar'])){
-  if(preg_match($regex,$test) == 0){
-    // go($test);
-    echo "test";
+ // include 'php/get.php';
+  // $_SESSION["nu"] = "Dylanspin";
+  // unset($_SESSION["nu"]);
+  echo "tedsd ";
+  // $_SESSION["nu"] = "Dylanspin";
+  $file =basename($_SERVER['PHP_SELF']);
+  // echo $file;
+  if($file == "test.php"){
+    echo "Is test.php";
   }
-// }
+  echo $_SESSION["nu"]." ".$_SESSION["wachtwoordCheck"]." ".$_SESSION["bezoek"];
+
  ?>

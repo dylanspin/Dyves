@@ -22,7 +22,8 @@
   $inputVal = $_POST['Hidden'];
   $profielfoto = $_FILES["fileToUpload"]["name"];
 
-  $current = $_COOKIE["nu"];
+  // $current = $_COOKIE["nu"];
+  $current = $_SESSION["nu"];
 
   $updated = "";
   $updated2 = "";

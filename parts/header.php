@@ -1,4 +1,7 @@
-<?php include 'php/goto.php'; ?>
+<?php
+  include 'php/goto.php';
+  include 'php/headerNaam.php';
+?>
 <div class="header_buttons">
   <div class="header_div">Hoofd Menu</div>
   <span class="blauw">
@@ -87,12 +90,12 @@
     </div>
 
     <?php
-      if($_COOKIE["wachtwoordCheck"] == "true"){
+      if($_SESSION["wachtwoordCheck"] == "true"){
      ?>
         <form class="header_div iphone uitlogg" id="profiel" method="post">
           <div class="uitlogimg">
-            <img src="pic/profilepics/<?php echo $liveFoto ?>" class="nieuws_img">
-          </div><div class="naam"><?php echo $gebruikersnaam_; ?></div>
+            <img src="pic/profilepics/<?php echo $liveFoto2?>" class="nieuws_img">
+          </div><div class="naam"><?php echo $gebruikersnaam2_; ?></div>
           <div class="overlay">
             <button class="overlay_button"name="ganaar"type="submit" value="profiel">
               <i class="fa fa-user icon"></i><div class="textbutton blauw">Profiel</div>

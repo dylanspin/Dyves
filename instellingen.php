@@ -19,6 +19,7 @@
       include 'php/get.php';
       include 'php/foto.php';
       include 'php/update.php';
+      include 'php/searchbar.php';
       include 'parts/cookies.php';
     ?>
 
@@ -48,7 +49,6 @@
         <div class="sectie blauw">Profiel Foto: </div>
           <input type="file" name="fileToUpload" id="fileToUpload" class="instelling" accept="image/*">
 
-      <!-- <form class="intellingenForm" action="" method="post"> -->
         <div class="enter"></div>
         <div class="sectie blauw">Over: </div>
         <div class="intellinginner">
