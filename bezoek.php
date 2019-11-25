@@ -52,6 +52,7 @@
          include 'parts/fotos.php'; //De basic informatie div
          if(true){
            include 'parts/krabels.php'; //De krabel post div
+           include 'php/krabel.php'; //De Krabel backend
           }
          if($muziekAan_){
            include 'parts/muziek.php'; //De krabel post div

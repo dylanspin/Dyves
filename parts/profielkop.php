@@ -7,7 +7,7 @@
       ?>
     </span>
     <div class="space"></div>
-    <span class="profielkleur eenv">
+    <span class="profielkleur anderhalfv">
       <?php
         echo "Leeftijd: ".$leeftijd;
        ?>

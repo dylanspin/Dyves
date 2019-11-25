@@ -8,7 +8,7 @@
     <div class="header_div">
       Vrienden
       <form class="overlay iphone twee" method="post">
-        <button class="overlay_button tweeBu" value="beheeren">
+        <button class="overlay_button tweeBu" type="submit" name="ganaar" value="vrienden">
           <i class="fa fa-list icon"></i><div class="textbutton blauw">Vrienden beheeren</div>
         </button>
         <button class="overlay_button tweeBu" value="verjaardag">

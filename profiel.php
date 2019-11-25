@@ -1,3 +1,10 @@
+<?php
+if (isset($_POST['mypostvar']) && isset($_SERVER['REQUEST_URI']))
+{
+    header ('Location: ' . $_SERVER['REQUEST_URI']);
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -52,7 +59,8 @@
          include 'parts/fotos.php'; //De basic informatie div
          if(true){
            include 'parts/krabels.php'; //De krabel post div
-          }
+           include 'php/krabel.php';//Krabel backend
+         }
          if($muziekAan_){
            include 'parts/muziek.php'; //De krabel post div
          }

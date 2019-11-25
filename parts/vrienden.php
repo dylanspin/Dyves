@@ -23,19 +23,27 @@
             $nu = $row['Vriend'];
           }
 
-          $sql2 = "SELECT ProfielFoto FROM `notusers` WHERE Gebruikersnaam='$vriend';"; /*pakt de opties uit de tabel*/
+          $sql2 = "SELECT ProfielFoto,Man,Gebruikersnaam FROM `notusers` WHERE Gebruikersnaam='$vriend';"; /*pakt de opties uit de tabel*/
           $result2 = $conn->query($sql2);
 
           if ($result2->num_rows > 0) {
             while($row = $result2->fetch_assoc()) {
               $foto_ = $row['ProfielFoto'];
+              $gender_ = $row['Man'];
+              $vriend_ = $row['Gebruikersnaam'];
             }
+          }
+          if(strlen($foto_) <= 1){
+            $liveFoto = "g".$gender_.".jpg";
+          }
+          else{
+            $liveFoto = $vriend_.$foto_;
           }
 
           echo "<div class='vriend'>
                   <form method='post'>
                     <button type='submit' class='vriendenButton' name='ganaarP' value='bezoek'>
-                      <img src='pic/profilepics/$vriend$foto_' class='vriendenImage'>
+                      <img src='pic/profilepics/$liveFoto' class='vriendenImage'>
                     </button>
                     <input type='hidden' name='naamVriend' value='$vriend'>
                   </form>

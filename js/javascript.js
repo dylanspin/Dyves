@@ -84,20 +84,43 @@ function cookies(){
 
   var latest = "";
 
-  function checkbox(id){
-    if(latest == id){
-      console.log("test");
-    }
-    else{
-      console.log("test2");
-    }
-    if(latest.length > 0){
-      document.getElementById(latest).style.width = "10vw";
-      document.getElementById(latest).style.height = "15vw";
-    }
-    document.getElementById(id).style.width = "11vw";
-    document.getElementById(id).style.height = "16vw";
-    document.getElementById('Hidden').value = id;
-
-    latest = id;
+function checkbox(id){
+  if(latest == id){
+    console.log("test");
   }
+  else{
+    console.log("test2");
+  }
+  if(latest.length > 0){
+    document.getElementById(latest).style.width = "10vw";
+    document.getElementById(latest).style.height = "15vw";
+  }
+  document.getElementById(id).style.width = "11vw";
+  document.getElementById(id).style.height = "16vw";
+  document.getElementById('Hidden').value = id;
+
+  latest = id;
+}
+
+function smiley(t){
+  var smiley = document.getElementById(t).value;
+  document.getElementById("textarea").value += smiley;
+}
+var checkkr = true;
+function showK(){
+  if(checkkr){
+    checkkr = false;
+    document.getElementById("Krabelss").scrollTo(0, 0);
+    document.getElementById("show1").style.display = "block";
+    document.getElementById("show2").style.display = "block";
+    document.getElementById("hide2").style.display = "block";
+    document.getElementById("hide").style.display = "none";
+  }
+  else{
+    checkkr = true;
+    document.getElementById("show1").style.display = "none";
+    document.getElementById("show2").style.display = "none";
+    document.getElementById("hide2").style.display = "none";
+    document.getElementById("hide").style.display = "block";
+  }
+}

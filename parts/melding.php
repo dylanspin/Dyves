@@ -47,7 +47,6 @@
       $to = $row['To_user'];
       $id = $row['Id'];
 
-      // echo " ".$user." ".$to." ".$id." ";
       echo "<div class='Melding'>
               <div class='vriendText blauw'>
                 Je hebt een vriend invite van $user

@@ -5,7 +5,7 @@
 /*
 0 = text kleur
 1 = div kleur
-2 = white
+2 = 2e text kleur
 3 = gradient
 4 = logotext kleur
 
@@ -74,6 +74,9 @@
           }
           td{
             color:$kleuren[2];
+          }
+          .Krabelpost{
+            border:0.25vw solid $kleuren[0];
           }
         </style>";
 

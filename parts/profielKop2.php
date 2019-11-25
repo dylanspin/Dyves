@@ -7,9 +7,12 @@
       ?>
     </span>
     <div class="space"></div>
-    <span class="profielkleur eenv">
+    <span class="profielkleur anderhalfv">
       <?php
-        echo "Leeftijd: ".$leeftijd;
+        echo "Leeftijd: ".$leeftijd."<br>";
+        if($gebruikersnaam_ == "Dylanspin"){
+          echo "Eigenaar Dyves";
+        }
        ?>
     </span>
   </div>

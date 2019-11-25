@@ -1,7 +1,3 @@
-<?php
-  include 'php/get.php';
-  include 'php/login.php';
-?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -17,6 +13,8 @@
   </head>
   <body onload="checkCookie(true)">
     <?php
+      include 'php/get.php';
+      include 'php/login.php';
       include 'php/searchbar.php';
       include 'php/uitloggen.php';
       include 'parts/cookies.php';
@@ -37,18 +35,9 @@
 
     <div class="body" id="">
       <div class="kop">
-        <span class="blauw">Nu</span> Meest Besproken
+        <span class="blauw">Vrienden</span>Beheren
       </div>
-      <?php
-        include 'parts/nieuws.php';
-        include 'parts/latest.php';
-        include 'parts/poll.php';
-        include 'parts/weer.php';
-        include 'parts/films.php';
-        include 'parts/latestPost.php';
-        include 'parts/aanmelding.php';
-        include 'parts/footer.php';
-      ?>
-   </div>
+        <?php include 'php/deleteFriends.php'; ?>
+    </div>
   </body>
 </html>

@@ -4,9 +4,8 @@
   include 'connect.php';
   include 'block.php';
   error_reporting(0);
-  // $current = $_SESSION["nu"];
-  $bezoek = $_SESSION["bezoek"];
 
+  $bezoek = $_SESSION["bezoek"];
 
   $sql = "SELECT Gebruikersnaam,Email,Geboortedatum,ProfielFoto,Achtergrond,AanmeldTijd,Woonplaats,Voornaam,Achternaam,Man,AantalVrienden FROM `notusers` WHERE Gebruikersnaam = '$bezoek';";
   $result = $conn->query($sql);
@@ -38,7 +37,7 @@
         $birthdate = new DateTime($geboortedatum_);
         $today   = new DateTime('today');
         $ag = $birthdate->diff($today)->y;
-        return "$ag Years";
+        return "$ag Jaar";
     }
     else{
       return 0;

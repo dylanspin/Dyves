@@ -45,7 +45,7 @@
   font-size: 1vw;
 }
 .watProfiel{
-  position: relative;
+  position:relative;
   color: black;
   background-color: #d1d1d1;
   top: 0;
@@ -114,6 +114,7 @@
   width: 54vw;
   height: 40vw;
   background-color: #E4E4E5;
+  overflow: hidden;
 }
 .profiel_films{
   position: absolute;
@@ -164,11 +165,12 @@
 .vriendenButton{
   border: none;
   background:none;
-  height: 85%;
+  height: 8vw;
+  width: 9vw;
 }
 .vriendenImage{
   width: 100%;
-  height: 8vw;
+  height: 100%;
   transition: 0.2s;
 }
 .vriendenButton:hover .vriendenImage{

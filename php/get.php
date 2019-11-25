@@ -6,7 +6,6 @@
   error_reporting(0);
   $current = $_SESSION["nu"];
 
-
   $sql = "SELECT Gebruikersnaam,Email,Geboortedatum,ProfielFoto,Achtergrond,AanmeldTijd,Woonplaats,Voornaam,Achternaam,Man,AantalVrienden,Permisie FROM `notusers` WHERE Gebruikersnaam = '$current';";
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
@@ -37,7 +36,7 @@
         $birthdate = new DateTime($geboortedatum_);
         $today   = new DateTime('today');
         $ag = $birthdate->diff($today)->y;
-        return "$ag Years";
+        return "$ag Jaar";
     }
     else{
       return 0;
@@ -60,6 +59,18 @@
       $filmAan_ = $row['FilmAan'];
       $muziekAan_ = $row['MuziekAan'];
       $vrienAan_ = $row['VriendenAan'];
+    }
+  }
+
+  $sql = "SELECT Gebruikersnaam,Postnaam,Text_,Img,Kleur,Toegevoegd FROM `krabels` WHERE Gebruikersnaam = '$current';";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+      $Krabelnaam_ = $row['Gebruikersnaam'];
+      $Postnaam = $row['Postnaam'];
+      $Text_ = $row['Text_'];
+      $kleurText = $row['Kleur'];
+      $toegevoegd = $row['Toegevoegd'];
     }
   }
 
