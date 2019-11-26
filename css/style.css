@@ -982,3 +982,11 @@
     height: 0.8vw;
     border-radius: 100%;
   }
+  .kroon{
+    position: absolute;
+    top: -1vw;
+    left: 20%;
+    z-index: 60;
+    height: 5vw;
+    width: 5vw;
+  }

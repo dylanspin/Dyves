@@ -23,7 +23,7 @@
             $nu = $row['Vriend'];
           }
 
-          $sql2 = "SELECT ProfielFoto,Man,Gebruikersnaam FROM `notusers` WHERE Gebruikersnaam='$vriend';"; /*pakt de opties uit de tabel*/
+          $sql2 = "SELECT ProfielFoto,Man,Gebruikersnaam,AantalVrienden FROM `notusers` WHERE Gebruikersnaam='$vriend';"; /*pakt de opties uit de tabel*/
           $result2 = $conn->query($sql2);
 
           if ($result2->num_rows > 0) {
@@ -31,6 +31,7 @@
               $foto_ = $row['ProfielFoto'];
               $gender_ = $row['Man'];
               $vriend_ = $row['Gebruikersnaam'];
+              $totaalV = $row['AantalVrienden'];
             }
           }
           if(strlen($foto_) <= 1){
@@ -39,20 +40,35 @@
           else{
             $liveFoto = $vriend_.$foto_;
           }
-
-          echo "<div class='vriend'>
-                  <form method='post'>
-                    <button type='submit' class='vriendenButton' name='ganaarP' value='bezoek'>
-                      <img src='pic/profilepics/$liveFoto' class='vriendenImage'>
-                    </button>
-                    <input type='hidden' name='naamVriend' value='$vriend'>
-                  </form>
-                  <span class='profielkleur'>(3)
-                    <span class='underline'>
-                      $vriend
-                    </span>
+          if($aantal < 9){
+            echo "<div class='vriend'>
+                    <form method='post'>";
+            if($vriend == "Dylanspin"){
+              echo "<img src='pic/kroon.png' class='kroon'>";
+            }
+            echo "    <button type='submit' class='vriendenButton' name='ganaarP' value='bezoek'>
+                        <img src='pic/profilepics/$liveFoto' class='vriendenImage'>
+                      </button>
+                      <input type='hidden' name='naamVriend' value='$vriend'>
+                    </form>
+                  <span class='profielkleur'>($totaalV)
+                  <span class='underline'>
+                    $vriend
                   </span>
-                </div>";
+                </span>
+              </div>";
+          }
+        }
+      }
+      if($file == "profiel.php"){
+        $sql = "UPDATE `notusers` SET `AantalVrienden` = '$aantal' WHERE Gebruikersnaam = '$current';";
+        if ($conn->query($sql) === true) {
+        }
+      }
+      else{
+        $Change =  $_SESSION["bezoek"];
+        $sql = "UPDATE `notusers` SET `AantalVrienden` = '$aantal' WHERE Gebruikersnaam = '$Change';";
+        if ($conn->query($sql) === true) {
         }
       }
     ?>

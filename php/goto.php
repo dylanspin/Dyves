@@ -29,7 +29,6 @@
       $result = $conn->query($sql);
       if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-          // $_SESSION['test'] = "test";
           $privateCheck = $row['Private'];
 
           $sql = "SELECT user,Vriend FROM `vrienden` WHERE User = '$current' AND Vriend = '$naamGo' OR User = '$naamGo' AND Vriend = '$current' ;";
@@ -46,7 +45,6 @@
               $_SESSION['test'] .= $checkVriend;
             }
           }
-          // $_SESSION['test'] = " Naamgo : ".$naamGo." Privatecheck : ".$privateCheck." Vriendcheck : ".$checkVriend." ".$vriendB;
           if($current == $naamGo){
             $_SESSION["bezoek"] = $naamGo;
             go($_POST['ganaarP']);
@@ -60,10 +58,10 @@
               $_SESSION["bezoek"] = $naamGo;
               go($_POST['ganaarP']);
             }
-         }
+          }
+        }
       }
     }
-  }
     echo "<script>
             if ( window.history.replaceState ) {
               window.history.replaceState( null, null, window.location.href );
