@@ -7,52 +7,70 @@
   function go($loc){
     header ("location:$loc.php");
   }
+
   $regex = "/php|part/";
 
   if(isset($_POST['ganaar'])){
     if(preg_match($regex,$_POST['ganaar']) == 0){
       go($_POST['ganaar']);
     }
+    echo "<script>
+            if ( window.history.replaceState ) {
+              window.history.replaceState( null, null, window.location.href );
+            }
+          </script>";
   }
 
   if(isset($_POST['ganaarP'])){
+    $naamGo = $_POST['naamVriend'];
     if(preg_match($regex,$_POST['ganaarP']) == 0){
-      $sql = "SELECT User,Vriend FROM `vrienden` WHERE User = '$current' OR Vriend = '$current';";
+
+      $sql = "SELECT Private FROM `over` WHERE wie = '$naamGo';";
       $result = $conn->query($sql);
       if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-          $nu_ = $row['User'];
-          $vriend_ = $row['Vriend'];
-        }
-      }
-      if($vriend_ == $current){
-        $vriend_ = $row['User'];
-        $nu_ = $row['Vriend'];
-      }
-      $naamGo = $_POST['naamVriend'];
-      $sql2 = "SELECT Private FROM `over` WHERE Wie = '$naamGo';";
-      $result2 = $conn->query($sql2);
-      if ($result2->num_rows > 0) {
-        while($row = $result2->fetch_assoc()) {
+          // $_SESSION['test'] = "test";
           $privateCheck = $row['Private'];
-        }
-      }
-      if(strlen($vriend_) == 0){
-        if($current == $vriend_){
-          $_SESSION["bezoek"] = $naamGo;
-          go($_POST['ganaarP']);
-        }
-        // if($privateCheck){
-          $_SESSION["bezoek"] = $naamGo;
-          go($_POST['ganaarP']);
-        // }
-      }
-      else{
-        $_SESSION["bezoek"] = $naamGo;
-        go($_POST['ganaarP']);
+
+          $sql = "SELECT user,Vriend FROM `vrienden` WHERE User = '$current' AND Vriend = '$naamGo' OR User = '$naamGo' AND Vriend = '$current' ;";
+          $result = $conn->query($sql);
+          if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+              $checkUser = $row['user'];
+              $checkVriend = $row['Vriend'];
+
+              if($checkVriend == $current){
+                $checkUser = $row['Vriend'];
+                $checkVriend = $row['user'];
+              }
+              $_SESSION['test'] .= $checkVriend;
+            }
+          }
+          // $_SESSION['test'] = " Naamgo : ".$naamGo." Privatecheck : ".$privateCheck." Vriendcheck : ".$checkVriend." ".$vriendB;
+          if($current == $naamGo){
+            $_SESSION["bezoek"] = $naamGo;
+            go($_POST['ganaarP']);
+          }
+          if(strlen($checkVriend) > 0){
+            $_SESSION["bezoek"] = $naamGo;
+            go($_POST['ganaarP']);
+          }
+          else{
+            if (!$privateCheck) {
+              $_SESSION["bezoek"] = $naamGo;
+              go($_POST['ganaarP']);
+            }
+         }
       }
     }
   }
+    echo "<script>
+            if ( window.history.replaceState ) {
+              window.history.replaceState( null, null, window.location.href );
+            }
+          </script>";
+  }
+
 
 
  ?>

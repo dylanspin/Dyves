@@ -94,14 +94,16 @@
      ?>
         <form class="header_div iphone uitlogg" id="profiel" method="post">
           <div class="uitlogimg">
+            <div class="meldingIcon"></div> 
             <img src="pic/profilepics/<?php echo $liveFoto2?>" class="nieuws_img">
-          </div><div class="naam"><?php echo $gebruikersnaam2_; ?></div>
+          </div>
+          <div class="naam"><?php echo $gebruikersnaam2_; ?></div>
           <div class="overlay">
             <button class="overlay_button"name="ganaar"type="submit" value="profiel">
               <i class="fa fa-user icon"></i><div class="textbutton blauw">Profiel</div>
             </button>
             <button class="overlay_button" name="ganaar" type="submit" value="meldingen">
-              <i class="fa fa-bell icon"></i><div class="textbutton blauw">meldingen</div>
+              <i class="fa fa-bell icon melding_"></i><div class="textbutton blauw">meldingen</div>
             </button>
             <button class="overlay_button" type="submit" name="ganaar" value="instellingen">
               <i class="fa fa-cog icon"></i><div class="textbutton blauw">Instellingen</div>

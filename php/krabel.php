@@ -40,8 +40,11 @@
         else {
           $_SESSION['test'] =  "mislukt". $sql . "<br>" . $conn->error;
         }
-        header('Location: '.$_SERVER['PHP_SELF']);
-        die;
+        echo "<script>
+                if ( window.history.replaceState ) {
+                  window.history.replaceState( null, null, window.location.href );
+                }
+              </script>";
       }
     }
     $_SESSION['test'] = "Tell : ".$tell." Bool : ".$bool." De Text Vergelijking ".$Check3." ".$text;

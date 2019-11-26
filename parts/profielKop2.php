@@ -14,6 +14,17 @@
           echo "Eigenaar Dyves";
         }
        ?>
+       <form method="post">
+         <button class="buttonProfiel profielkleur anderhalfv underline" type="submit" name="ganaar" value="cv">
+           CV
+         </button>
+      </form>
+      <div class="buttonProfiel profielkleur anderhalfv">
+        Contact:
+      </div>
+      Dylanspin100@hotmail.com
+      06858548
+      <?php  ?>
     </span>
   </div>
 </div>

@@ -971,3 +971,14 @@
     height: 81%;
     padding-bottom: 4vw;
   }
+  .meldingIcon{
+    display: none;
+    position: absolute;
+    left:-0.25vw;
+    top:-0.25vw;
+    z-index: 100;
+    background-color:#C9302C;
+    width:0.8vw;
+    height: 0.8vw;
+    border-radius: 100%;
+  }

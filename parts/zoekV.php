@@ -28,6 +28,11 @@
          }
          $sql2 = "INSERT INTO `friend_invite` (`User`,`To_user`) VALUES ('$current','$userIN');";
          if ($conn->query($sql2) === true) {
+           echo "<script>
+                   if ( window.history.replaceState ) {
+                     window.history.replaceState( null, null, window.location.href );
+                   }
+                 </script>";
          }
          else {
            // echo "mislukt". $sql . "<br>" . $conn->error;

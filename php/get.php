@@ -2,7 +2,7 @@
 <?php
   session_start();
   include 'connect.php';
-  include 'block.php';
+  // include 'block.php';
   error_reporting(0);
   $current = $_SESSION["nu"];
 
@@ -44,11 +44,10 @@
   }
   $leeftijd =  ageCalculator($geboortedatum_);
 
-
-  $sql2 = "SELECT Aantal,Baan,Opleiding,Muziek,Film,Sport,Private,FilmAan,MuziekAan,VriendenAan FROM `over` WHERE Wie = '$gebruikersnaam_';";
-  $result2 = $conn->query($sql2);
-  if ($result2->num_rows > 0) {
-    while($row = $result2->fetch_assoc()) {
+  $sql = "SELECT Aantal,Baan,Opleiding,Muziek,Film,Sport,Private,FilmAan,MuziekAan,VriendenAan FROM `over` WHERE Wie = '$gebruikersnaam_';";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
       $aantal_ = $row['Aantal'];
       $baan_ = $row['Baan'];
       $opleiding_ = $row['Opleiding'];
@@ -74,4 +73,22 @@
     }
   }
 
+  $checkMelding = false;
+  $sql = "SELECT User FROM `friend_invite` WHERE To_user = '$current';";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+      $checkMelding = true;
+    }
+  }
+  if($checkMelding){
+      echo "<style media='screen'>
+              .melding_{
+                color:#C9302C;
+              }
+              .meldingIcon{
+                display:inline-block;
+              }
+            </style>";
+  }
  ?>
