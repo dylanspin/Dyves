@@ -42,7 +42,6 @@
                 $checkUser = $row['Vriend'];
                 $checkVriend = $row['user'];
               }
-              $_SESSION['test'] .= $checkVriend;
             }
           }
           if($current == $naamGo){

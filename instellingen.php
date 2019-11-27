@@ -48,6 +48,7 @@
       <form class="intellingenForm" method="post" enctype="multipart/form-data">
         <div class="sectie blauw">Profiel Foto: </div>
           <input type="file" name="fileToUpload" id="fileToUpload" class="instelling" accept="image/*">
+          <span class="anderhalfv">2MB</span>
 
         <div class="enter"></div>
         <div class="sectie blauw">Over: </div>
@@ -106,20 +107,26 @@
       <div class="sectie blauw">Favoriete Nummers: </div>
         <label class="instelLabel">Nummers</label><input type="text" name="Muziek" value="" class="instelling">
         <label class="instelLabel">Status</label>
-        <input type="radio" name="AanMuziek" value="1" class="instellingRadio"<?php if($muziekAan_){echo "checked";}else{echo "";}?>>
+        <input type="radio" name="AanMuziek" value="1" class="instellingRadio"<?php if($muziekAan_){echo "checked";}?>>
         <span class="text3">Aan</span>
-        <input type="radio" name="AanMuziek" value="0" class="instellingRadio"<?php if(!$muziekAan_){echo "checked";}else{echo "";}?>>
+        <input type="radio" name="AanMuziek" value="0" class="instellingRadio"<?php if(!$muziekAan_){echo "checked";}?>>
         <span class="text3">Uit</span>
 
       <div class="enter"></div>
       <div class="sectie blauw">Films: </div>
         <label class="instelLabel">Film</label><input type="text" name="Film" value="" class="instelling">
         <label class="instelLabel">Status</label>
-        <input type="radio" name="AanFilms" value="1" class="instellingRadio"<?php if($filmAan_){echo "checked";}else{echo "";}?>>
+        <input type="radio" name="AanFilms" value="1" class="instellingRadio"<?php if($filmAan_){echo "checked";}?>>
         <span class="text3">Aan</span>
-        <input type="radio" name="AanFilms" value="0" class="instellingRadio"<?php if(!$filmAan_){echo "checked";}else{echo "";}?>>
+        <input type="radio" name="AanFilms" value="0" class="instellingRadio"<?php if(!$filmAan_){echo "checked";}?>>
         <span class="text3">Uit</span>
 
+      <div class="enter"></div>
+      <div class="sectie blauw">Foto's Uploaden: </div>
+        <input type="file" name="fotoToUpload" id="fotoToUpload" class="instelling" accept="image/*">
+        <span class="anderhalfv">2MB</span>
+
+    <div class="enter"></div>
         <input type="submit" value="Save" name="update" class="slaOp" >
     </div>
 

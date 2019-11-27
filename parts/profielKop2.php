@@ -3,7 +3,7 @@
   <div class="innerProfiel">
     <span class="profielkleur tweev">
       <?php
-        echo $voornaam_." ".$achternaam_;
+        echo mb_strimwidth($voornaam_, 0, 10, "...")." ".mb_strimwidth($achternaam_, 0, 10, "...");
       ?>
     </span>
     <div class="space"></div>
@@ -22,8 +22,9 @@
       <div class="buttonProfiel profielkleur anderhalfv">
         Contact:
       </div>
-      Dylanspin100@hotmail.com
-      06858548
+      <span class="eenv">
+
+      </span>
       <?php  ?>
     </span>
   </div>

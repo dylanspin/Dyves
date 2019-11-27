@@ -37,9 +37,6 @@
         $sql = "INSERT INTO `krabels` (`Gebruikersnaam`,`Postnaam`,`Text_`) VALUES ('$current','$naar','$text2');";
         if ($conn->query($sql) === true) {
         }
-        else {
-          $_SESSION['test'] =  "mislukt". $sql . "<br>" . $conn->error;
-        }
         echo "<script>
                 if ( window.history.replaceState ) {
                   window.history.replaceState( null, null, window.location.href );
@@ -47,6 +44,5 @@
               </script>";
       }
     }
-    $_SESSION['test'] = "Tell : ".$tell." Bool : ".$bool." De Text Vergelijking ".$Check3." ".$text;
   }
  ?>

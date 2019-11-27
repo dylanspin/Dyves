@@ -3,7 +3,7 @@
   <div class="innerProfiel">
     <span class="profielkleur tweev">
       <?php
-        echo $voornaam_." ".$achternaam_;
+        echo mb_strimwidth($voornaam_, 0, 10, "...")." ". mb_strimwidth($achternaam_, 0, 10, "...");
       ?>
     </span>
     <div class="space"></div>

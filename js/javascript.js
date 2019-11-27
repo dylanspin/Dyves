@@ -101,12 +101,14 @@ function checkbox(id){
 
   latest = id;
 }
-
+//doet de smiley van het smiley toetsenbord in de textarea
 function smiley(t){
   var smiley = document.getElementById(t).value;
   document.getElementById("textarea").value += smiley;
 }
+
 var checkkr = true;
+//gaat naar de krabel post input
 function showK(){
   if(checkkr){
     checkkr = false;
@@ -122,5 +124,21 @@ function showK(){
     document.getElementById("show2").style.display = "none";
     document.getElementById("hide2").style.display = "none";
     document.getElementById("hide").style.display = "block";
+  }
+}
+
+//maakt de image groot als er op geklickt is
+function modal(t){
+  var div = t.id;
+  var modal = document.getElementById("myModal");
+
+  var img = document.getElementById(div);
+  var modalImg = document.getElementById("img01");
+      modal.style.display = "block";
+      modalImg.src = t.src;
+  var span = document.getElementById("close2");
+
+  span.onclick = function() {
+    modal.style.display = "none";
   }
 }

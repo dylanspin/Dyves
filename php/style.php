@@ -40,6 +40,8 @@
   $t13 = ["white","rgb(94,81,64,0.5)","black","linear-gradient(180deg, rgba(122,104,82,1) 10%, rgba(94,81,64,1) 96%);","black","background-image: url('pic/back/south.jpg');",];
   //krijt thema
   $t14 = ["white","rgb(57,57,57,0.5)","white","#282828;","black","background-image: url('pic/back/krijt.jpg');",];
+  //ander thema
+  $t15 = ["white","rgb(94,81,64,0.5)","white","linear-gradient(180deg, rgba(122,104,82,1) 10%, rgba(94,81,64,1) 96%);","#5B3E2B","background-image: url('pic/back/gitaar.jpg');",];
 
   $kleuren = $$achtergrond_;
 

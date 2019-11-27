@@ -21,6 +21,7 @@
   $Muziek = $_POST['Muziek'];
   $inputVal = $_POST['Hidden'];
   $profielfoto = $_FILES["fileToUpload"]["name"];
+  $foto = $_FILES["fotoToUpload"]["name"];
 
   // $current = $_COOKIE["nu"];
   $current = $_SESSION["nu"];
@@ -32,12 +33,10 @@
     $update[$t1] = "`Opleiding` = '$OpleidingU'";
     $t1 ++;
   }
-
   if (strlen($BaanU) > 0) {
     $update[$t1] = "`Baan` = '$BaanU'";
     $t1 ++;
   }
-
   if (strlen($MuziekU) > 0) {
     $update[$t1] = "`Muziek` = '$MuziekU'";
     $t1 ++;
@@ -46,15 +45,9 @@
     $update[$t1] = "`Film` = '$FilmU'";
     $t1 ++;
   }
-
   if (strlen($SportU) > 0) {
     $update[$t1] = "`Sport` = '$SportU'";
     $t1 ++;
-  }
-  if(strlen($profielfoto) > 0){
-    $update2[$t2] = "`ProfielFoto` = '$profielfoto'";
-    unlink("pic/profilepics/".$gebruikersnaam_.$profielfoto_);
-    $t2 ++;
   }
   if (!$Private == $private_) {
     $update[$t1] = "`Private` = '$Private'";
@@ -72,9 +65,43 @@
     $update[$t1] = "`MuziekAan` = '$MuziekAan'";
     $t1 ++;
   }
+
   if ($inputVal != $achtergrond_) {
     if($inputVal != ""){
       $update2[$t2] = "`Achtergrond` = '$inputVal'";
+      $t2 ++;
+    }
+  }
+  if(strlen($profielfoto) > 0){
+    $update2[$t2] = "`ProfielFoto` = '$profielfoto'";
+    unlink("pic/profilepics/".$gebruikersnaam_.$profielfoto_);
+    $t2 ++;
+  }
+
+if (isset($_POST['update'])){
+  $_SESSION['test'] = $_FILES["fotoToUpload"]["size"];
+  if(strlen($foto) > 0){
+    $_SESSION['test'] = "Werkt";
+    if($_FILES["fotoToUpload"]["size"] > 2000000){}//Weet niet waarom maar met een ! voor de statement werkt niet dus daarom else
+    else{
+      $sql = "SELECT Fotos FROM `notusers` WHERE Gebruikersnaam = '$current';";
+      $result = $conn->query($sql);
+      if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+          $fotoDB = $row['Fotos'];
+        }
+      }
+      $uncompressed = unserialize($fotoDB);
+      $foto2 = $gebruikersnaam_.$foto;
+
+      if(!strlen($uncompressed[0]) > 0){
+        $uncompressed = [$foto2];
+      }
+      else{
+        array_push($uncompressed,$foto2);
+      }
+      $compressed = serialize($uncompressed);
+      $update2[$t2] = "`Fotos` = '$compressed'";
       $t2 ++;
     }
   }
@@ -99,8 +126,21 @@
   else if($t2 == 0){
     $updated .= $update2[$t2];
   }
+}
 
   if (isset($_POST['update'])){
+    if(strlen($profielfoto) > 0){
+      $loc = "pic/profilepics/";
+      $IMG = "fileToUpload";
+      UploadIMG($loc,$IMG);//foto function
+    }
+    if(strlen($foto) > 0){
+      $loc = "pic/fotos/";
+      $IMG = "fotoToUpload";
+      UploadIMG($loc,$IMG);//foto function
+      rename("pic/fotos/$foto","pic/fotos/$gebruikersnaam_$foto");
+    }
+
     if($t1 >= 0){
       $sql = "UPDATE `over` SET $updated2 WHERE Wie = '$current';";
       if ($conn->query($sql) === true) {
@@ -123,7 +163,6 @@
       }
     }
     header("Refresh:0");
-
   }
 
  ?>
