@@ -1,5 +1,4 @@
 <?php
-  include 'php/goto.php';
   include 'php/headerNaam.php';
 ?>
 <div class="header_buttons">
@@ -8,13 +7,13 @@
     <div class="header_div">
       Vrienden
       <form class="overlay iphone twee" method="post">
-        <button class="overlay_button tweeBu" type="submit" name="ganaar" value="vrienden">
+        <button class="overlay_button tweeBu" type="submit" name="vrienden">
           <i class="fa fa-list icon"></i><div class="textbutton blauw">Vrienden beheeren</div>
         </button>
         <button class="overlay_button tweeBu" value="verjaardag">
           <i class="fa fa-calendar icon"></i><div class="textbutton blauw">Vrienden verjaardag</div>
         </button>
-        <button class="overlay_button tweeBu" type="submit" name="ganaar" value="zoeken">
+        <button class="overlay_button tweeBu" type="submit" name="zoeken">
           <i class="fa fa-plus icon"></i><div class="textbutton blauw">Vrienden toevoegen</div>
         </button>
       </form>
@@ -65,7 +64,7 @@
     <div class="header_div iphone">
       Meer...
       <form class="overlay" method="post">
-        <button class="overlay_button" type="submit" value="index" name="ganaar">
+        <button class="overlay_button" type="submit" name="Menu">
           <i class="fa fa-square icon"></i><div class="textbutton blauw">Menu</div>
         </button>
         <button class="overlay_button">
@@ -94,18 +93,18 @@
      ?>
         <form class="header_div iphone uitlogg" id="profiel" method="post">
           <div class="uitlogimg">
-            <div class="meldingIcon"></div> 
+            <div class="meldingIcon"></div>
             <img src="pic/profilepics/<?php echo $liveFoto2?>" class="nieuws_img">
           </div>
           <div class="naam"><?php echo $gebruikersnaam2_; ?></div>
           <div class="overlay">
-            <button class="overlay_button"name="ganaar"type="submit" value="profiel">
+            <button class="overlay_button"name="Profiel" type="submit">
               <i class="fa fa-user icon"></i><div class="textbutton blauw">Profiel</div>
             </button>
-            <button class="overlay_button" name="ganaar" type="submit" value="meldingen">
+            <button class="overlay_button" name="Meldingen" type="submit">
               <i class="fa fa-bell icon melding_"></i><div class="textbutton blauw">meldingen</div>
             </button>
-            <button class="overlay_button" type="submit" name="ganaar" value="instellingen">
+            <button class="overlay_button" type="submit" name="instellingen">
               <i class="fa fa-cog icon"></i><div class="textbutton blauw">Instellingen</div>
             </button>
             <div action="" method="post" class="uitlog">

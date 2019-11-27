@@ -2,8 +2,7 @@
 <div class="vrienden profielkleur2">
   <div class="vrienden_inner">
     <?php
-      $file = basename($_SERVER['PHP_SELF']);
-      if($file == "bezoek.php"){
+      if($_SESSION['Waar'] == "bezoek"){
         $currentt = $_SESSION["bezoek"];
       }
       else{
@@ -42,13 +41,16 @@
           }
           if($aantal < 9){
             echo "<div class='vriend'>
-                    <form method='post'>";
+                    <form method='post'>
+                      <button type='submit' class='vriendenButton' name='bezoek'>";
             if($vriend == "Dylanspin"){
-              echo "<img src='pic/kroon.png' class='kroon'>";
+              echo "    <img src='pic/kroon.png' class='kroon'>
+                        <img src='pic/profilepics/$liveFoto' class='vriendenImage img2'>";
             }
-            echo "    <button type='submit' class='vriendenButton' name='ganaarP' value='bezoek'>
-                        <img src='pic/profilepics/$liveFoto' class='vriendenImage'>
-                      </button>
+            else{
+              echo "    <img src='pic/profilepics/$liveFoto' class='vriendenImage'>";
+            }
+            echo "    </button>
                       <input type='hidden' name='naamVriend' value='$vriend'>
                     </form>
                   <span class='profielkleur'>($totaalV)
@@ -60,7 +62,7 @@
           }
         }
       }
-      if($file == "profiel.php"){
+      if($_SESSION['Waar'] == "profiel"){
         $sql = "UPDATE `notusers` SET `AantalVrienden` = '$aantal' WHERE Gebruikersnaam = '$current';";
         if ($conn->query($sql) === true) {
         }

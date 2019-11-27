@@ -2,6 +2,7 @@
 <?php
   session_start();
   include 'block.php';
+  include 'connect.php';
   $current = $_SESSION["nu"];
 
   function go($loc){
@@ -21,10 +22,7 @@
           </script>";
   }
 
-  if(isset($_POST['ganaarP'])){
     $naamGo = $_POST['naamVriend'];
-    if(preg_match($regex,$_POST['ganaarP']) == 0){
-
       $sql = "SELECT Private FROM `over` WHERE wie = '$naamGo';";
       $result = $conn->query($sql);
       if ($result->num_rows > 0) {
@@ -46,28 +44,17 @@
           }
           if($current == $naamGo){
             $_SESSION["bezoek"] = $naamGo;
-            go($_POST['ganaarP']);
           }
           if(strlen($checkVriend) > 0){
             $_SESSION["bezoek"] = $naamGo;
-            go($_POST['ganaarP']);
           }
           else{
             if (!$privateCheck) {
               $_SESSION["bezoek"] = $naamGo;
-              go($_POST['ganaarP']);
             }
           }
         }
       }
-    }
-    echo "<script>
-            if ( window.history.replaceState ) {
-              window.history.replaceState( null, null, window.location.href );
-            }
-          </script>";
-  }
-
 
 
  ?>

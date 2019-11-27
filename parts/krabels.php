@@ -35,7 +35,7 @@
         ?>
       </div>
       <?php
-        if(basename($_SERVER['PHP_SELF']) == "bezoek.php"){
+        if($_SESSION['Waar'] == "bezoek"){
           $naar  = $_SESSION["bezoek"];
         }
         else{

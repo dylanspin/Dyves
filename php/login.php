@@ -23,9 +23,8 @@
         if($true == 2){
           $_SESSION["wachtwoordCheck"] = "true";
           $_SESSION["nu"] = $username;
-          header ('location:profiel.php');
           echo "<script>console.log('gelukt')</script>";
-          header("Location:profiel.php");
+          // header("Location:profiel.php");
         }
         else{
           $_SESSION["wachtwoordCheck"] = "false";

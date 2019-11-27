@@ -6,7 +6,7 @@
   else {
     if (!isset($_SERVER['HTTP_REFERER'])){
       echo "Volgens mij hoor je hier niet te zijn he?";
-      header("Location:index.php");
+      // header("Location:index.php");
     }
   }
 

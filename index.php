@@ -1,54 +1,69 @@
+<!--
+<form class="" method="post">
+  <input type="submit" name="Menu" value="Menu">
+  <input type="submit" name="Meldingen" value="Meldingen">
+  <input type="submit" name="Test3" value="Test3">
+  <input type="submit" name="Profiel" value="Profiel">
+  <input type="submit" name="vrienden" value="vrienden">
+  <input type="submit" name="Test6" value="Test6">
+  <input type="submit" name="Test7" value="Test7">
+  <input type="submit" name="zoeken" value="zoeken">
+  <input type="submit" name="Aanmelden" value="Aanmelden">
+</form> -->
 <?php
-  include 'php/get.php';
-  include 'php/login.php';
-?>
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Dyves</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
-    <link rel="shortcut icon" type="image/png" href="pic/Dyves.png">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="js/javascript.js"></script>
-  </head>
-  <body onload="checkCookie(true)">
-    <?php
-      include 'php/searchbar.php';
-      include 'php/uitloggen.php';
-      include 'parts/cookies.php';
-    ?>
 
-    <div class="header">
-      <?php
-        include 'parts/header.php';
-        include 'parts/inlog.php';
-       ?>
-      <div class="searchbar">
-        <div class="logotext">
-          Dyves
-        </div>
-        <?php include 'parts/search.php'; ?>
-      </div>
-    </div>
+  function reloadPost(){
+    echo "<script>
+              if ( window.history.replaceState ) {
+                window.history.replaceState( null, null, window.location.href );
+                location.reload(true);
+              }
+            </script>";
+  }
+  error_reporting(0);
+  session_start();
+  include 'php/goto.php';
+  if(isset($_POST['Menu'])){
+    $_SESSION['Waar'] = "hoofdmenu";
+    reloadPost();
+  }
+  elseif(isset($_POST['Meldingen'])){
+    $_SESSION['Waar'] = "meldingen";
+    reloadPost();
+  }
+  elseif(isset($_POST['instellingen'])){
+    $_SESSION['Waar'] = "instellingen";
+    reloadPost();
+  }
+  elseif(isset($_POST['Profiel'])){
+    $_SESSION['Waar'] = "profiel";
+    reloadPost();
+  }
+  elseif(isset($_POST['vrienden'])){
+    $_SESSION['Waar'] = "vrienden";
+    reloadPost();
+  }
+  elseif(isset($_POST['bezoek'])){
+    $_SESSION['Waar'] = "bezoek";
+    reloadPost();
+  }
+  elseif(isset($_POST['Test7'])){
+    $_SESSION['Waar'] = "instellingen";
+    reloadPost();
+  }
+  elseif(isset($_POST['zoeken'])){
+    $_SESSION['Waar'] = "zoeken";
+    reloadPost();
+  }
+  elseif(isset($_POST['Aanmelden'])){
+    $_SESSION['Waar'] = "aanmelden";
+    reloadPost();
+  }
+  if(!strlen($_SESSION['Waar']) > 0){
+    $_SESSION['Waar'] = "hoofdmenu";
+    $_SESSION['test'] = "True";
+    reloadPost();
+  }
+  include "paginas/".$_SESSION['Waar'].".php";
 
-    <div class="body" id="">
-      <div class="kop">
-        <span class="blauw">Nu</span> Meest Besproken
-      </div>
-      <?php
-        include 'parts/nieuws.php';
-        include 'parts/latest.php';
-        include 'parts/poll.php';
-        include 'parts/weer.php';
-        include 'parts/films.php';
-        include 'parts/latestPost.php';
-        include 'parts/aanmelding.php';
-        include 'parts/footer.php';
-      ?>
-   </div>
-  </body>
-</html>
+  ?>
