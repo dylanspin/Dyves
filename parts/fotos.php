@@ -1,6 +1,5 @@
 <?php
-  $file = basename($_SERVER['PHP_SELF']);
-  if($file == "bezoek.php"){
+  if($_SESSION['Waar'] == "bezoek"){
     $wie =  $_SESSION["bezoek"];
   }
   else{
@@ -16,14 +15,15 @@
   $uncompressed = unserialize($fotoDB);//Maakt de array weer normaal waardoor het gelezen kan worden
   $tell = 0;
 
-  if($file == "fotos.php"){
+  if($_SESSION['Waar'] == "fotos"){
     if(count($uncompressed) > 0 && strpos($uncompressed[0], $wie) !== false){
       for($i=0; $i<=count($uncompressed)-1; $i++){
-        echo "<div class='foto2'><img id='$i'onclick='modal(this)'src='pic/fotos/$uncompressed[$i]' class='nieuws_img'></div>";
+        echo "<div class='foto2 hoverscale'><img id='$i'onclick='modal(this)'src='pic/fotos/$uncompressed[$i]' class='nieuws_img'></div>";
       }
     }
   }
-  else{?>
+  else{
+?>
   <div class="fotos profielkleur2">
     <div class="watProfiel tweev">Foto's & Video's</div>
     <?php
@@ -32,14 +32,14 @@
         for($i=0; $i<=count($uncompressed)-1; $i++){
           $tell ++;
           if($tell <= 5){
-            echo "<div class='foto'><img id='$i'onclick='modal(this)'src='pic/fotos/$uncompressed[$i]' class='nieuws_img'></div>";
+            echo "<div class='foto hoverscale'><img id='$i'onclick='modal(this)'src='pic/fotos/$uncompressed[$i]' class='nieuws_img'></div>";
           }
         }
       }
      ?>
 
     <form class="meer underline" method="post">
-      <button class="Buttonnone underline" type="submit" name="ganaar" value="fotos">Bekijk meer...</button>
+      <button class="Buttonnone underline" type="submit" name="Meerfotos">Bekijk meer...</button>
     </form>
 
   </div>

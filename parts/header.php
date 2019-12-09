@@ -67,9 +67,13 @@
         <button class="overlay_button" type="submit" name="Menu">
           <i class="fa fa-square icon"></i><div class="textbutton blauw">Menu</div>
         </button>
-        <button class="overlay_button">
-          <i class="fa fa-square icon"></i><div class="textbutton blauw">Nog</div>
-        </button>
+        <?php
+          if($current=="Dylanspin"){
+            echo "<button class='overlay_button' type='submit' name='backend'>
+                    <i class='fa fa-square icon'></i><div class='textbutton blauw'>backend</div>
+                  </button>";
+          }
+         ?>
         <button class="overlay_button">
           <i class="fa fa-square icon"></i><div class="textbutton blauw">Nog</div>
         </button>

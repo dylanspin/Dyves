@@ -21,18 +21,25 @@
             $vriend = $row['User'];
             $nu = $row['Vriend'];
           }
-          $sql2 = "SELECT ProfielFoto FROM `notusers` WHERE Gebruikersnaam = '$vriend'"; /*pakt de opties uit de tabel*/
+          $sql2 = "SELECT ProfielFoto,Man FROM `notusers` WHERE Gebruikersnaam = '$vriend'"; /*pakt de opties uit de tabel*/
           $result2 = $conn->query($sql2);
 
           if ($result2->num_rows > 0) {
             while($row = $result2->fetch_assoc()) {
               $foto_ = $row['ProfielFoto'];
+              $gender_ = $row['Man'];
             }
+          }
+          if(strlen($foto_) <= 1){
+            $liveFoto = "g".$gender_.".jpg";
+          }
+          else{
+            $liveFoto = $vriend.$foto_;
           }
           echo "<div class='vriend'>
                   <form method='post'>
                     <button type='button' class='vriendenButton'>
-                      <img src='pic/profilepics/$vriend$foto_' class='vriendenImage'>
+                      <img src='pic/profilepics/$liveFoto' class='vriendenImage'>
                       <button name='Delete' class='ZekerDelete'>
                         Delete
                       </button>

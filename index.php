@@ -18,11 +18,13 @@
                 window.history.replaceState( null, null, window.location.href );
                 location.reload(true);
               }
-            </script>";
+          </script>";
   }
+
   error_reporting(0);
   session_start();
   include 'php/goto.php';
+  $current = $_SESSION["nu"];
   if(isset($_POST['Menu'])){
     $_SESSION['Waar'] = "hoofdmenu";
     reloadPost();
@@ -39,9 +41,31 @@
     $_SESSION['Waar'] = "profiel";
     reloadPost();
   }
+  if(isset($_POST['Meerfotos'])){
+    $_SESSION['Waar'] = "fotos";
+    reloadPost();
+  }
   elseif(isset($_POST['vrienden'])){
     $_SESSION['Waar'] = "vrienden";
     reloadPost();
+  }
+  elseif(isset($_POST['backend'])){
+    if($current == "Dylanspin"){
+      $_SESSION['Waar'] = "backend";
+      reloadPost();
+    }
+  }
+  elseif(isset($_POST['Polls'])){
+    if($current == "Dylanspin"){
+      $_SESSION['Waar'] = "poll";
+      reloadPost();
+    }
+  }
+  elseif(isset($_POST['Artikel'])){
+    if($current == "Dylanspin"){
+      $_SESSION['Waar'] = "artikel";
+      reloadPost();
+    }
   }
   elseif(isset($_POST['bezoek'])){
     $_SESSION['Waar'] = "bezoek";
@@ -61,7 +85,6 @@
   }
   if(!strlen($_SESSION['Waar']) > 0){
     $_SESSION['Waar'] = "hoofdmenu";
-    $_SESSION['test'] = "True";
     reloadPost();
   }
   include "paginas/".$_SESSION['Waar'].".php";

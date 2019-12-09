@@ -13,10 +13,10 @@
        ?>
     </span>
     <form method="post">
-      <button class="buttonProfiel profielkleur anderhalfv underline" type="submit" name="ganaar" value="instellingen">
+      <button class="buttonProfiel profielkleur anderhalfv underline" type="submit" name="instellingen">
         Profiel Pimpen
       </button>
-      <button class="buttonProfiel profielkleur anderhalfv underline" type="submit" name="ganaar" value="cv">
+      <button class="buttonProfiel profielkleur anderhalfv underline" type="submit" name="cv">
         Mijn CV
       </button>
       <button class="buttonProfiel profielkleur anderhalfv underline">

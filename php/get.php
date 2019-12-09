@@ -60,6 +60,33 @@
       $vrienAan_ = $row['VriendenAan'];
     }
   }
+  $plus = 0;
+  $sql = "SELECT Artikel,Text_,Img,Label,Status,Datum,Id FROM `artikels`;";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+      $artikel[$plus] = $row['Artikel'];
+      $textArtikel[$plus] = $row['Text_'];
+      $imgArtikel[$plus] = $row['Img'];
+      $labelArtikel[$plus] = $row['Label'];
+      $statusArtikel[$plus] = $row['Status'];
+      $datumArtikel[$plus] = $row['Datum'];
+      $idArtikel[$plus] = $row['Id'];
+      $plus ++;
+    }
+  }
+
+  $sql = "SELECT Naam,Status,Vragen,Antwoorden,Id FROM `poll` Where id='1';";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+      $vraagPoll = $row['Naam'];
+      $statusPoll = $row['Status'];
+      $VragenPoll = unserialize($row['Vragen']);
+      $AntwoordenPoll = $row['Antwoorden'];
+      $idPoll = $row['Id'];
+    }
+  }
 
   $sql = "SELECT Gebruikersnaam,Postnaam,Text_,Img,Kleur,Toegevoegd FROM `krabels` WHERE Gebruikersnaam = '$current';";
   $result = $conn->query($sql);

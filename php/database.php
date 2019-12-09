@@ -46,12 +46,10 @@
     }
 
     if($goed == 2){
-      echo "<script>window.allert('$goed')</script>";
       setcookie("aanmeld", "true");
       $goed = 0;
-      //Prepared statement voor de "NOTusers" tabel moet nog werkt niet voor een of andere reden
       $sql = "INSERT INTO `notusers` (`Gebruikersnaam`,`Wachtwoord`,`Email`,`Geboortedatum`,`ProfielFoto`,`Achtergrond`,`Permisie`,`Voornaam`,`Achternaam`,`Woonplaats`,`Man`) VALUES
-      ('".$gebruiker."','".$wachtwoord."','".$email."','".$geboortedatum."','1','1','0','".$voornaam."','".$achternaam."','".$woonplaats."','".$gender."');";
+      ('$gebruiker','$wachtwoord','$email','$geboortedatum','1','1','0','$voornaam','$achternaam','$woonplaats','$gender');";
 
       if ($conn->query($sql) === true) {
       }

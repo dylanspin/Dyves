@@ -133,14 +133,20 @@
   width: 9vw;
   display: inline-block;
   background-color: white;
+  transition: 0.2s;
 }
 .foto2{
   position: relative;
   margin: 1vw 0vw 1vw 1vw;
-  height: 18vw;
+  /* height: 18vw; */
+  height: auto;
   width: 18vw;
   display: inline-block;
   background-color: white;
+  transition: 0.2s;
+}
+.hoverscale:hover{
+  transform: scale(1.05,1.05);
 }
 .profiel_muziek{
   position: absolute;
@@ -178,6 +184,7 @@
   background:none;
   height: 8vw;
   width: 9vw;
+  transition: 0.2s;
 }
 .vriendenImage{
   width: 100%;

@@ -22,7 +22,6 @@
       include 'php/searchbar.php';
       include 'parts/cookies.php';
     ?>
-
     <div class="header">
       <?php
         include 'parts/header.php';
@@ -129,6 +128,7 @@
     <div class="enter"></div>
         <input type="submit" value="Save" name="update" class="slaOp" >
     </div>
+  </form>
 
   </body>
 </html>

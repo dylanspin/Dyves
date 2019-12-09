@@ -1,10 +1,3 @@
-<?php
-if (isset($_POST['mypostvar']) && isset($_SERVER['REQUEST_URI']))
-{
-    header ('Location: ' . $_SERVER['REQUEST_URI']);
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -21,6 +14,7 @@ if (isset($_POST['mypostvar']) && isset($_SERVER['REQUEST_URI']))
   </head>
   <body onload="checkCookie(false)">
     <?php
+      include 'php/block.php';
       include 'php/login.php';
       include 'php/uitloggen.php';
       include 'php/get.php';

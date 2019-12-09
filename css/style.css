@@ -116,6 +116,10 @@
   .hidden{
     visibility: hidden;
   }
+  .left{
+    position: absolute;
+    left:-10%;
+  }
   .underline:hover{
     text-decoration: underline;
     cursor: default;
@@ -286,6 +290,11 @@
     color: #3280C9;
     text-decoration: underline;
   }
+  .bottom{
+    position: absolute;
+    bottom: 3%;
+    left: 3%;
+  }
     button.inlog_button{/*inlog button*/
     position: relative;
     top: 2.5%;
@@ -332,26 +341,32 @@
   }
   .pol_info{
     position: relative;
-    width: 90%;
-    position: relative;
-    right: -11.5%;
+    width: 95%;
+    right: -12.5%;
+    top: 0;
     margin-top: -10%;
     display: inline-block;
+    font-size: 1.5vw;
   }
   .procent{
-    color: gray;
     width: 100%;
     font-size: 1.3vw;
-    margin-top: 1%;
+    margin-top: 4%;
   }
   .procentages{
-    top: 9vw;
+    top: -20%;
+    left: -12%;
     opacity: 0.5;
     position: absolute;
-    width: 95%;
-    height: 10%;
-    /* height: 100%; */
-    background-color: blue;
+    height: 140%;
+    background-color: #9EBBFE;
+  }
+  .pollbutton{
+    position: relative;
+    border: none;
+    background: none;
+    font-size: 100%;
+    color: #494949;
   }
 
   /*Het weer*/
@@ -487,7 +502,7 @@
     width: 50%;
   }
   .artikel_text{
-    font-size: 1.2vw;
+    font-size: 1.4vw;
     font-weight: 600;
     position: absolute;
     padding: 2% 10% 5% 3%;
@@ -496,6 +511,7 @@
     height: 68.8%;
     right: 0;
     top: 0;
+    overflow: hidden;
   }
   .datum{
     position: relative;
@@ -862,6 +878,7 @@
     margin-top: 0.3vw;
     height: 18vw;
     width: 16vw;
+    overflow: hidden;
   }
   .vriendenButton{
     border: none;
@@ -875,9 +892,9 @@
     transition: 0.2s;
   }
   .ZekerDelete{
-    position: absolute;
-    left: 10%;
-    top:40%;
+    position: relative;
+    left: 0%;
+    top:-9vw;
     width: 80%;
     height: 20%;
     background-color: #C9302C;
@@ -891,7 +908,7 @@
     transform: scale(1.04,1.04);
   }
   .Delete{
-    position: relative;
+    position: absolute;
     top: 10vw;
   }
   /*Krabels*/
@@ -997,4 +1014,7 @@
   .img2{
     position: relative;
     top: -5.5vw;
+  }
+  textarea{
+    resize: none;
   }
