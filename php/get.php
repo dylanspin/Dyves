@@ -6,7 +6,7 @@
   error_reporting(0);
   $current = $_SESSION["nu"];
 
-  $sql = "SELECT Gebruikersnaam,Email,Geboortedatum,ProfielFoto,Achtergrond,AanmeldTijd,Woonplaats,Voornaam,Achternaam,Man,AantalVrienden,Permisie FROM `notusers` WHERE Gebruikersnaam = '$current';";
+  $sql = "SELECT Gebruikersnaam,Email,Geboortedatum,ProfielFoto,Achtergrond,AanmeldTijd,Woonplaats,Voornaam,Achternaam,Man,AantalVrienden,Permisie,Voted FROM `notusers` WHERE Gebruikersnaam = '$current';";
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
@@ -22,6 +22,7 @@
       $gender_ = $row['Man'];
       $aantalVrienden = $row['AantalVrienden'];
       $per = $row['Permisie'];
+      $voted = $row['Voted'];
     }
   }
   if(strlen($profielfoto_) <= 1){

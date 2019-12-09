@@ -79,9 +79,7 @@
   }
 
 if (isset($_POST['update'])){
-  $_SESSION['test'] = $_FILES["fotoToUpload"]["size"];
   if(strlen($foto) > 0){
-    $_SESSION['test'] = "Werkt";
     if($_FILES["fotoToUpload"]["size"] > 2000000){}//Weet niet waarom maar met een ! voor de statement werkt niet dus daarom else
     else{
       $sql = "SELECT Fotos FROM `notusers` WHERE Gebruikersnaam = '$current';";

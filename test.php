@@ -15,11 +15,7 @@
   session_start();
   include 'php/get.php';
   // echo $_SESSION['Waar'];
-  // echo $_SESSION['test'];
-  $laatste3 = count($artikel)-3;
-  for($i=$laatste3; $i<=count($artikel); $i++){
-    print_r($artikel[$i]." ".$idArtikel[$i]."<br>");
-  }
+  echo $_SESSION['test2'];
 
 
   ?>
