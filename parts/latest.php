@@ -1,7 +1,7 @@
 <?php
     $laatste = count($artikel)-1;
  ?>
-<div class="nieuws_sec">
+<form class="nieuws_sec" method="post">
   <span class="text">Laatste nieuws</span>
   <hr>
   <div class="space"></div>
@@ -12,12 +12,12 @@
         <img src='pic/artikels/$imgArtikel[$laatste]' class='artikel_foto'>
         <div class='artikel_text'>
           <div class='datum'>$datumArtikel[$laatste]</div>
-          <span class='underline blauw'>
+          <button class='underline blauw nonbutton' value='$artikel[$laatste]' type='submit' name='Article'>
               $artikel[$laatste]
-          </span>
+          </button>
         </div>
       </div>";
       $laatste --;
     }
    ?>
-</div>
+</form>

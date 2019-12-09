@@ -17,6 +17,7 @@
       include 'php/login.php';
       include 'php/uitloggen.php';
       include 'php/get.php';
+      include 'php/change.php';
       include 'php/foto.php';
       include 'php/searchbar.php';
       include 'parts/cookies.php';
@@ -71,17 +72,35 @@
           <span class="text3">Uit</span>
 
       <div class="enter"></div>
-      <div class="sectie blauw">Polls</div>
-        <input type="submit" name="Polls" value="Polls">
+      <button type="Submit" name="Polls" value="Polls" class="sectie blauw underline">Polls <i class="fa fa-plus"></i></button>
         <div class="themas">
-          <?php //Polls ?>
+          <?php
+            $sql = "SELECT Naam,Id FROM `poll`;";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+              while($row = $result->fetch_assoc()) {
+                $vraagPoll = $row['Naam'];
+                $IdPoll = $row['Id'];
+                echo "<button type='submit' name='Pollset' class='Polls anderhalfv' value='$IdPoll'>$vraagPoll</button>";
+              }
+            }
+         ?>
         </div>
 
       <div class="enter"></div>
-      <div class="sectie blauw">Artikelen</div>
-      <input type="submit" name="Artikel" value="Artikel">
+      <button type="Submit" name="Artikel" value="Artikel" class="sectie blauw underline">Artikelen <i class="fa fa-plus"></i></button>
         <div class="themas">
-          <?php //Artikelen ?>
+          <?php
+            $sql = "SELECT Artikel,Id FROM `artikels`;";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+              while($row = $result->fetch_assoc()) {
+                substr($ArtikelNaam = $row['Artikel'], 0, 10);
+                $IdArtikel = $row['Id'];
+                echo "<button type='submit' name='Artikelset' class='Polls anderhalfv' value='$IdArtikel'>$ArtikelNaam</button>";
+              }
+            }
+          ?>
         </div>
 
       <div class="enter"></div>

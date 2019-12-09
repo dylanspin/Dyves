@@ -71,8 +71,14 @@
     $_SESSION['Waar'] = "bezoek";
     reloadPost();
   }
-  elseif(isset($_POST['Test7'])){
-    $_SESSION['Waar'] = "instellingen";
+  elseif(isset($_POST['Article'])){
+    $_SESSION['Waar'] = "Currentarticle";
+    $_SESSION['CurentArticle'] = $_POST['Article'];
+    reloadPost();
+  }
+  elseif(isset($_POST['Nieuws'])){
+    $_SESSION['Waar'] = "Nieuws";
+    $_SESSION['label'] = $_POST['Nieuws'];
     reloadPost();
   }
   elseif(isset($_POST['zoeken'])){

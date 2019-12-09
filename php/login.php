@@ -24,11 +24,9 @@
           $_SESSION["wachtwoordCheck"] = "true";
           $_SESSION["nu"] = $username;
           echo "<script>console.log('gelukt')</script>";
-          // header("Location:profiel.php");
         }
         else{
           $_SESSION["wachtwoordCheck"] = "false";
-          // setcookie("wachtwoordCheck", "false", time() + (86400 * 30), "/");
           echo "<script>console.log('mislukt')</script>";
           header('Location: '.$_SERVER['PHP_SELF']);
           die;
@@ -37,9 +35,9 @@
   }
   else {
     $_SESSION["wachtwoordCheck"] = "false";
-    // setcookie("wachtwoordCheck", "false", time() + (86400 * 30), "/");
     header('Location: '.$_SERVER['PHP_SELF']);
     die;
   }
+  reloadPost();
 }
  ?>

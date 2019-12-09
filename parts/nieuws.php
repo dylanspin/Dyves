@@ -5,33 +5,33 @@
     $post3 = 5;
 ?>
 <!--nieuws sectie-->
-<div class="niews">
+<form class="niews" method="post">
   <div class="links" onclick="schuif(1,20)">
     <?php echo "<img src='pic/artikels/$imgArtikel[$post1]' class='nieuws_img'>"; ?>
-    <div class="uitschuif" id="info1">
+    <button class="uitschuif" id="info1" value="<?php echo $artikel[$post1];?>" type="submit" name="Article">
       <?php
         echo $artikel[$post1];
         $laatste3 --;
       ?>
-    </div>
+    </button>
   </div>
 
   <div class="rechts" onclick="schuif(2,62)">
     <?php echo "<img src='pic/artikels/$imgArtikel[$post2]' class='nieuws_img'>"; ?>
-    <div class="uitschuif" id="info2">
+    <button class="uitschuif" id="info2" value="<?php echo $artikel[$post2];?>" type="submit" name="Article">
       <?php
         echo $artikel[$post2];
         $laatste3 --;
       ?>
-    </div>
+    </button>
   </div>
   <div class="space"></div>
   <div class="rechts" onclick="schuif(3,45)">
     <?php echo "<img src='pic/artikels/$imgArtikel[$post3]' class='nieuws_img'>"; ?>
-    <div class="uitschuif" id="info3">
+    <button class="uitschuif" id="info3" value="<?php echo $artikel[$post3];?>" type="submit" name="Article">
       <?php
         echo $artikel[$post3];
       ?>
-    </div>
+    </button>
   </div>
-</div>
+</form>

@@ -9,7 +9,15 @@
           </script>";
   }
 
-    $currentPoll = 1;
+    // $currentPoll = 1;
+    $sql = "SELECT Poll FROM `settings` WHERE Id='1';";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+      while($row = $result->fetch_assoc()) {
+        $currentPoll = $row['Poll'];
+      }
+    }
+
     $sql = "SELECT Naam,Status,Vragen,Antwoorden FROM `poll` WHERE Id='$currentPoll';";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {

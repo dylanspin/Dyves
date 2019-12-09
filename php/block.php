@@ -5,7 +5,7 @@
   }
   else {
     if (!isset($_SERVER['HTTP_REFERER'])){
-      // header("Location:index.php");
+      header("Location:index.php");
     }
   }
 

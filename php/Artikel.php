@@ -27,7 +27,6 @@
     $sql = "INSERT INTO `artikels` (`Artikel`,`Text_`,`Label`,`Img`,`Status`) VALUES ('$ArtikelTitle','$ArtikelText','$ArtikelLabel','$naamFoto','$ArtikelStatus');";
     if ($conn->query($sql) === true) {
       $_SESSION['test'] = "Insert gelukt";
-      // reload();
     }
     if(strlen($artikelFoto) > 0){
       $loc = "pic/artikels/";

@@ -43,23 +43,20 @@
         </button>
       </div>
     </div>
-    <div class="header_div">
+    <form class="header_div" method="post">
       Nieuws
       <div class="overlay iphone">
-        <button class="overlay_button">
+        <button class="overlay_button" type="submit" name="Nieuws" value="nieuws">
           <i class="fa fa-newspaper-o icon"></i><div class="textbutton blauw">nieuws</div>
         </button>
-        <button class="overlay_button">
-          <i class="fa fa-credit-card icon"></i><div class="textbutton blauw">Finacieel</div>
+        <button class="overlay_button" type="submit" name="Nieuws" value="Financieel">
+          <i class="fa fa-credit-card icon"></i><div class="textbutton blauw">Financieel</div>
         </button>
-        <button class="overlay_button">
+        <button class="overlay_button" type="submit" name="Nieuws" value="Sport">
           <i class="fa fa-futbol-o icon"></i><div class="textbutton blauw">Sport</div>
         </button>
-        <button class="overlay_button">
-          <i class="fa fa-clock-o icon"></i><div class="textbutton blauw">Recent</div>
-        </button>
       </div>
-    </div>
+    </form>
 
     <div class="header_div iphone">
       Meer...

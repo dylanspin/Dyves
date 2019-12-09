@@ -62,6 +62,9 @@
           }
         }
       }
+
+      //Ben er later achter gekomen hoe Ik een lange array in een table kan zetten. Dus dit moet nog veranderd worden.
+      //Als je dit leest dan is dat niet gebeurd of moet nog.
       if($_SESSION['Waar'] == "profiel"){
         $sql = "UPDATE `notusers` SET `AantalVrienden` = '$aantal' WHERE Gebruikersnaam = '$current';";
         if ($conn->query($sql) === true) {

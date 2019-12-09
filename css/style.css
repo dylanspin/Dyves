@@ -438,6 +438,7 @@
     width: 100%;
   }
   .uitschuif{
+    border:none;
     overflow: hidden;
     color: white;
     position: absolute;
@@ -635,6 +636,8 @@
     position: relative;
     left: -1vw;
     font-size: 2vw;
+    background: none;
+    border:none;
   }
   form.intellingenForm{
     margin-top: 1vw;
@@ -1017,4 +1020,95 @@
   }
   textarea{
     resize: none;
+  }
+  .Polls{
+    border:none;
+    background-color: #3280C9;
+    border-radius: 0.25vw;
+    color: white;
+    margin-left: 0.5vw;
+    margin-top: 0.5vw;
+    transition: 0.3s;
+  }
+  .Polls:hover{
+    transform: scale(1.03,1.03);
+  }
+  .nonbutton{
+    border:none;
+    background: none;
+    font-size: 1vw;
+    font-weight: 600;
+  }
+  .LeesArtikelFoto{
+    position: relative;
+    margin-top: 6vw;
+    margin-bottom: 4vw;
+    width: 60%;
+    left: 20%;
+    height: 30vw;
+  }
+  .LeesArtikelKop{
+    font-family: "Times New Roman", Times, serif;
+    color: #202223;
+    font-weight: 600;
+    width: 80%;
+    position: relative;
+    top: 3vw;
+    left: 10%;
+    font-size: 4vw;
+  }
+  .LeesArtikelText{
+    position: relative;
+    left: 15%;
+    width: 70%;
+    font-size: 2vw;
+    margin-bottom: 6vw;
+    font-family: "Times New Roman", Times, serif;
+    color: #202223;
+  }
+  .LeesArtikel{
+    position: relative;
+    left: 10%;
+    width: 80%;
+    margin-bottom: 6vw;
+  }
+  .LeesArtikelDatum{
+    position: relative;
+    left: 1vw;
+    bottom: 0.5vw;
+    font-size: 1vw;
+  }
+
+  /*Nieuws pagina*/
+  .NieuwsTop{
+    padding: 5%;
+    position: relative;
+    top: 3vw;
+    left: 5%;
+    width: 80%;
+    min-height: 30vw;
+  }
+  .labeltop{
+    position: relative;
+    display: inline-block;
+    height: 23vw;
+    width: 47%;
+    margin-top: 1vw;
+    margin-left: 1vw;
+    transition: 0.3s;
+    overflow: hidden;
+  }
+  .labeltop:hover{
+    transform: scale(1.03,1.03);
+  }
+  .overlayText{
+    position: absolute;
+    left: 3%;
+    bottom: 2%;
+    font-size: 3vw;
+    font-weight: 600;
+    text-decoration: underline;
+    color: white;
+    font-family: "Times New Roman", Times, serif;
+    text-shadow: 1px 1px black;
   }
