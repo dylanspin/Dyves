@@ -1086,7 +1086,7 @@
     top: 3vw;
     left: 5%;
     width: 80%;
-    min-height: 30vw;
+    height: 180vw;
   }
   .labeltop{
     position: relative;
@@ -1111,4 +1111,29 @@
     color: white;
     font-family: "Times New Roman", Times, serif;
     text-shadow: 1px 1px black;
+  }
+  .nav{
+    position: absolute;
+    height: 4vw;
+    width: 4vw;
+    font-size: 3vw;
+    background: none;
+    border:none;
+    color: black;
+    transition: 0.2s;
+  }
+  .navbottom{
+    bottom: 7vw;
+  }
+  .navtop{
+    top:0vw;
+  }
+  .nav:hover{
+    transform: scale(1.08,1.08);
+  }
+  .next{
+    right: 40%;
+  }
+  .back{
+    left: 40%;
   }

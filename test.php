@@ -14,8 +14,8 @@
   error_reporting(0);
   session_start();
   include 'php/get.php';
-  // echo $_SESSION['Waar'];
   echo $_SESSION['test2'];
+  // echo "Start :".$_SESSION['Start']." Aantal : ".$_SESSION['Aantal'];
 
 
   ?>

@@ -79,6 +79,8 @@
   elseif(isset($_POST['Nieuws'])){
     $_SESSION['Waar'] = "Nieuws";
     $_SESSION['label'] = $_POST['Nieuws'];
+    $_SESSION['Aantal']  = 13;
+    $_SESSION['Start'] = 0;
     reloadPost();
   }
   elseif(isset($_POST['zoeken'])){
