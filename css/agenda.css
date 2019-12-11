@@ -1,0 +1,160 @@
+.dag{
+  position: relative;
+  height: 2.5vw;
+  width: 2.5vw;
+  color: #3C4043;
+  transition: 0.3s;
+  font-size: 1.5vw;
+  border:none;
+  border-radius: 100%;
+  background: none;
+  margin-left: 0.3vw;
+  display: inline-block;
+}
+.dag:hover{
+  background-color: rgb(57, 139, 222,0.7)
+}
+.outside{
+  position: relative;
+  width: 20%;
+  height: 12.5vw;
+  border: 0.1vw solid #3C4043;
+  border-radius: 0.25vw;
+  padding: 3vw;
+  overflow: hidden;
+  display: inline-block;
+  margin-left: 0.5vw;
+  margin-top: 0.5vw;
+}
+.Maand{
+  position: absolute;
+  top: 0vw;
+  color: #3C4043;
+  left: 5%;
+  font-size: 2.5vw;
+  font-weight: 600;
+}
+.Maanden{
+  position: relative;
+  left: 8%;
+}
+.Jaar{
+  position: relative;
+  font-size: 3vw;
+  font-weight: 600;
+  color: #3C4043;
+  left: 10vw;
+  margin-bottom: 1vw;
+}
+.GroteMaand{
+  position: relative;
+  height: 40vw;
+  border: 0.3vw solid #3C4043;
+  border-radius: 0.25vw;
+  width: 80%;
+  left: 8%;
+}
+.GroteNaam{
+  position: relative;
+  top: 0;
+  left: 2%;
+  font-size: 4vw;
+  color: #3C4043;
+  font-weight: 600;
+}
+.Grote{
+  width: 7vw;
+  height: 7vw;
+  font-size: 3vw;
+  margin-left: 1.6vw;
+  margin-top: 1vw;
+}
+.AgendaDiv{
+  position: fixed;
+  top: 30%;
+  left: 25%;
+  width: 46%;
+  height: 25vw;
+  border: 0.15vw solid #3C4043;
+  background-color: white;
+  z-index: 50;
+  padding: 2vw;
+}
+.AgendaClose{
+  position: absolute;
+  right: 4%;
+  top: 4%;
+  font-size: 3vw;
+  color: #3C4043;
+}
+.AgendaSave{
+  position: absolute;
+  right: 4%;
+  bottom: 4%;
+  font-size: 3vw;
+  color: #4DA8ED;
+}
+.scale{
+  transition: 0.3s;
+}
+.scale:hover{
+  transform: scale(1.05,1.05);
+}
+.buttonnone{
+  border:none;
+  background: none;
+}
+.AgendaDatum{
+  position: relative;
+  top:-5%;
+  width: 100%;
+  font-size: 3vw;
+  font-weight: 600;
+  color: #3C4043;
+}
+.agendaPlaningen{
+  position: relative;
+  overflow-y:scroll;
+  padding-bottom: 1vw;
+  min-height:0%;
+  max-height: 30%;
+  width: 80%;
+  left: 4%;
+  bottom: 0;
+  background-color: white;
+}
+.planning{
+  position: relative;
+  padding: 0.5vw;
+  width: 95%;
+  min-height: 3vw;
+  color: white;
+  font-size: 1.5vw;
+  background-color: #4DA8ED;
+  border-radius: 0.25vw;
+  margin-top: 0.5vw;
+}
+.AgendaTextarea{
+  font-size: 1.5vw;
+  resize: none;
+  border :0.1vw solid #4DA8ED;
+}
+.AgendaMelding{
+  position: absolute;
+  top: -5%;
+  left: -10%;
+  height: 0.9vw;
+  width:  0.9vw;
+  background-color: #4DA8ED;
+  border-radius: 100%;
+}
+.GrotereMelding{
+  height: 2vw;
+  width:  2vw;
+  top: 0%;
+  left: 10%;
+}
+.outsideAgenda{
+  position: relative;
+  top: 10vw;
+}

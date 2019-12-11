@@ -14,8 +14,8 @@
   </head>
   <body onload="checkCookie(false)" class="intel">
     <?php
-      // include 'php/login.php';
-      // include 'php/uitloggen.php';
+      include 'php/login.php';
+      include 'php/uitloggen.php';
       // include 'php/get.php';
       include 'php/foto.php';
       include 'php/Artikel.php';

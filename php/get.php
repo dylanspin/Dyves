@@ -2,8 +2,7 @@
 <?php
   session_start();
   include 'connect.php';
-  // include 'block.php';
-  error_reporting(0);
+  include 'block.php';
   $current = $_SESSION["nu"];
 
   $sql = "SELECT Gebruikersnaam,Email,Geboortedatum,ProfielFoto,Achtergrond,AanmeldTijd,Woonplaats,Voornaam,Achternaam,Man,AantalVrienden,Permisie,Voted FROM `notusers` WHERE Gebruikersnaam = '$current';";

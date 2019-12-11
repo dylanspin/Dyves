@@ -3,7 +3,6 @@
   session_start();
   include 'connect.php';
   include 'block.php';
-  error_reporting(0);
 
   $bezoek = $_SESSION["bezoek"];
 

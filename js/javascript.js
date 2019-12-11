@@ -21,10 +21,6 @@ function checkCookie(check){
   }
 }
 
-function goto(loc){
-  window.location.href = loc+".php";
-}
-
 //aanmelden functie die je terug brengt naar het hoofd menu
 function aangemeld(){
   var aanmelgemeld = getCookie("aanmeld");
@@ -76,6 +72,7 @@ function schuif(id,hoog){
     nieuws[id] = true;
   }
 }
+
 function cookies(){
   document.cookie = "cookies=true";
   var cookies = getCookie("cookies");

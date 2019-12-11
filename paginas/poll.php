@@ -5,7 +5,6 @@
     <title>Dyves</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" href="css/profile.css">
     <link rel="shortcut icon" type="image/png" href="pic/Dyves.png">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">

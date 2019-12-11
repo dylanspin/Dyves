@@ -21,10 +21,10 @@
       }
     }
 
-    $sql3 = "SELECT Email FROM `notusers` WHERE Email = '$email';";
-    $result2 = $conn->query($sql3);
-    if ($result2->num_rows > 0) {
-      while($row = $result2->fetch_assoc()) {
+    $sql = "SELECT Email FROM `notusers` WHERE Email = '$email';";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+      while($row = $result->fetch_assoc()) {
         $vergelijk2 = $row['Email'];
       }
     }
@@ -48,20 +48,19 @@
     if($goed == 2){
       setcookie("aanmeld", "true");
       $goed = 0;
+      $_SESSION['Nieuwacc'] = "true";
       $sql = "INSERT INTO `notusers` (`Gebruikersnaam`,`Wachtwoord`,`Email`,`Geboortedatum`,`ProfielFoto`,`Achtergrond`,`Permisie`,`Voornaam`,`Achternaam`,`Woonplaats`,`Man`) VALUES
       ('$gebruiker','$wachtwoord','$email','$geboortedatum','1','1','0','$voornaam','$achternaam','$woonplaats','$gender');";
-
       if ($conn->query($sql) === true) {
       }
-
-      $sql2 = "INSERT INTO `over` (`Aantal`,`Opleiding`,`Baan`,`Muziek`,`Sport`,`Wie`,`Film`,`Private`,`FilmAan`,`MuziekAan`,`VriendenAan`) VALUES
-      ('','','','','','$gebruiker','','0','0','0','1');";
-      if ($conn->query($sql2) === true) {
+      $sql = "INSERT INTO `over` (`Aantal`,`Opleiding`,`Baan`,`Muziek`,`Sport`,`Wie`,`Film`,`Private`,`FilmAan`,`MuziekAan`,`VriendenAan`) VALUES ('','','','','','$gebruiker','','0','0','0','1');";
+      if ($conn->query($sql) === true) {
+      }
+      $sql = "INSERT INTO `agenda` (`Gebruikersnaam`,`Agenda`) VALUES ('$gebruiker','');";
+      if ($conn->query($sql) === true) {
       }
     }
     $goed = 0;
-    header('Location: '.$_SERVER['PHP_SELF']);
-    die;
-
+    reloadPost();
   }
  ?>

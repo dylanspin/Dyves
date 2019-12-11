@@ -73,7 +73,7 @@
         <input type="password" name="password2" placeholder="herhaal"class="aanmelden_in" id="wachtwoord2">
         <label class="label"><p id="7"></p></label>
 
-        <button type="button"name='formSub' class='aanmelden_button2' onclick='aanmelden()' id="button">Registreren</button>
+        <button type="button" name='formSub' class='aanmelden_button2' onclick='aanmelden()' id="button">Registreren</button>
       </form>
     </div>
   </body>

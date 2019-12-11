@@ -1,17 +1,4 @@
-<!--
-<form class="" method="post">
-  <input type="submit" name="Menu" value="Menu">
-  <input type="submit" name="Meldingen" value="Meldingen">
-  <input type="submit" name="Test3" value="Test3">
-  <input type="submit" name="Profiel" value="Profiel">
-  <input type="submit" name="vrienden" value="vrienden">
-  <input type="submit" name="Test6" value="Test6">
-  <input type="submit" name="Test7" value="Test7">
-  <input type="submit" name="zoeken" value="zoeken">
-  <input type="submit" name="Aanmelden" value="Aanmelden">
-</form> -->
 <?php
-
   function reloadPost(){
     echo "<script>
               if ( window.history.replaceState ) {
@@ -20,7 +7,6 @@
               }
           </script>";
   }
-
   error_reporting(0);
   session_start();
   include 'php/goto.php';
@@ -31,6 +17,10 @@
   }
   elseif(isset($_POST['Meldingen'])){
     $_SESSION['Waar'] = "meldingen";
+    reloadPost();
+  }
+  elseif(isset($_POST['formSub']) && $_SESSION['Nieuwacc'] == "true"){
+    $_SESSION['Waar'] = "hoofdmenu";
     reloadPost();
   }
   elseif(isset($_POST['instellingen'])){
@@ -88,7 +78,12 @@
     reloadPost();
   }
   elseif(isset($_POST['Aanmelden'])){
+    $_SESSION['Nieuwacc'] = "false";
     $_SESSION['Waar'] = "aanmelden";
+    reloadPost();
+  }
+  elseif(isset($_POST['Agenda'])){
+    $_SESSION['Waar'] = "Agenda";
     reloadPost();
   }
   if(!strlen($_SESSION['Waar']) > 0){

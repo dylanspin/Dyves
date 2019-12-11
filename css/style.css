@@ -29,6 +29,14 @@
     left: 8vw;
     top: 6vw;
   }
+  select{
+    color: #152962;
+    font-size: 1.5vw;
+    transition: 0.3s;
+  }
+  select:focus{
+    background-color: #C6E2FE;
+  }
   /*slide out header*/
   .overlay {
     visibility: hidden;
