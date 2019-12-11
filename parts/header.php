@@ -10,9 +10,6 @@
         <button class="overlay_button tweeBu" type="submit" name="vrienden">
           <i class="fa fa-list icon"></i><div class="textbutton blauw">Vrienden beheeren</div>
         </button>
-        <button class="overlay_button tweeBu" type="submit" name="Agenda">
-          <i class="fa fa-calendar icon"></i><div class="textbutton blauw">Vrienden verjaardag</div>
-        </button>
         <button class="overlay_button tweeBu" type="submit" name="zoeken">
           <i class="fa fa-plus icon"></i><div class="textbutton blauw">Vrienden toevoegen</div>
         </button>
@@ -22,10 +19,7 @@
       Agenda
       <form class="overlay iphone twee" method="post">
         <button class="overlay_button tweeBu" type="submit" name="Agenda">
-          <i class="fa fa-calendar icon"></i><div class="textbutton blauw">Vrienden verjaardag</div>
-        </button>
-        <button class="overlay_button tweeBu" type="submit" name="Agenda">
-          <i class="fa fa-plus icon"></i><div class="textbutton blauw">Persoonlijk</div>
+          <i class="fa fa-calendar icon"></i><div class="textbutton blauw">Agenda</div>
         </button>
       </form>
     </div>

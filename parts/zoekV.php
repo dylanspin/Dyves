@@ -1,3 +1,4 @@
+
 <div class='Vrienden'>
    <?php
      include 'connect.php';
@@ -20,12 +21,6 @@
          }
        }
        if($checkUP){
-         if($check1 == $current || $check2 == $current){
-
-         }
-         elseif ($check2 == $current || $check1 == $current) {
-           // code...
-         }
          $sql2 = "INSERT INTO `friend_invite` (`User`,`To_user`) VALUES ('$current','$userIN');";
          if ($conn->query($sql2) === true) {
            echo "<script>
@@ -35,9 +30,9 @@
                  </script>";
          }
          else {
-           // echo "mislukt". $sql . "<br>" . $conn->error;
+
          }
-         header('Location: '.$_SERVER['PHP_SELF']);
+         reloadPost();
        }
      }
      $number = 0;
@@ -55,21 +50,18 @@
          if($naam == $current){
            $check_ = false;
          }
-       $sql2 = "SELECT Vriend,User FROM `vrienden` WHERE User = '$current' OR Vriend = '$current';";
-       $result2 = $conn->query($sql2);
-       if ($result2->num_rows > 0) {
-         while($row = $result2->fetch_assoc()) {
-           $vriend1 = $row['User'];
-           $vriend = $row['Vriend'];
-           if($vriend1 != $current){
-             $vriend = $row['User'];
-             $vriend1 = $row['Vriend'];
-           }
-           if($vriend == $naam){
-               $check_ = false;
+         $sql2 = "SELECT Vrienden FROM `allfriends` Where Gebruikersnaam = '$current';";
+         $result2 = $conn->query($sql2);
+         if ($result2->num_rows > 0) {
+           while($row = $result2->fetch_assoc()) {
+             $vrienden = unserialize($row['Vrienden']);
+             for($i=0; $i<=count($vrienden)-1; $i++){
+               if($vrienden[$i] == $naam){
+                 $check_ = false;
+               }
+             }
            }
          }
-       }
          $sql3 = "SELECT To_user FROM `friend_invite` WHERE User = '$current';";
          $result2 = $conn->query($sql3);
          if ($result2->num_rows > 0) {

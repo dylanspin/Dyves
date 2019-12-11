@@ -45,16 +45,15 @@
         <form class='NieuwsTop' method='post'>";
 
   for($i=$_SESSION['Start']; $i<=$_SESSION['Aantal']; $i++){
-    $laatste --;//&& strlen()
+    $laatste --;
     if($laatste >= 0){
       echo "<button class='labeltop nonbutton' type='submit' value='$Labelartikel[$laatste]' name='Article'>
-              $laatste
               <img src='pic/artikels/$LabelimgArtikel[$laatste]' class='nieuws_img'>
               <div class='overlayText'>$Labelartikel[$laatste]</div>
             </button>";
     }
   }
-  
+
   if($_SESSION['Aantal'] < 13){//nav buttons
     echo "<button class='back nav navbottom' type='submit' name='Next'><i class='fa fa-arrow-left'></i></button>
           <button class='back nav navtop' type='submit' name='Next'><i class='fa fa-arrow-left'></i></button>";

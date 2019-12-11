@@ -1,5 +1,7 @@
 .dag{
   position: relative;
+  left:0;
+  top:0.5vw;
   height: 2.5vw;
   width: 2.5vw;
   color: #3C4043;
@@ -48,15 +50,16 @@
 }
 .GroteMaand{
   position: relative;
-  height: 40vw;
+  height: 42vw;
   border: 0.3vw solid #3C4043;
   border-radius: 0.25vw;
   width: 80%;
   left: 8%;
+  top: -1vw;
 }
 .GroteNaam{
   position: relative;
-  top: 0;
+  top: 1vw;
   left: 2%;
   font-size: 4vw;
   color: #3C4043;
@@ -157,4 +160,27 @@
 .outsideAgenda{
   position: relative;
   top: 10vw;
+}
+.agendaNav{
+  position: relative;
+  display: inline-block;
+  font-size: 1.5vw;
+  text-align: center;
+  color: #3C4043;
+  transition: 0.2s;
+}
+.agendaNav:hover{
+  transform: scale(1.1,1.1);
+}
+.typeAgenda{
+  width: 10vw;
+}
+.navDiv{
+  position: relative;
+  width:50%;
+  display: inline-block;
+  margin-left: 3vw;
+  top: 4vw;
+  left: 60%;
+  z-index: 30;
 }

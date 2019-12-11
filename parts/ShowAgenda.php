@@ -29,23 +29,28 @@
     }
 
     $agenda = $_SESSION['Agenda'];
-    echo "<div class='outsideAgenda'><form method='post'>";
-          if($agenda){
-            echo "<button class='nonbutton agendaNav' type='submit' name='BackY'><i class='fa fa-arrow-left'></button>
-                  <button class='nonbutton agendaNav' type='submit' name='NextY'><i class='fa fa-arrow-right'></i></button>";
-          }
-          else{
-            echo "<button class='nonbutton agendaNav' type='submit' name='BackM'><i class='fa fa-arrow-left'></button>
-                  <button class='nonbutton agendaNav' type='submit' name='NextM'><i class='fa fa-arrow-right'></button>";
-          }
-            echo "<button class='nonbutton agendaNav' type='submit' name='Jaar'>Jaar</button>
-                  <button class='nonbutton agendaNav' type='submit' name='Maand'>Maanden</button>
-          </form>";
+    echo "<div class='outsideAgenda'>
+                <form method='post'>";
+            echo "
+                  <div class='navDiv'>
+                    <button class='nonbutton agendaNav' type='submit' name='BackY'><i class='fa fa-arrow-left'></i></button>
+                    <button class='nonbutton agendaNav typeAgenda' type='submit' name='Jaar'>Jaren</button>
+                    <button class='nonbutton agendaNav' type='submit' name='NextY'><i class='fa fa-arrow-right'></i></button>
+                  </div>
+                  <div class='navDiv'>
+                    <button class='nonbutton agendaNav' type='submit' name='BackM'><i class='fa fa-arrow-left'></i></button>
+                    <button class='nonbutton agendaNav typeAgenda' type='submit' name='Maand'>Maanden</button>
+                    <button class='nonbutton agendaNav' type='submit' name='NextM'><i class='fa fa-arrow-right'></i></button>
+                  </div>
+                </form>";
 
     //veel issets...........
     if(isset($_POST['NextY'])){
       if($_SESSION['Jaar'] <= 7){
         $_SESSION['Jaar'] += 1;
+      }
+      else{
+        $_SESSION['Jaar'] = 0;
       }
       reload();
     }
@@ -53,17 +58,26 @@
       if(!$_SESSION['Jaar'] == 0){
         $_SESSION['Jaar'] -= 1;
       }
+      else{
+        $_SESSION['Jaar'] = 8;
+      }
       reload();
     }
     if(isset($_POST['NextM'])){
       if($_SESSION['Maand'] <= 10){
         $_SESSION['Maand'] += 1;
       }
+      else{
+        $_SESSION['Maand'] = 0;
+      }
       reload();
     }
     if(isset($_POST['BackM'])){
       if($_SESSION['Maand'] > 0){
         $_SESSION['Maand'] -= 1;
+      }
+      else{
+        $_SESSION['Maand'] = 11;
       }
       reload();
     }
@@ -163,7 +177,7 @@
     }
 
 
-    if($agenda){
+    if($agenda){ //print de agenda uit in een heel jaar of in een maand
       echo "<div class='Jaar'>$jarenNum[$J]</div><div class='Maanden'>";
       for($M=0; $M<=11; $M++){
         echo "<form class='outside' method='post'><div class='Maand'>$maanden[$M]</div>";
@@ -190,7 +204,7 @@
     }
     else{
       $Maand = $_SESSION['Maand'];
-      echo "<form class='GroteMaand' method='post'><div class='GroteNaam'>$maanden[$Maand]</div>";
+      echo "<form class='GroteMaand' method='post'><div class='GroteNaam'>$jarenNum[$J] $maanden[$Maand]</div>";
       for($D=1; $D<=$jaren[$J][0][$Maand]; $D++){
         $datum = $jarenNum[$J]."-".($Maand+1)."-".$D;
         $timestamp = strtotime($datum);

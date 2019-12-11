@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="js/javascript.js"></script>
   </head>
-  <body onload="checkCookie(false)" class="intel">
+  <body onload="checkCookie(false)">
     <?php
       include 'php/login.php';
       include 'php/uitloggen.php';
@@ -33,7 +33,7 @@
       </div>
     </div>
     <div id="body">
-      <?php include 'php/ShowAgenda.php'; ?>
+      <?php include 'parts/ShowAgenda.php'; ?>
     </div>
   </body>
 </html>

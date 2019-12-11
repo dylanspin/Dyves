@@ -8,21 +8,17 @@
       else{
         $currentt = $current;
       }
-      $aantal = 0;
-      $sql = "SELECT User,Vriend FROM `vrienden` WHERE User = '$currentt' OR Vriend = '$currentt';";
+
+      $sql = "SELECT Vrienden FROM `allfriends` Where Gebruikersnaam = '$currentt' ;";
       $result = $conn->query($sql);
       if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-          $nu = $row['User'];
-          $vriend = $row['Vriend'];
-          $aantal ++;
+          $vrienden = unserialize($row['Vrienden']);
+          $aantal = count($vrienden);
+        }
+        for($i=0; $i<=$aantal-1; $i++){
 
-          if($vriend == $currentt){
-            $vriend = $row['User'];
-            $nu = $row['Vriend'];
-          }
-
-          $sql2 = "SELECT ProfielFoto,Man,Gebruikersnaam,AantalVrienden FROM `notusers` WHERE Gebruikersnaam='$vriend';"; /*pakt de opties uit de tabel*/
+          $sql2 = "SELECT ProfielFoto,Man,Gebruikersnaam,AantalVrienden FROM `notusers` WHERE Gebruikersnaam='$vrienden[$i]';"; /*pakt de opties uit de tabel*/
           $result2 = $conn->query($sql2);
 
           if ($result2->num_rows > 0) {
@@ -43,7 +39,7 @@
             echo "<div class='vriend'>
                     <form method='post'>
                       <button type='submit' class='vriendenButton' name='bezoek'>";
-            if($vriend == "Dylanspin"){
+            if($vrienden[$i] == "Dylanspin"){
               echo "    <img src='pic/kroon.png' class='kroon'>
                         <img src='pic/profilepics/$liveFoto' class='vriendenImage img2'>";
             }
@@ -51,11 +47,11 @@
               echo "    <img src='pic/profilepics/$liveFoto' class='vriendenImage'>";
             }
             echo "    </button>
-                      <input type='hidden' name='naamVriend' value='$vriend'>
+                      <input type='hidden' name='naamVriend' value='$vrienden[$i]'>
                     </form>
                   <span class='profielkleur'>($totaalV)
                   <span class='underline'>
-                    $vriend
+                    $vrienden[$i]
                   </span>
                 </span>
               </div>";

@@ -43,7 +43,6 @@
         include 'parts/nieuws.php';
         include 'parts/latest.php';
         include 'parts/poll.php';
-        include 'parts/weer.php';
         include 'parts/films.php';
         include 'parts/latestPost.php';
         include 'parts/aanmelding.php';

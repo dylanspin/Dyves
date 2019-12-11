@@ -190,7 +190,7 @@
   }
   .header_div:hover .overlay  {
     top: 2.5vw;
-    min-height: 5vw;
+    min-height: 0vw;
     height: auto;
     visibility: visible;
   }
@@ -323,7 +323,6 @@
 
 
   /*Body section ---------------*/
-
   .body{
     width: 100vw;
     height: auto;
@@ -377,8 +376,8 @@
     color: #494949;
   }
 
-  /*Het weer*/
-  .weer{
+  /*De tijden*/
+  .tijd{
     padding: 1vw;
     color: white;
     position: absolute;
@@ -387,32 +386,26 @@
     top: 41.5vw;
     right: 1.5vw;
   }
-  .dagen{
+  .Landen{
     position: relative;
     display: inline-block;
     width:24%;
     height: 45%;
+    width: 24%
   }
-  .nacht{
-    font-size: 2vw;
-    position: absolute;
-    display: inline-block;
-    background-color: #4A4A4A;
-    width: 3vw;
-    height: 2.5vw;
-    bottom: 0;
-    right: 1vw;
+  .land{
+    position: relative;
+    color: black;
+    font-size: 1.5vw;
   }
-  .dag{
-    font-size: 2vw;
-    line-height: -10px;
+  .tijden{
     position: absolute;
-    display: inline-block;
-    background-color: #3280C9;;
-    width: 3vw;
-    height: 2.5vw;
-    left: 1vw;
-    bottom: 0;
+    left: 15%;
+    top: 3vw;
+    color: black;
+    font-size: 2vw;
+    padding: 0.25vw;
+    border:0.1vw solid black;
   }
 
   /*spotlight films*/
