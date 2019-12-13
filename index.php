@@ -1,15 +1,18 @@
 <?php
+  // include 'php/Ban.php';//Ban systeem
+  // $_SESSION['test'] = "mislukt". $sql . "<br>" . $conn->error;
   function reloadPost(){
     echo "<script>
               if ( window.history.replaceState ) {
-                window.history.replaceState( null, null, window.location.href );
+                window.history.replaceState( null, null, window.location.href);
                 location.reload(true);
               }
           </script>";
-  }
+    }
+
   error_reporting(0);
   session_start();
-  include 'php/goto.php';
+
   $current = $_SESSION["nu"];
   if(isset($_POST['Menu'])){
     $_SESSION['Waar'] = "hoofdmenu";
@@ -29,6 +32,7 @@
   }
   elseif(isset($_POST['Profiel'])){
     $_SESSION['Waar'] = "profiel";
+    $_SESSION["bezoek"] = "";
     reloadPost();
   }
   if(isset($_POST['Meerfotos'])){
@@ -40,26 +44,25 @@
     reloadPost();
   }
   elseif(isset($_POST['backend'])){
-    if($current == "Dylanspin"){
+    if($current == "ZS39R35ulltAv235JPYeSY35R"){
       $_SESSION['Waar'] = "backend";
       reloadPost();
     }
   }
   elseif(isset($_POST['Polls'])){
-    if($current == "Dylanspin"){
+    if($current == "ZS39R35ulltAv235JPYeSY35R"){ //moet nog veranderd worden naar de admin ids
       $_SESSION['Waar'] = "poll";
       reloadPost();
     }
   }
   elseif(isset($_POST['Artikel'])){
-    if($current == "Dylanspin"){
+    if($current == "ZS39R35ulltAv235JPYeSY35R"){
       $_SESSION['Waar'] = "artikel";
       reloadPost();
     }
   }
   elseif(isset($_POST['bezoek'])){
     $_SESSION['Waar'] = "bezoek";
-    reloadPost();
   }
   elseif(isset($_POST['Article'])){
     $_SESSION['Waar'] = "Currentarticle";
@@ -84,6 +87,7 @@
   }
   elseif(isset($_POST['Agenda'])){
     $_SESSION['Waar'] = "Agenda";
+    $_SESSION['Agenda'] = 1;
     reloadPost();
   }
   if(!strlen($_SESSION['Waar']) > 0){

@@ -1,6 +1,6 @@
 
 <?php
-    if($_COOKIE["wachtwoordCheck"] != "true"){
+    if($_SESSION["wachtwoordCheck"] != "true"){
       echo "
       <form class='aanmelden iphone' id='aanmeldVak' method='post'>
           <button type='submit' name='Aanmelden' class='aanmelden_button'>
@@ -12,7 +12,7 @@
         </div>
       </form>";
     }
-    elseif ($_COOKIE["wachtwoordCheck"] == "false") {
+    elseif ($_SESSION["wachtwoordCheck"] == "false") {
       echo "
        <form class='aanmelden iphone' id='aanmeldVak' method='post'>
           <button type='submit' name='Aanmelden'class='aanmelden_button'>

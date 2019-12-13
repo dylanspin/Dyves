@@ -21,6 +21,7 @@
       include 'php/searchbar.php';
       include 'php/style.php';
       include 'parts/cookies.php';
+      include 'php/goto.php';
     ?>
 
     <div class="header">
@@ -48,18 +49,18 @@
       	 include 'parts/profielKop.php';//De main div van het profiel
       	 include 'parts/over.php'; //De basic informatie div
          if($vrienAan_){
-           include 'parts/vrienden.php'; //De vrienden div
+            include 'parts/vrienden.php'; //De vrienden div
          }
          include 'parts/fotos.php'; //De basic informatie div
          if(true){
-           include 'parts/krabels.php'; //De krabel post div
-           include 'php/krabel.php';//Krabel backend
+            include 'php/krabel.php';//Krabel backend
+            include 'parts/krabels.php'; //De krabel post div
          }
          if($muziekAan_){
-           include 'parts/muziek.php'; //De krabel post div
+            include 'parts/muziek.php'; //De krabel post div
          }
          if($filmAan_){
-           include 'parts/profFilms.php'; //De krabel post div
+            include 'parts/profFilms.php'; //De krabel post div
          }
       ?>
     </div>

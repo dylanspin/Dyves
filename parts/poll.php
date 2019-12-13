@@ -89,11 +89,12 @@
         array_push($AntwoordenPoll2,$antwoord);
       }
       $compresantwoorden = serialize($AntwoordenPoll2);
-      $sql = "UPDATE `poll` SET `Antwoorden` = '$compresantwoorden' WHERE Id = '$currentPoll';";
-      if ($conn->query($sql) === true) {
-        $sql = "UPDATE `notusers` SET `Voted` = '1' WHERE Gebruikersnaam = '$current';";//Set Voted true zo dat de user niet nog een keer kan stemmen
+      if($_SESSION["wachtwoordCheck"] == "true"){
+        $sql = "UPDATE `poll` SET `Antwoorden` = '$compresantwoorden' WHERE Id = '$currentPoll';";
         if ($conn->query($sql) === true) {
-
+          $sql = "UPDATE `notusers` SET `Voted` = '1' WHERE UNIQ = '$current';";//Set Voted true zo dat de user niet nog een keer kan stemmen
+          if ($conn->query($sql) === true) {
+          }
         }
       }
     }

@@ -39,7 +39,7 @@
           $naar  = $_SESSION["bezoek"];
         }
         else{
-          $naar = $current;
+          $naar = $gebruikersnaam_;
         }
         $sql = "SELECT Gebruikersnaam,Postnaam,Text_ FROM `krabels` WHERE Postnaam = '$naar';";
         $result = $conn->query($sql);

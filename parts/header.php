@@ -59,7 +59,7 @@
           <i class="fa fa-square icon"></i><div class="textbutton blauw">Menu</div>
         </button>
         <?php
-          if($current=="Dylanspin"){
+          if($current=="ZS39R35ulltAv235JPYeSY35R"){
             echo "<button class='overlay_button' type='submit' name='backend'>
                     <i class='fa fa-square icon'></i><div class='textbutton blauw'>backend</div>
                   </button>";

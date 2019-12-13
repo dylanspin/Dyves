@@ -34,7 +34,7 @@
     </div>
 
     <div class="body">
-      <div class="aanmelden_info grijs">Maak een account voor Dyves Dylan1!</div>
+      <div class="aanmelden_info grijs">Maak vrienden , stuur elkaar berichten en maak je eigen profiel.</div>
 
       <div class="text2 grijs">
         <div class="space"></div>

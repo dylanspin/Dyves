@@ -3,7 +3,7 @@
     $wie =  $_SESSION["bezoek"];
   }
   else{
-    $wie = $current;
+    $wie = $gebruikersnaam_;
   }
   $sql = "SELECT Fotos FROM `notusers` WHERE Gebruikersnaam = '$wie';";
   $result = $conn->query($sql);

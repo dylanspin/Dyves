@@ -29,7 +29,7 @@
       }
     }
 
-    if(strlen($vergelijk2)>0){ //checkt als de email all in de databse zit
+    if(strlen($vergelijk2)>0){ //checkt als de email all in de database zit
       setcookie("email", "true", time() + (86400 * 30), "/");
     }
     else{
@@ -37,7 +37,7 @@
       setcookie("email", "false", time() + (86400 * 30), "/");
     }
 
-    if(strlen($vergelijk)>0){ //checkt als de gebruikers naam all in de databse zit
+    if(strlen($vergelijk)>0){ //checkt als de gebruikers naam all in de database zit
       setcookie("Gebruikers", "true", time() + (86400 * 30), "/");
     }
     else{
@@ -49,16 +49,21 @@
       setcookie("aanmeld", "true");
       $goed = 0;
       $_SESSION['Nieuwacc'] = "true";
-      $sql = "INSERT INTO `notusers` (`Gebruikersnaam`,`Wachtwoord`,`Email`,`Geboortedatum`,`ProfielFoto`,`Achtergrond`,`Permisie`,`Voornaam`,`Achternaam`,`Woonplaats`,`Man`) VALUES
-      ('$gebruiker','$wachtwoord','$email','$geboortedatum','1','1','0','$voornaam','$achternaam','$woonplaats','$gender');";
+      $sql = "INSERT INTO `notusers` (`Gebruikersnaam`,`UNIQ`,`Wachtwoord`,`Email`,`Geboortedatum`,`ProfielFoto`,`Achtergrond`,`Permisie`,`Voornaam`,`Achternaam`,`Woonplaats`,`Man`) VALUES
+      ('$gebruiker','$randomid','$wachtwoord','$email','$geboortedatum','1','1','0','$voornaam','$achternaam','$woonplaats','$gender');";
       if ($conn->query($sql) === true) {
       }
       $sql = "INSERT INTO `over` (`Aantal`,`Opleiding`,`Baan`,`Muziek`,`Sport`,`Wie`,`Film`,`Private`,`FilmAan`,`MuziekAan`,`VriendenAan`) VALUES ('','','','','','$gebruiker','','0','0','0','1');";
       if ($conn->query($sql) === true) {
       }
-      $sql = "INSERT INTO `agenda` (`Gebruikersnaam`,`Agenda`) VALUES ('$gebruiker','');";
+      $sql = "INSERT INTO `agenda` (`Gebruikersnaam`) VALUES ('$gebruiker');";//moet nog de Niuew randomid worden.
       if ($conn->query($sql) === true) {
       }
+      $sql = "INSERT INTO `allfriends` (`Gebruikersnaam`) VALUES ('$gebruiker');";//moet nog de Niuew randomid worden.
+      if ($conn->query($sql) === true) {
+      }
+      $sql2 = "INSERT INTO `friend_invite` (`User`) VALUES ('$gebruiker');";//moet nog de Niuew randomid worden.
+      if ($conn->query($sql2) === true) {}
     }
     $goed = 0;
     reloadPost();

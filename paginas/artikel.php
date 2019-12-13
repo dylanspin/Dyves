@@ -35,8 +35,6 @@
       </div>
     </div>
 
-    <div class="niet" id="niet">Niet ingelogd!</div><!--niet ingelogged melding-->
-
     <div class="body" id="body">
       <div class="intelKop">
           Back end Dyves

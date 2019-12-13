@@ -14,18 +14,19 @@
   </head>
   <body onload="checkCookie(false)">
     <?php
-      include 'php/login.php';
-      include 'php/uitloggen.php';
-      include 'php/get2.php';
-      include 'php/searchbar.php';
-      include 'php/style.php';
-      include 'parts/cookies.php';
+        include 'php/login.php';
+        include 'php/uitloggen.php';
+        include 'php/get2.php';
+        include 'php/searchbar.php';
+        include 'php/style.php';
+        include 'parts/cookies.php';
+        include 'php/goto.php';
     ?>
 
     <div class="header">
       <?php
-        include 'parts/header.php';
-        include 'parts/inlog.php';
+          include 'parts/header.php';
+          include 'parts/inlog.php';
        ?>
       <div class="searchbar">
         <div class="logotext">
@@ -40,34 +41,34 @@
     <div class="body" id="body">
       <div class="kop">
         <?php
-          echo $gebruikersnaam_; //krijgt de Gebruikers naam van de database
+            echo $gebruikersnaam_; //krijgt de Gebruikers naam van de database
         ?>
       </div>
       <?php
-      	 include 'parts/profielKop2.php';//De main div van het profiel
-      	 include 'parts/over.php'; //De basic informatie div
+    	   include 'parts/profielKop2.php';//De main div van het profiel
+	       include 'parts/over.php'; //De basic informatie div
          if($vrienAan_){
-           include 'parts/vrienden.php'; //De vrienden div
+            include 'parts/vrienden.php'; //De vrienden div
          }
          include 'parts/fotos.php'; //De basic informatie div
          if(true){
-           include 'parts/krabels.php'; //De krabel post div
-           include 'php/krabel.php'; //De Krabel backend
+            include 'php/krabel.php'; //De Krabel backend
+            include 'parts/krabels.php'; //De krabel post div
           }
          if($muziekAan_){
-           include 'parts/muziek.php'; //De krabel post div
+            include 'parts/muziek.php'; //De krabel post div
          }
          if($filmAan_){
-           include 'parts/profFilms.php'; //De krabel post div
+            include 'parts/profFilms.php'; //De krabel post div
          }
       ?>
     </div>
   <?php
-    }
-    else{
-      header ('location:index.php');
-    }
-    include 'parts/footer.php';
+      }
+      else{
+          header ('location:index.php');
+      }
+      include 'parts/footer.php';
    ?>
 
   </body>

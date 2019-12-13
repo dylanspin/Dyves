@@ -1,7 +1,3 @@
-<?php
-  include 'php/get.php';
-  include 'php/login.php';
-?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -17,6 +13,8 @@
   </head>
   <body onload="checkCookie(true)">
     <?php
+      include 'php/get.php';
+      include 'php/login.php';
       include 'php/searchbar.php';
       include 'php/uitloggen.php';
       include 'parts/cookies.php';

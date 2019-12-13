@@ -35,8 +35,6 @@
       </div>
     </div>
 
-    <div class="niet" id="niet">Niet ingelogd!</div><!--niet ingelogged melding-->
-
     <div class="body" id="body">
 
       <div class="intelKop">
@@ -95,6 +93,7 @@
 
       <div class="enter"></div><!--Moet nog met php-->
       <div class="sectie blauw">Thema: </div>
+      <label class="instelLabel">Font :</label>
       <select name="font">
         <option value="6">Standaard</option>
         <option value="0">fantasy</option>

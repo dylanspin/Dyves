@@ -4,37 +4,67 @@
      include 'connect.php';
      if(isset($_POST['Zoek'])){
        $_SESSION["zoek"] = $_POST['zoekResultaat']; //dit moet nog gecheckt worden op script
-       header('Location: '.$_SERVER['PHP_SELF']);
+       reloadPost();
      }
+
      if(isset($_POST['buttonSU'])){
-       $checkUP = true;
-       $userIN = $_POST['buttonSU']; //Dit moet nog veilig gemaakt worden
-       $sql = "SELECT To_user User FROM `friend_invite` WHERE User = '$current';";
+
+       $userIN = $_POST['buttonSU'];
+
+       $sql = "SELECT UNIQ FROM `notusers` WHERE Gebruikersnaam = '$userIN';";
        $result = $conn->query($sql);
        if ($result->num_rows > 0) {
          while($row = $result->fetch_assoc()) {
-           $check1 = $row['To_user'];
-           $check2 = $row['User'];
-           if($check1 == $userIN){
-             $checkUP = false;
-           }
+           $IDDB = $row['UNIQ'];
          }
        }
-       if($checkUP){
-         $sql2 = "INSERT INTO `friend_invite` (`User`,`To_user`) VALUES ('$current','$userIN');";
-         if ($conn->query($sql2) === true) {
+
+       $sql = "SELECT To_user,SendUsers FROM `friend_invite` WHERE User = '$current';";
+       $result = $conn->query($sql); $ToUser = unserialize($row['To_user']);
+       if ($result->num_rows > 0) {
+         while($row = $result->fetch_assoc()){
+           $SendUsers = unserialize($row['SendUsers']);
+         }
+
+         $sql = "SELECT To_user,SendUsers FROM `friend_invite` WHERE User = '$IDDB';";
+         $result = $conn->query($sql);
+         if ($result->num_rows > 0) {
+           while($row = $result->fetch_assoc()){
+              $ToUser = unserialize($row['To_user']);
+           }
+         }
+
+         if(strlen($ToUser[0]) == 0){
+           $ToUser = [$gebruikersnaam_];
+         }
+         else{
+           array_push($ToUser,$gebruikersnaam_);
+         }
+
+         if(strlen($SendUsers[0]) == 0){
+           $SendUsers = [$IDDB];
+         }
+         else{
+           array_push($SendUsers,$IDDB);
+         }
+
+         $compresInvites = serialize($ToUser);
+         $compresSend = serialize($SendUsers);
+         $sql = "UPDATE `friend_invite` SET `To_user` = '$compresInvites' WHERE User = '$IDDB';";
+         if ($conn->query($sql) === true) {
+           $sql = "UPDATE `friend_invite` SET `SendUsers` = '$compresSend' WHERE User = '$current';";
+           if ($conn->query($sql) === true) {
+           }
            echo "<script>
                    if ( window.history.replaceState ) {
                      window.history.replaceState( null, null, window.location.href );
                    }
                  </script>";
          }
-         else {
-
-         }
-         reloadPost();
        }
+       reloadPost();
      }
+
      $number = 0;
      $zoek = $_SESSION["zoek"];
      $sql = "SELECT Gebruikersnaam,Man,ProfielFoto FROM `notusers` WHERE Gebruikersnaam LIKE '%$zoek%'"; /*pakt de opties uit de tabel*/
@@ -62,18 +92,23 @@
              }
            }
          }
-         $sql3 = "SELECT To_user FROM `friend_invite` WHERE User = '$current';";
+         $sql3 = "SELECT SendUsers FROM `friend_invite` WHERE User = '$current';";
          $result2 = $conn->query($sql3);
          if ($result2->num_rows > 0) {
            while($row2 = $result2->fetch_assoc()) {
-             $check3 = $row2['To_user'];
-             if($check3 == $naam){
-               $check_ = false;
-             }
+             $SendUsers = unserialize($row2['SendUsers']);
            }
          }
-         if(strlen($current)== 0){
+         for($i=0; $i<=count($SendUsers); $i++){
+           if($SendUsers[$i] == $naam){
              $check_ = false;
+           }
+         }
+         if($naam == $gebruikersnaam_){
+           $check_ = false;
+         }
+         if(strlen($gebruikersnaam_) <= 1){
+           $check_ = false;
          }
          if(strlen($foto) <= 1){
            $liveFoto = "g".$gender.".jpg";

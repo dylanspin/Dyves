@@ -252,7 +252,7 @@
     border-left: 0.1vw solid rgba(0,0,0,0.3);
     border-radius: 0% 10% 10% 0%;
     position: absolute;
-    left: 60%;
+    left: 58%;
     background-color: #FEF5EB;
     padding: 1%;
     padding-left: 2%;
@@ -713,7 +713,7 @@
     position: relative;
     left: -2vw;
     width: 100vw;
-    height: 33vw;
+    height: auto;
     padding: 1vw;
   }
   .thema{
