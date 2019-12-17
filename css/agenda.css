@@ -151,6 +151,12 @@
   background-color: #4DA8ED;
   border-radius: 100%;
 }
+.AgendaMelding2{
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  font-size: 1vw;
+}
 .GrotereMelding{
   height: 2vw;
   width:  2vw;

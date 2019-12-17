@@ -330,7 +330,7 @@
     top: 23vh;
   }
   .kop{
-    position: absolute;
+    position: relative;
     font: bold 13px/18px sans-serif;
     font-size: 2.8vw;
     font-weight: 600;
@@ -551,16 +551,17 @@
   }
   .aanmelden_info{
     height: 10vw;
-    position: relative;
-    left: 6.5vw;
-    font-size: 3.5vw;
+    position: absolute;
+    right: 10.5vw;
+    top: 2vw;
+    font-size: 2vw;
   }
   form.aanmelden_form{
     width: 30vw;
     height: 50vw;
     position: relative;
     left: -5vw;
-    top: -5vw;
+    top: 2vw;
   }
   .aanmelden_in{
     background-color: white;

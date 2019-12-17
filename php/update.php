@@ -29,32 +29,32 @@
     $updated2 = "";
 
     if (strlen($OpleidingU) > 0) {
-      $update[$t1] = "`Opleiding` = '$OpleidingU'";
-      $t1 ++;
+        $update[$t1] = "`Opleiding` = '$OpleidingU'";
+        $t1 ++;
     }
     if (strlen($BaanU) > 0) {
-      $update[$t1] = "`Baan` = '$BaanU'";
-      $t1 ++;
+        $update[$t1] = "`Baan` = '$BaanU'";
+        $t1 ++;
     }
     if (strlen($MuziekU) > 0) {
-      $update[$t1] = "`Muziek` = '$MuziekU'";
-      $t1 ++;
+        $update[$t1] = "`Muziek` = '$MuziekU'";
+        $t1 ++;
     }
     if (strlen($FilmU) > 0) {
-      $update[$t1] = "`Film` = '$FilmU'";
-      $t1 ++;
+        $update[$t1] = "`Film` = '$FilmU'";
+        $t1 ++;
     }
     if (strlen($SportU) > 0) {
-      $update[$t1] = "`Sport` = '$SportU'";
-      $t1 ++;
+        $update[$t1] = "`Sport` = '$SportU'";
+        $t1 ++;
     }
     if (!$Private == $private_) {
-      $update[$t1] = "`Private` = '$Private'";
-      $t1 ++;
+        $update[$t1] = "`Private` = '$Private'";
+        $t1 ++;
     }
     if (!$VriendenAan ==  $vrienAan_) {
-      $update[$t1] = "`VriendenAan` = '$VriendenAan'";
-      $t1 ++;
+        $update[$t1] = "`VriendenAan` = '$VriendenAan'";
+        $t1 ++;
     }
     if (!$FilmAan ==  $filmAan_) {
         $update[$t1] = "`FilmAan` = '$FilmAan'";

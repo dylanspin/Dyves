@@ -16,7 +16,12 @@
     <?php
       include 'php/login.php';
       include 'php/uitloggen.php';
-      include 'php/get.php';
+      if(strlen($_SESSION["bezoek"]) >= 1){
+        include 'php/get2.php';
+      }
+      else{
+        include 'php/get.php';
+      }
       include 'php/searchbar.php';
       include 'php/style.php';
       include 'parts/cookies.php';
@@ -38,12 +43,15 @@
     <?php if($_SESSION["wachtwoordCheck"] == "true"){?>
 
     <div class="body" id="body">
+      <div class="kop">
+        Meer foto's
+      </div>
       <?php include 'parts/fotos.php';?>
     </div>
   <?php
     }
     else{
-      header ('location:index.php');
+        $_SESSION['Waar'] = "hoofdmenu";
     }
    ?>
 

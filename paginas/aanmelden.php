@@ -15,7 +15,7 @@
     <?php
       include 'php/get.php';
       include 'php/login.php';
-      include 'php/aanmelden.php';
+      // include 'php/aanmelden.php';
       include 'php/searchbar.php';
       include 'parts/cookies.php';
     ?>
@@ -38,29 +38,22 @@
 
       <div class="text2 grijs">
         <div class="space"></div>
-        <!-- Maak vrienden , stuur elkaar berichten en maak je eigen profiel. -->
       </div>
       <div>
       </div>
-
+      <!-- <label class="label"><i class="fa fa-exclamation-circle fa-3x" id="2"></i></label> -->
       <form class="aanmelden_form" method="post">
         <input type="text" name="voornaam" placeholder="Voornaam" class="aanmelden_in" id="naam">
-        <label class="label"><i class="fa fa-exclamation-circle fa-3x" id="0"></i></label>
 
         <input type="text" name="achternaam" placeholder="Achternaam" class="aanmelden_in" id="achternaam">
-        <label class="label"><i class="fa fa-exclamation-circle fa-3x" id="1"></i></label>
 
         <input type="text" name="woonplaats" placeholder="Woonplaats" class="aanmelden_in" id="woonplaats">
-        <label class="label"><i class="fa fa-exclamation-circle fa-3x" id="2"></i></label>
 
         <input type="date" name="geboortedatum" placeholder="Geboortedatum"class="aanmelden_in" id="geboortedatum">
-        <label class="label"><i class="fa fa-exclamation-circle fa-3x" id="3"></i></label>
 
         <input type="text" name="gebruikersnaam" placeholder="Gebruikersnaam"class="aanmelden_in" id="gebruikersnaam">
-        <label class="label"><p id="4"></p></label>
 
         <input type="email" name="email" placeholder="Email"class="aanmelden_in" id="email">
-        <label class="label"><i class="fa fa-exclamation-circle fa-3x text_form" id="5"></i></label>
 
         <input type="radio" name="gender" value="1" class="aanmelden_in gender" checked >Man
         <input type="radio" name="gender" value="0" class="aanmelden_in gender">Vrouw
@@ -68,10 +61,8 @@
         <label class="label"><i class="fa fa-exclamation-circle fa-3x text_form" id="10"></i></label>
 
         <input type="password" name="password1" placeholder="Wachtwoord"class="aanmelden_in"id="wachtwoord1">
-        <label class="label"><p id="6"></p></label>
 
         <input type="password" name="password2" placeholder="herhaal"class="aanmelden_in" id="wachtwoord2">
-        <label class="label"><p id="7"></p></label>
 
         <button type="button" name='formSub' class='aanmelden_button2' onclick='aanmelden()' id="button">Registreren</button>
       </form>

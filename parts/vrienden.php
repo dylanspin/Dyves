@@ -20,63 +20,63 @@
       $sql = "SELECT Vrienden FROM `allfriends` Where Gebruikersnaam = '$currentt';";
       $result = $conn->query($sql);
       if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-          $vrienden = unserialize($row['Vrienden']);
-          $aantal = count($vrienden);
-        }
+          while($row = $result->fetch_assoc()) {
+              $vrienden = unserialize($row['Vrienden']);
+              $aantal = count($vrienden);
+          }
 
-        for($i=0; $i<=$aantal-1; $i++){
+          for($i=0; $i<=$aantal-1; $i++){
 
-          $sql2 = "SELECT ProfielFoto,Man,Gebruikersnaam,AantalVrienden FROM `notusers` WHERE Gebruikersnaam = '$vrienden[$i]';"; /*pakt de opties uit de tabel*/
-          $result2 = $conn->query($sql2);
+              $sql2 = "SELECT ProfielFoto,Man,Gebruikersnaam,AantalVrienden FROM `notusers` WHERE Gebruikersnaam = '$vrienden[$i]';"; /*pakt de opties uit de tabel*/
+              $result2 = $conn->query($sql2);
 
-          if ($result2->num_rows > 0) {
-            while($row = $result2->fetch_assoc()) {
-              $foto_ = $row['ProfielFoto'];
-              $gender_ = $row['Man'];
-              $vriend_ = $row['Gebruikersnaam'];
-              $totaalV = $row['AantalVrienden'];
-            }
+              if ($result2->num_rows > 0) {
+                  while($row = $result2->fetch_assoc()) {
+                      $foto_ = $row['ProfielFoto'];
+                      $gender_ = $row['Man'];
+                      $vriend_ = $row['Gebruikersnaam'];
+                      $totaalV = $row['AantalVrienden'];
+                  }
+              }
+              if(strlen($foto_) <= 1){
+                  $liveFoto = "g".$gender_.".jpg";
+              }
+              else{
+                  $liveFoto = $vriend_.$foto_;
+              }
+              if($aantal < 9 && $aantal > 1){
+                  echo "<div class='vriend'>
+                          <form method='post'>
+                            <button type='submit' class='vriendenButton' name='bezoek' value='$i'>";
+                  if($vrienden[$i] == "Dylanspin"){
+                      echo "  <img src='pic/kroon.png' class='kroon'>
+                              <img src='pic/profilepics/$liveFoto' class='vriendenImage img2'>";
+                  }
+                  else{
+                      echo "    <img src='pic/profilepics/$liveFoto' class='vriendenImage'>";
+                  }
+                  echo "    </button>
+                          </form>
+                        <span class='profielkleur'>($totaalV)
+                        <span class='underline'>
+                          $vrienden[$i]
+                        </span>
+                      </span>
+                    </div>";
+              }
           }
-          if(strlen($foto_) <= 1){
-            $liveFoto = "g".$gender_.".jpg";
-          }
-          else{
-            $liveFoto = $vriend_.$foto_;
-          }
-          if($aantal < 9 && $aantal > 1){
-            echo "<div class='vriend'>
-                    <form method='post'>
-                      <button type='submit' class='vriendenButton' name='bezoek' value='$i'>";
-            if($vrienden[$i] == "Dylanspin"){
-              echo "    <img src='pic/kroon.png' class='kroon'>
-                        <img src='pic/profilepics/$liveFoto' class='vriendenImage img2'>";
-            }
-            else{
-              echo "    <img src='pic/profilepics/$liveFoto' class='vriendenImage'>";
-            }
-            echo "    </button>
-                    </form>
-                  <span class='profielkleur'>($totaalV)
-                  <span class='underline'>
-                    $vrienden[$i]
-                  </span>
-                </span>
-              </div>";
-          }
-        }
       }
 
       if($_SESSION['Waar'] == "profiel"){
-        $sql = "UPDATE `notusers` SET `AantalVrienden` = '$aantal' WHERE Gebruikersnaam = '$gebruikersnaam_';";
-        if ($conn->query($sql) === true) {
-        }
+          $sql = "UPDATE `notusers` SET `AantalVrienden` = '$aantal' WHERE Gebruikersnaam = '$gebruikersnaam_';";
+          if ($conn->query($sql) === true) {
+          }
       }
       else{
-        $Change =  $_SESSION["bezoek"];
-        $sql = "UPDATE `notusers` SET `AantalVrienden` = '$aantal' WHERE Gebruikersnaam = '$Change';";
-        if ($conn->query($sql) === true) {
-        }
+          $Change =  $_SESSION["bezoek"];
+          $sql = "UPDATE `notusers` SET `AantalVrienden` = '$aantal' WHERE Gebruikersnaam = '$Change';";
+          if ($conn->query($sql) === true) {
+          }
       }
     ?>
     <div class="watProfiel tweev vriendbar">Vrienden (<?php if($aantal > 1){echo $aantal;}else{echo 0;} ?>)</div>
