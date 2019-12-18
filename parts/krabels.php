@@ -51,7 +51,6 @@
             $Stuurder = $row['Gebruikersnaam'];
             $ontvanger = $row['Postnaam'];
             $text_ = $row['Text_'];
-            $kleur = $row['Kleur'];
             echo "<div class='Krabelpost profielkleur'>
                     <div class='NaamKrabel tweev'>$Stuurder</div>
                     <div class='berichtKrabel anderhalfv'>$text_</div>

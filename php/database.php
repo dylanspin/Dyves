@@ -1,4 +1,5 @@
 <?php
+  session_start();
   include 'connect.php';
   include 'block.php';
 
@@ -10,62 +11,94 @@
   $email =  $_POST['email'];
   $gender = $_POST['gender'];
   $wachtwoord =  $_POST['password1'];
-  $goed = 0;
+  $wachtwoord2 = $_POST['password2'];
+  // $_SESSION['test2'] = " ";
+  $goed = true;
+  $reg1 = "/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/i";//wachtwoord check.
+  $reg2 = "/^[a-z ,.'-]+$/i";//standaard check
+  $reg3 = "/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i";//email check
+  $reg4 = "(script|php)";
 
   if(isset($_POST['formSub'])){
-    $sql2 = "SELECT Gebruikersnaam FROM `notusers` WHERE Gebruikersnaam = '$gebruiker';";
-    $result = $conn->query($sql2);
-    if ($result->num_rows > 0) {
-      while($row = $result->fetch_assoc()) {
-        $vergelijk = $row['Gebruikersnaam'];
+      $sql2 = "SELECT Gebruikersnaam FROM `notusers` WHERE Gebruikersnaam = '$gebruiker';";
+      $result = $conn->query($sql2);
+      if ($result->num_rows > 0) {
+          while($row = $result->fetch_assoc()) {
+              $vergelijk = $row['Gebruikersnaam'];
+          }
       }
-    }
 
-    $sql = "SELECT Email FROM `notusers` WHERE Email = '$email';";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-      while($row = $result->fetch_assoc()) {
-        $vergelijk2 = $row['Email'];
+      $sql = "SELECT Email FROM `notusers` WHERE Email = '$email';";
+      $result = $conn->query($sql);
+      if ($result->num_rows > 0) {
+          while($row = $result->fetch_assoc()) {
+              $vergelijk2 = $row['Email'];
+          }
       }
-    }
 
-    if(strlen($vergelijk2)>0){ //checkt als de email all in de database zit
-      setcookie("email", "true", time() + (86400 * 30), "/");
-    }
-    else{
-      $goed += 1;
-      setcookie("email", "false", time() + (86400 * 30), "/");
-    }
+      for($i=0; $i<=5; $i++){
 
-    if(strlen($vergelijk)>0){ //checkt als de gebruikers naam all in de database zit
-      setcookie("Gebruikers", "true", time() + (86400 * 30), "/");
-    }
-    else{
-      $goed += 1;
-      setcookie("Gebruikers", "false", time() + (86400 * 30), "/");
-    }
+      }
+      if(!preg_match($reg3,$email)){//email check
+          $goed = false;
+          $_SESSION['test2'] .= "Email niet Goed  ";
+      }
+      if(preg_match($reg1,$wachtwoord)){//wachtwoord check
+          if(!$wachtwoord == $wachtwoord2){
+              $goed = false;
+              $_SESSION['test2'] .= "Wachtwoorden zijn niet het zelfde  ";
+          }
+      }
+      else{
+          $goed = false;
+          $_SESSION['test2'] .= "Wachtwoord check was fout  ";
+      }
+      if(!strlen($geboortedatum) > 8){ //checkt als de hele geboortedatum is ingevult
+          $goed = false;
+          $_SESSION['test2'] .= "geboortedatum niet ingevult  ";
+      }
+      if(!strlen($gebruiker) > 30){//Gebruikersnaam checkt als de naam niet langer is dan 30 chars
+          $goed = false;
+          $_SESSION['test2'] .= "Gebruikersnaam telang  ";
+      }
+      if(strlen($gebruiker) <= 1){//checkt als er een gebruikersnaam is invult
+          $goed = false;
+          $_SESSION['test2'] .= "Gebruikersnaam niet ingevult  ";
+      }
+      if(strlen($vergelijk2)>0){
+          $goed = false;
+          $_SESSION['test2'] .= "Gebruikersnaam bestaat  ";
+      }
 
-    if($goed == 2){
-      setcookie("aanmeld", "true");
-      $goed = 0;
-      $_SESSION['Nieuwacc'] = "true";
-      $sql = "INSERT INTO `notusers` (`Gebruikersnaam`,`UNIQ`,`Wachtwoord`,`Email`,`Geboortedatum`,`ProfielFoto`,`Achtergrond`,`Permisie`,`Voornaam`,`Achternaam`,`Woonplaats`,`Man`) VALUES
-      ('$gebruiker','$randomid','$wachtwoord','$email','$geboortedatum','1','1','0','$voornaam','$achternaam','$woonplaats','$gender');";
-      if ($conn->query($sql) === true) {
+      if(strlen($vergelijk)>0){
+          $goed = false;
+          $_SESSION['test2'] .= "Email bestaat  ";
       }
-      $sql = "INSERT INTO `over` (`Aantal`,`Opleiding`,`Baan`,`Muziek`,`Sport`,`Wie`,`Film`,`Private`,`FilmAan`,`MuziekAan`,`VriendenAan`) VALUES ('','','','','','$gebruiker','','0','0','0','1');";
-      if ($conn->query($sql) === true) {
+
+      if($goed){
+          $goed = 0;
+          $_SESSION['test'] = "Gelukt met het maken van een acount";
+          // $_SESSION['Nieuwacc'] = "true";
+          // $sql = "INSERT INTO `notusers` (`Gebruikersnaam`,`UNIQ`,`Wachtwoord`,`Email`,`Geboortedatum`,`ProfielFoto`,`Achtergrond`,`Permisie`,`Voornaam`,`Achternaam`,`Woonplaats`,`Man`) VALUES
+          // ('$gebruiker','$randomid','$wachtwoord','$email','$geboortedatum','1','1','0','$voornaam','$achternaam','$woonplaats','$gender');";
+          // if ($conn->query($sql) === true) {
+          // }
+          // $sql = "INSERT INTO `over` (`Wie`) VALUES ('$gebruiker');";
+          // if ($conn->query($sql) === true) {
+          // }
+          // $sql = "INSERT INTO `agenda` (`Gebruikersnaam`) VALUES ('$gebruiker');";//moet nog de Niuew randomid worden.
+          // if ($conn->query($sql) === true) {
+          // }
+          // $sql = "INSERT INTO `allfriends` (`Gebruikersnaam`) VALUES ('$gebruiker');";//moet nog de Niuew randomid worden.
+          // if ($conn->query($sql) === true) {
+          // }
+          // $sql2 = "INSERT INTO `friend_invite` (`User`) VALUES ('$gebruiker');";//moet nog de Niuew randomid worden.
+          // if ($conn->query($sql2) === true) {}
       }
-      $sql = "INSERT INTO `agenda` (`Gebruikersnaam`) VALUES ('$gebruiker');";//moet nog de Niuew randomid worden.
-      if ($conn->query($sql) === true) {
+      else{
+        $_SESSION['test'] = "Het is mislukt met het maken van een acount";
       }
-      $sql = "INSERT INTO `allfriends` (`Gebruikersnaam`) VALUES ('$gebruiker');";//moet nog de Niuew randomid worden.
-      if ($conn->query($sql) === true) {
-      }
-      $sql2 = "INSERT INTO `friend_invite` (`User`) VALUES ('$gebruiker');";//moet nog de Niuew randomid worden.
-      if ($conn->query($sql2) === true) {}
-    }
-    $goed = 0;
-    reloadPost();
+      $goed = true;
+      reloadPost();
   }
  ?>

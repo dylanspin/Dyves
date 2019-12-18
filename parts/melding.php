@@ -91,7 +91,7 @@
 <div class="Meldingen">
   <?php
     for($i=0; $i<=count($from)-1; $i++){
-      if(!count($from) == 0){
+      if(!count($from) == 0 && !strlen($from[0]) == 0){
         echo "<div class='Melding'>
                 <div class='vriendText blauw'>
                   Je hebt een vriend invite van $from[$i]

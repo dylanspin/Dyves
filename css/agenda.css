@@ -145,11 +145,8 @@
 .AgendaMelding{
   position: absolute;
   top: -5%;
-  left: -10%;
-  height: 0.9vw;
-  width:  0.9vw;
-  background-color: #4DA8ED;
-  border-radius: 100%;
+  left: 0%;
+  font-size: 1vw;
 }
 .AgendaMelding2{
   position: absolute;
@@ -158,10 +155,15 @@
   font-size: 1vw;
 }
 .GrotereMelding{
-  height: 2vw;
-  width:  2vw;
+  font-size: 2vw;
   top: 0%;
-  left: 10%;
+  left: 20%;
+}
+.GrotereMelding2{
+  font-size: 2vw;
+  background:none;
+  top: 0%;
+  left: 55%;
 }
 .outsideAgenda{
   position: relative;

@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dyves</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
@@ -51,7 +52,7 @@
           <label class="instelLabel">Title</label><input type="text" name="ArtikelTitle" class="instelling">
         </div>
         <div class="intellinginner">
-          <label class="instelLabel">Text</label><textarea type="text" name="ArtikelText" class="instelling"></textarea>
+          <label class="instelLabel">Text</label><textarea type="text" rows="5" cols="80" name="ArtikelText" class="instelling articleText"></textarea>
         </div>
         <div class="intellinginner">
           <label class="instelLabel">Label</label><input type="text" name="ArtikelLabel" class="instelling">

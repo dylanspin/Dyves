@@ -38,12 +38,11 @@
                 if($true == 2){
                   $_SESSION["wachtwoordCheck"] = "true";
                   $_SESSION["nu"] = $unicID;
-                  echo "<script>console.log('gelukt')</script>";
+                  $_SESSION['Waar'] = "profiel";
                   updateIp($username,$conn);
                 }
                 else{
                   $_SESSION["wachtwoordCheck"] = "false";
-                  echo "<script>console.log('mislukt')</script>";
                   reloadPost();
                }
             }

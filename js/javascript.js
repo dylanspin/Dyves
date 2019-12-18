@@ -14,44 +14,14 @@ function getCookie(cname) {
   return "";
 }
 
+function scrollmid(){
+  window.scrollTo(0, 250);
+}
+
 function checkCookie(check){
   var wachtwoord = getCookie("wachtwoordCheck");
   if (wachtwoord == "true") { //als de pagina word ingeladen na dat er cookies zijn gezet
     document.getElementById('fout').innerHTML = "Mislukt met Inloggen";
-  }
-}
-
-//aanmelden functie die je terug brengt naar het hoofd menu
-function aangemeld(){
-  var aanmelgemeld = getCookie("aanmeld");
-
-  if(aanmelgemeld == "true"){
-    console.log("aangemeld");
-    document.cookie = "aanmeld=false";
-    window.location.href = "index.php";
-  }
-}
-
-function checkdouble(){
-  var checkGebruiker = getCookie("Gebruikers");
-  var email = getCookie("email");
-
-  if(checkGebruiker == "false"){
-    console.log("Gebruiker bestaat nog niet");
-    document.getElementById('4').style.visibility = "hidden";
-  }
-  else{
-    console.log("Gebruiker bestaat");
-    document.getElementById('4').style.visibility = "visible";
-  }
-
-  if(email == "false"){
-    console.log("Email bestaat nog niet");
-    document.getElementById('5').style.visibility = "hidden";
-  }
-  else{
-    console.log("Email bestaat");
-    document.getElementById('5').style.visibility = "visible";
   }
 }
 

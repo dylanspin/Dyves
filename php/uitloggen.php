@@ -5,7 +5,7 @@
         $_SESSION["nu"] = "";
         $_SESSION["wachtwoordCheck"] = "false";
         $_SESSION["bezoek"] = "";
-        $_SESSION['Waar'] = "";
+        $_SESSION['Waar'] = "hoofdmenu";
         reloadPost();
     }
  ?>

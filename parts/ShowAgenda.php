@@ -1,35 +1,22 @@
 
 <div class='outsideAgenda'>
-            <form method='post'>
-              <div class='navDiv'>
-                <button class='nonbutton agendaNav' type='submit' name='BackY'><i class='fa fa-arrow-left'></i></button>
-                <button class='nonbutton agendaNav typeAgenda' type='submit' name='Jaar'>Jaren</button>
-                <button class='nonbutton agendaNav' type='submit' name='NextY'><i class='fa fa-arrow-right'></i></button>
-              </div>
-              <div class='navDiv'>
-                <button class='nonbutton agendaNav' type='submit' name='BackM'><i class='fa fa-arrow-left'></i></button>
-                <button class='nonbutton agendaNav typeAgenda' type='submit' name='Maand'>Maanden</button>
-                <button class='nonbutton agendaNav' type='submit' name='NextM'><i class='fa fa-arrow-right'></i></button>
-              </div>
-            </form>
+  <form method='post'>
+    <div class='navDiv'>
+      <button class='nonbutton agendaNav' type='submit' name='BackY'><i class='fa fa-arrow-left'></i></button>
+      <button class='nonbutton agendaNav typeAgenda' type='submit' name='Jaar'>Jaren</button>
+      <button class='nonbutton agendaNav' type='submit' name='NextY'><i class='fa fa-arrow-right'></i></button>
+    </div>
+    <div class='navDiv'>
+      <button class='nonbutton agendaNav' type='submit' name='BackM'><i class='fa fa-arrow-left'></i></button>
+      <button class='nonbutton agendaNav typeAgenda' type='submit' name='Maand'>Maanden</button>
+      <button class='nonbutton agendaNav' type='submit' name='NextM'><i class='fa fa-arrow-right'></i></button>
+    </div>
+  </form>
 
 <?php
-//
-// echo "<div class='outsideAgenda'>
-//             <form method='post'>
-//               <div class='navDiv'>
-//                 <button class='nonbutton agendaNav' type='submit' name='BackY'><i class='fa fa-arrow-left'></i></button>
-//                 <button class='nonbutton agendaNav typeAgenda' type='submit' name='Jaar'>Jaren</button>
-//                 <button class='nonbutton agendaNav' type='submit' name='NextY'><i class='fa fa-arrow-right'></i></button>
-//               </div>
-//               <div class='navDiv'>
-//                 <button class='nonbutton agendaNav' type='submit' name='BackM'><i class='fa fa-arrow-left'></i></button>
-//                 <button class='nonbutton agendaNav typeAgenda' type='submit' name='Maand'>Maanden</button>
-//                 <button class='nonbutton agendaNav' type='submit' name='NextM'><i class='fa fa-arrow-right'></i></button>
-//               </div>
-//             </form>";
 
     include 'php/connect.php';
+
     function reload(){// is een andere versie dan die op de index
         echo "<script>
                   if ( window.history.replaceState ) {
@@ -58,6 +45,32 @@
       }
     }
 
+    function KrijgGB($jarenNum,$geboortedatumAG,$timestamp,$aantal,$J,$vrienden){
+      $check2 = false;
+      for($b=0; $b<=$aantal-1; $b++){
+          $vriendGB = $jarenNum[$J].substr($geboortedatumAG[$b], 4);
+          if($geboortedatumAG[$b]{5} == 0){
+              $vriendMaand = $geboortedatumAG[$b]{6};
+          }
+          else{
+              $vriendMaand = $geboortedatumAG[$b]{5}.$geboortedatumAG[$b]{6};
+          }
+          if($geboortedatumAG[$b]{8} == 0){
+              $vriendag = $geboortedatumAG[$b]{9};
+          }
+          else{
+              $vriendag = $geboortedatumAG[$b]{8}.$geboortedatumAG[$b]{9};
+          }
+          $vriendGEB = $jarenNum[$J]."-".$vriendMaand."-".$vriendag;
+
+          if(strtotime($vriendGEB) == $timestamp){
+              $check2 = true;
+              // return $check2;
+              return $vrienden[$b];
+          }
+      }
+    }
+
     $sql = "SELECT Vrienden FROM `allfriends` Where Gebruikersnaam = '$current';";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -77,29 +90,6 @@
                 $GB ++;
             }
         }
-    }
-
-    function KrijgGB(){
-      for($b=0; $b<=$aantal-1; $b++){
-          $vriendGB = $jarenNum[$J].substr($geboortedatumAG[$b], 4);
-          if($geboortedatumAG[$b]{5} == 0){
-              $vriendMaand = $geboortedatumAG[$b]{6};
-          }
-          else{
-              $vriendMaand = $geboortedatumAG[$b]{5}.$geboortedatumAG[$b]{6};
-          }
-          if($geboortedatumAG[$b]{8} == 0){
-              $vriendag = $geboortedatumAG[$b]{9};
-          }
-          else{
-              $vriendag = $geboortedatumAG[$b]{8}.$geboortedatumAG[$b]{9};
-          }
-          $vriendGEB = $jarenNum[$J]."-".$vriendMaand."-".$vriendag;
-
-          if(strtotime($vriendGEB) == $timestamp){
-              $check2 = true;
-          }
-      }
     }
 
     $agenda = $_SESSION['Agenda'];
@@ -199,8 +189,6 @@
 
         if(isset($_POST['planning'])){ //Doet de informatie in de database
             $textAG = $_POST['AgendaTextarea'];
-
-            $_SESSION['Test3'] = strlen($uncompressedAgenda[2]);
             if(!strlen($uncompressedAgenda[2]) > 0){
                 $uncompressedAgenda = ['',''];
                 array_push($uncompressedAgenda,$timestamp);
@@ -230,9 +218,9 @@
             if($timestamp == $uncompressedAgenda[$i]){ //checkt als er een planning is die dag
                 echo "<div class='planning'>".$uncompressedAgenda[$i+1]."</div>";//De melding
             }
-            // if(){
-            //     echo "<div class='planning'>".$uncompressedAgenda[$i+1]."is vandaag jarig</div>";//De melding
-            // }
+        }
+        if(KrijgGB($jarenNum,$geboortedatumAG,$timestamp,$aantal,$J,$vrienden)){
+            echo "<div class='planning'>".KrijgGB($jarenNum,$geboortedatumAG,$timestamp,$aantal,$J,$vrienden)." is jarig</div>";//De melding
         }
 
         echo "   </div>
@@ -246,59 +234,40 @@
               echo "<form class='outside' method='post'><div class='Maand'>$maanden[$M]</div>";
               for($D=1; $D<=$jaren[$J][0][$M]; $D++){
 
-                $datum = $jarenNum[$J]."-".($M+1)."-".$D;
-                $timestamp = strtotime($datum);
-                $check = false;
-                $check2 = false;
-                $check3 = false;
+                  $datum = $jarenNum[$J]."-".($M+1)."-".$D;
+                  $timestamp = strtotime($datum);
+                  $check = false;
+                  $check3 = false;
 
-                for($i=1; $i<=count($uncompressedAgenda); $i++){
-                    if($timestamp == $uncompressedAgenda[$i]){ //checkt als er een planning is die dag
-                        $check = true;
-                    }
-                    for($b=0; $b<=$aantal-1; $b++){
-                        $vriendGB = $jarenNum[$J].substr($geboortedatumAG[$b], 4);
-                        if($geboortedatumAG[$b]{5} == 0){
-                            $vriendMaand = $geboortedatumAG[$b]{6};
-                        }
-                        else{
-                            $vriendMaand = $geboortedatumAG[$b]{5}.$geboortedatumAG[$b]{6};
-                        }
-                        if($geboortedatumAG[$b]{8} == 0){
-                            $vriendag = $geboortedatumAG[$b]{9};
-                        }
-                        else{
-                            $vriendag = $geboortedatumAG[$b]{8}.$geboortedatumAG[$b]{9};
-                        }
-                        $vriendGEB = $jarenNum[$J]."-".$vriendMaand."-".$vriendag;
+                  for($i=1; $i<=count($uncompressedAgenda); $i++){
+                     if($timestamp == $uncompressedAgenda[$i]){
+                         $check = true;
+                     }
+                  }
 
-                        if(strtotime($vriendGEB) == $timestamp){
-                            $check2 = true;
-                        }
-                    }
-                }
-                if($check && $check2){
-                  $check3 = true;
-                }
-                if(!$check3){
-                    if($check){
-                        echo "<button class='dag' type='submit' value='$D' name='Dag'>$D<div class='AgendaMelding'></div></button>";
-                        $_SESSION['test2'] = $check." ".$check2;
-                    }
-                    elseif($check2){
-                        echo "<button class='dag' type='submit' value='$D' name='Dag'>$D<div class='AgendaMelding2'>&#127874;</div></button>";
-                    }
-                    else{
-                        echo "<button class='dag' type='submit' value='$D' name='Dag'>$D</button>";
-                    }
-                }
-                else{
-                    echo "<button class='dag' type='submit' value='$D' name='Dag'>$D
-                            <div class='AgendaMelding'></div>
-                            <div class='AgendaMelding2'>&#127874;</div>
-                          </button>";
-                }
-                echo "<input type='hidden' name='agendaHidden' value='$M'>";
+                  $check2 = KrijgGB($jarenNum,$geboortedatumAG,$timestamp,$aantal,$J,$vrienden);
+
+                  if($check && $check2){
+                    $check3 = true;
+                  }
+                  if(!$check3){
+                      if($check){
+                          echo "<button class='dag' type='submit' value='$D' name='Dag'>$D<div class='AgendaMelding'>&#10071;</div></button>";
+                      }
+                      elseif($check2){
+                          echo "<button class='dag' type='submit' value='$D' name='Dag'>$D<div class='AgendaMelding2'>&#127874;</div></button>";
+                      }
+                      else{
+                          echo "<button class='dag' type='submit' value='$D' name='Dag'>$D</button>";
+                      }
+                  }
+                  else{
+                      echo "<button class='dag' type='submit' value='$D' name='Dag'>$D
+                              <div class='AgendaMelding'>&#10071;</div>
+                              <div class='AgendaMelding2'>&#127874;</div>
+                            </button>";
+                  }
+                  echo "<input type='hidden' name='agendaHidden' value='$M'>";
             }
             echo "</form>";
         }
@@ -308,21 +277,38 @@
       $Maand = $_SESSION['Maand'];
       echo "<form class='GroteMaand' method='post'><div class='GroteNaam'>$jarenNum[$J] $maanden[$Maand]</div>";
       for($D=1; $D<=$jaren[$J][0][$Maand]; $D++){
-        $datum = $jarenNum[$J]."-".($Maand+1)."-".$D;
-        $timestamp = strtotime($datum);
-        $check = false;
-        for($i=1; $i<=count($uncompressedAgenda); $i++){
-          if($timestamp == $uncompressedAgenda[$i]){ //checkt als er een planning is die dag
-            $check = true;
+          $datum = $jarenNum[$J]."-".($Maand+1)."-".$D;
+          $timestamp = strtotime($datum);
+          $check = false;
+          $check2 = false;
+          $check3 = false;
+          $check2 = KrijgGB($jarenNum,$geboortedatumAG,$timestamp,$aantal,$J,$vrienden);
+          for($i=1; $i<=count($uncompressedAgenda); $i++){
+              if($timestamp == $uncompressedAgenda[$i]){ //checkt als er een planning is die dag
+                  $check = true;
+              }
           }
-        }
-        if($check){
-          echo "<button class='dag Grote' type='submit' value='$D' name='Dag'>$D<div class='AgendaMelding GrotereMelding'></div></button>";
-        }
-        else{
-          echo "<button class='dag Grote' type='submit' value='$D' name='Dag'>$D</button>";
-        }
-        echo "<input type='hidden' name='agendaHidden' value='$Maand'>";
+          if($check && $check2){
+              $check3 = true;
+          }
+          if(!$check3){
+              if($check){
+                  echo "<button class='dag Grote' type='submit' value='$D' name='Dag'>$D<div class='AgendaMelding GrotereMelding'>&#10071;</div></button>";
+              }
+              elseif ($check2) {
+                echo "<button class='dag Grote' type='submit' value='$D' name='Dag'>$D<div class='AgendaMelding GrotereMelding2'>&#127874;</div></button>";
+              }
+              else{
+                  echo "<button class='dag Grote' type='submit' value='$D' name='Dag'>$D</button>";
+              }
+          }
+          else{
+            echo "<button class='dag Grote' type='submit' value='$D' name='Dag'>$D
+                    <div class='AgendaMelding GrotereMelding'>&#10071;</div>
+                    <div class='AgendaMelding GrotereMelding2'>&#127874;</div>
+                  </button>";
+          }
+          echo "<input type='hidden' name='agendaHidden' value='$Maand'>";
       }
       echo "</form></div>";
     }

@@ -30,13 +30,13 @@
   }
 
   if(isset($_POST['Next'])){
-      $_SESSION['Start'] += 13;
-      $_SESSION['Aantal'] += 13;
+      $_SESSION['Start'] += 14;
+      $_SESSION['Aantal'] += 14;
       reloadPost();
   }
   if(isset($_POST['Back'])){
-      $_SESSION['Start'] -= 13;
-      $_SESSION['Aantal'] -= 13;
+      $_SESSION['Start'] -= 14;
+      $_SESSION['Aantal'] -= 14;
       reloadPost();
   }
   $laatste = $_SESSION['Aantal'] +2;
@@ -48,6 +48,7 @@
       $laatste --;
       if($laatste >= 0 && $laatste <= count($LabelidArtikel)-1){
           echo "<button class='labeltop nonbutton' type='submit' value='$Labelartikel[$laatste]' name='Article'>
+                  $laatste
                   <img src='pic/artikels/$LabelimgArtikel[$laatste]' class='nieuws_img'>
                   <div class='overlayText'>$Labelartikel[$laatste]</div>
                 </button>";

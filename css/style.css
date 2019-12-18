@@ -662,6 +662,10 @@
     width: 1vw;
     display: inline-block;
   }
+  .articleText{
+    width: 20vw;
+    left: 8vw;
+  }
   .instelLabel{
     width: 40%;
     position: relative;
@@ -875,21 +879,26 @@
     background-color: #C9302C;
   }
   .vriend{
+    position: relative;
     display: inline-block;
     margin-left: 3%;
     font-size: 1.2vw;
     text-align: center;
-    overflow-y: hidden;
     margin-top: 0.3vw;
     height: 18vw;
     width: 16vw;
-    overflow: hidden;
   }
   .vriendenButton{
     border: none;
     background:none;
     height: 16vw;
     width: 100%;
+  }
+  .deletenaam{
+    position: absolute;
+    bottom:0;
+    left: 10%;
+    font-size: 1.5vw;
   }
   .vriendenImage{
     width: 100%;
@@ -913,8 +922,9 @@
     transform: scale(1.04,1.04);
   }
   .Delete{
-    position: absolute;
+    position: relative;
     top: 10vw;
+    width: 100%;
   }
   /*Krabels*/
   .hide{

@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dyves</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
@@ -11,11 +12,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="js/javascript.js"></script>
   </head>
-  <body onload="checkCookie() , checkdouble() , aangemeld()">
+  <body onload="checkCookie()">
     <?php
       include 'php/get.php';
       include 'php/login.php';
-      // include 'php/aanmelden.php';
+      include 'php/database.php';
       include 'php/searchbar.php';
       include 'parts/cookies.php';
     ?>
@@ -64,7 +65,7 @@
 
         <input type="password" name="password2" placeholder="herhaal"class="aanmelden_in" id="wachtwoord2">
 
-        <button type="button" name='formSub' class='aanmelden_button2' onclick='aanmelden()' id="button">Registreren</button>
+        <button type="submit" name='formSub' class='aanmelden_button2' id="button">Registreren</button>
       </form>
     </div>
   </body>

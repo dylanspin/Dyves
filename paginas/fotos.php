@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dyves</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
@@ -40,20 +41,13 @@
       </div>
     </div>
 
-    <?php if($_SESSION["wachtwoordCheck"] == "true"){?>
-
     <div class="body" id="body">
       <div class="kop">
         Meer foto's
       </div>
       <?php include 'parts/fotos.php';?>
     </div>
-  <?php
-    }
-    else{
-        $_SESSION['Waar'] = "hoofdmenu";
-    }
-   ?>
+
 
   </body>
 </html>

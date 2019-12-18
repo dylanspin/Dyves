@@ -145,7 +145,6 @@
         }
 
         if($t2 >= 0){
-            echo "test";
             $sql2 = "UPDATE `notusers` SET $updated WHERE UNIQ = '$current';";
             if ($conn->query($sql2) === true) {
                 rename("pic/profilepics/$profielfoto","pic/profilepics/$gebruikersnaam_$profielfoto");
