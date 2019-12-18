@@ -6,7 +6,7 @@
 
     $bezoek = $_SESSION["bezoek"];
 
-    $sql = "SELECT Gebruikersnaam,Email,Geboortedatum,ProfielFoto,Achtergrond,AanmeldTijd,Woonplaats,Voornaam,Achternaam,Man,AantalVrienden FROM `notusers` WHERE Gebruikersnaam = '$bezoek';";
+    $sql = "SELECT Gebruikersnaam,Email,Geboortedatum,ProfielFoto,Achtergrond,Font,AanmeldTijd,Woonplaats,Voornaam,Achternaam,Man,AantalVrienden FROM `notusers` WHERE Gebruikersnaam = '$bezoek';";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
@@ -22,6 +22,7 @@
             $gender_ = $row['Man'];
             $aantalVrienden = $row['AantalVrienden'];
             $per = $row['Permisie'];
+            $font = $row['Font'];
         }
     }
     if(strlen($profielfoto_) <= 1){

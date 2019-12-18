@@ -12,12 +12,15 @@
   $gender = $_POST['gender'];
   $wachtwoord =  $_POST['password1'];
   $wachtwoord2 = $_POST['password2'];
-  // $_SESSION['test2'] = " ";
+  $checkAR = [$voornaam,$achternaam,$woonplaats,$geboortedatum,$gebruiker,$email,$gender,$wachtwoord,$wachtwoord2];
+
   $goed = true;
   $reg1 = "/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/i";//wachtwoord check.
   $reg2 = "/^[a-z ,.'-]+$/i";//standaard check
   $reg3 = "/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i";//email check
   $reg4 = "(script|php)";
+  $_SESSION['fout'] = [0,0,0,0,0,0,0,0,0];
+  $fout = $_SESSION['fout'];
 
   if(isset($_POST['formSub'])){
       $sql2 = "SELECT Gebruikersnaam FROM `notusers` WHERE Gebruikersnaam = '$gebruiker';";
@@ -36,69 +39,71 @@
           }
       }
 
-      for($i=0; $i<=5; $i++){
-
+      for($i=0; $i<=count($checkAR)-1; $i++){//script check
+        if(preg_match($reg4,$checkAR[$i])){
+          $goed = false;
+          $fout[0] = 1;
+        }
       }
       if(!preg_match($reg3,$email)){//email check
           $goed = false;
-          $_SESSION['test2'] .= "Email niet Goed  ";
+          $fout[1] = 1;
       }
       if(preg_match($reg1,$wachtwoord)){//wachtwoord check
-          if(!$wachtwoord == $wachtwoord2){
+          if(!$wachtwoord == $wachtwoord2){//double check wachtwoord
               $goed = false;
-              $_SESSION['test2'] .= "Wachtwoorden zijn niet het zelfde  ";
+              $fout[2] = 1;
           }
       }
-      else{
+      else{//als de wachtwoord check fout was
           $goed = false;
-          $_SESSION['test2'] .= "Wachtwoord check was fout  ";
+          $fout[3] = 1;
       }
       if(!strlen($geboortedatum) > 8){ //checkt als de hele geboortedatum is ingevult
           $goed = false;
-          $_SESSION['test2'] .= "geboortedatum niet ingevult  ";
+          $fout[4] = 1;
       }
       if(!strlen($gebruiker) > 30){//Gebruikersnaam checkt als de naam niet langer is dan 30 chars
           $goed = false;
-          $_SESSION['test2'] .= "Gebruikersnaam telang  ";
+          $fout[5] = 1;
       }
       if(strlen($gebruiker) <= 1){//checkt als er een gebruikersnaam is invult
           $goed = false;
-          $_SESSION['test2'] .= "Gebruikersnaam niet ingevult  ";
+          $fout[6] = 1;
       }
-      if(strlen($vergelijk2)>0){
+      if(strlen($vergelijk2)>0){//checkt als de gebruikersnaam all bestaat
           $goed = false;
-          $_SESSION['test2'] .= "Gebruikersnaam bestaat  ";
+          $fout[7] = 1;
       }
 
-      if(strlen($vergelijk)>0){
+      if(strlen($vergelijk)>0){//checkt voor als de email all in gebruik is.
           $goed = false;
-          $_SESSION['test2'] .= "Email bestaat  ";
+          $fout[8] = 1;
       }
 
       if($goed){
-          $goed = 0;
-          $_SESSION['test'] = "Gelukt met het maken van een acount";
-          // $_SESSION['Nieuwacc'] = "true";
-          // $sql = "INSERT INTO `notusers` (`Gebruikersnaam`,`UNIQ`,`Wachtwoord`,`Email`,`Geboortedatum`,`ProfielFoto`,`Achtergrond`,`Permisie`,`Voornaam`,`Achternaam`,`Woonplaats`,`Man`) VALUES
-          // ('$gebruiker','$randomid','$wachtwoord','$email','$geboortedatum','1','1','0','$voornaam','$achternaam','$woonplaats','$gender');";
-          // if ($conn->query($sql) === true) {
-          // }
-          // $sql = "INSERT INTO `over` (`Wie`) VALUES ('$gebruiker');";
-          // if ($conn->query($sql) === true) {
-          // }
-          // $sql = "INSERT INTO `agenda` (`Gebruikersnaam`) VALUES ('$gebruiker');";//moet nog de Niuew randomid worden.
-          // if ($conn->query($sql) === true) {
-          // }
-          // $sql = "INSERT INTO `allfriends` (`Gebruikersnaam`) VALUES ('$gebruiker');";//moet nog de Niuew randomid worden.
-          // if ($conn->query($sql) === true) {
-          // }
-          // $sql2 = "INSERT INTO `friend_invite` (`User`) VALUES ('$gebruiker');";//moet nog de Niuew randomid worden.
-          // if ($conn->query($sql2) === true) {}
-      }
-      else{
-        $_SESSION['test'] = "Het is mislukt met het maken van een acount";
+          $UNIC = check(randomId(20),$conn);
+          $fout = [0,0,0,0,0,0,0,0,0];
+          $sql = "INSERT INTO `notusers` (`Gebruikersnaam`,`UNIQ`,`Wachtwoord`,`Email`,`Geboortedatum`,`ProfielFoto`,`Achtergrond`,`Permisie`,`Voornaam`,`Achternaam`,`Woonplaats`,`Man`) VALUES
+          ('$gebruiker','$UNIC','$wachtwoord','$email','$geboortedatum','1','1','0','$voornaam','$achternaam','$woonplaats','$gender');";
+          if ($conn->query($sql) === true) {
+          }
+          $sql = "INSERT INTO `over` (`Wie`) VALUES ('$gebruiker');";
+          if ($conn->query($sql) === true) {
+          }
+          $sql = "INSERT INTO `agenda` (`Gebruikersnaam`) VALUES ('$UNIC');";
+          if ($conn->query($sql) === true) {
+          }
+          $sql = "INSERT INTO `allfriends` (`Gebruikersnaam`) VALUES ('$UNIC');";
+          if ($conn->query($sql) === true) {
+          }
+          $sql2 = "INSERT INTO `friend_invite` (`User`) VALUES ('$UNIC');";
+          if ($conn->query($sql2) === true) {}
+          $_SESSION['Waar'] = "hoofdmenu";
       }
       $goed = true;
+      $_SESSION['fout'] = $fout;
+      $_SESSION['Waar'] = "hoofdmenu";
       reloadPost();
   }
  ?>

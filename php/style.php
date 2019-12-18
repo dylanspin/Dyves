@@ -17,7 +17,8 @@
     //           "DejaVu Sans Mono, monospace","monospace","Comic Sans MS, Comic Sans, cursive","Apple Chancery, cursive","Bradley Hand, cursive","Brush Script MT, Brush Script Std, cursive",
     //           "Snell Roundhand, cursive","URW Chancery L, cursive","cursive","Impact, fantasy","Luminari, fantasy","Chalkduster, fantasy","Jazz LET, fantasy","Blippo, fantasy",
     //           "Stencil Std, fantasy","Marker Felt, fantasy","Trattatello, fantasy","fantasy"];
-    $fonts = ["fantasy","Arial","serif","Sans-Serife","monospace","cursiv",""];
+    $fonts = ["","Oswald","Cardo","Girassol","Bitter","Lobster","Righteous","Bungee","Monoton","Shrikhand"];
+
     //standaard thema
     $t0 = "";
     //disney theme
@@ -54,7 +55,7 @@
     $t16 = ["black","rgb(255,255,255);border: 0.05vw solid gray;","black","#283E4A;","white","background:#F5F5F5;",];
 
     $kleuren = $$achtergrond_;
-
+    echo "<link href='https://fonts.googleapis.com/css?family=$fonts[$font]' rel='stylesheet'>";
     echo "<style media='screen'>
             .profielkleur{
               color:$kleuren[0];
@@ -71,7 +72,7 @@
             }
             body{
               $kleuren[5];
-              font-family:$fonts[6];
+              font-family:$fonts[$font];
             }
             .header_div , .kop , .meer{
               color:$kleuren[2];

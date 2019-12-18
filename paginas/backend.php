@@ -94,7 +94,7 @@
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
               while($row = $result->fetch_assoc()) {
-                substr($ArtikelNaam = $row['Artikel'], 0, 10);
+                $ArtikelNaam = substr($ArtikelNaam = $row['Artikel'], 0, 30);
                 $IdArtikel = $row['Id'];
                 echo "<button type='submit' name='Artikelset' class='Polls anderhalfv' value='$IdArtikel'>$ArtikelNaam</button>";
               }

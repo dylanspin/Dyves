@@ -94,16 +94,20 @@
 
       <div class="enter"></div><!--Moet nog met php-->
       <div class="sectie blauw">Thema: </div>
-      <label class="instelLabel">Font :</label>
-      <select name="font">
-        <option value="6">Standaard</option>
-        <option value="0">fantasy</option>
-        <option value="1">Arial</option>
-        <option value="2">serif</option>
-        <option value="3">Sans-Serife</option>
-        <option value="4">monospace</option>
-        <option value="5">cursiv</option>
-      </select>
+      <label class="instelLabel">Font :</label>Gebruik op eigen risico.....
+        <select name='font'>
+          <option value='<?php echo $font; ?>'>Nu</option>
+          <option value='0'>Standaard</option>
+          <option value='1'>Oswald</option>
+          <option value='2'>Cardo</option>
+          <option value='3'>Shrikhand</option>
+          <option value='4'>Girassol</option>
+          <option value='5'>Bitter</option>
+          <option value='6'>Lobster</option>
+          <option value='7'>Righteous</option>
+          <option value='8'>Bungee</option>
+          <option value='9'>Monoton</option>
+        </select>
       <input type="hidden" name="Hidden" value="" id="Hidden">
       <div class="themas">
         <?php include 'parts/themas.php'; ?>

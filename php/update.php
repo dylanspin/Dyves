@@ -21,6 +21,7 @@
     $inputVal = $_POST['Hidden'];
     $profielfoto = $_FILES["fileToUpload"]["name"];
     $foto = $_FILES["fotoToUpload"]["name"];
+    $pstFont = $_POST['font'];
 
     // $current = $_COOKIE["nu"];
     $current = $_SESSION["nu"];
@@ -65,6 +66,10 @@
         $t1 ++;
     }
 
+    if(!$pstFont == $font){
+        $update2[$t2] = "`Font` = '$pstFont'";
+        $t2 ++;
+    }
     if ($inputVal != $achtergrond_) {
         if($inputVal != ""){
             $update2[$t2] = "`Achtergrond` = '$inputVal'";

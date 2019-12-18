@@ -22,7 +22,7 @@
 
   if(!$_SESSION['Aantal'] > 13){//checkt als de next knop all is ingedrukt
       if(count($LabelidArtikel)-1 > 13){
-          $_SESSION['Aantal'] = 13;
+          $_SESSION['Aantal'] = count($LabelidArtikel);
       }
       else{
           $_SESSION['Aantal'] = count($LabelidArtikel)-1;

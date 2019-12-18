@@ -24,14 +24,14 @@
               $vrienden = unserialize($row['Vrienden']);
           }
           $aantal = count($vrienden);
-
+          $aantal2 =0;
           for($i=0; $i<=$aantal-1; $i++){
                 if(!count($vrienden) == 0 && !strlen($vrienden[0]) == 0){
                   $sql2 = "SELECT ProfielFoto,Man,Gebruikersnaam,AantalVrienden FROM `notusers` WHERE Gebruikersnaam = '$vrienden[$i]';"; /*pakt de opties uit de tabel*/
                   $result2 = $conn->query($sql2);
-
                   if ($result2->num_rows > 0) {
                       while($row = $result2->fetch_assoc()) {
+                          $aantal2 ++;
                           $foto_ = $row['ProfielFoto'];
                           $gender_ = $row['Man'];
                           $vriend_ = $row['Gebruikersnaam'];
@@ -70,18 +70,18 @@
       }
 
       if($_SESSION['Waar'] == "profiel"){
-          $sql = "UPDATE `notusers` SET `AantalVrienden` = '$aantal' WHERE Gebruikersnaam = '$gebruikersnaam_';";
+          $sql = "UPDATE `notusers` SET `AantalVrienden` = '$aantal2' WHERE Gebruikersnaam = '$gebruikersnaam_';";
           if ($conn->query($sql) === true) {
           }
       }
       else{
           $Change =  $_SESSION["bezoek"];
-          $sql = "UPDATE `notusers` SET `AantalVrienden` = '$aantal' WHERE Gebruikersnaam = '$Change';";
+          $sql = "UPDATE `notusers` SET `AantalVrienden` = '$aantal2' WHERE Gebruikersnaam = '$Change';";
           if ($conn->query($sql) === true) {
           }
       }
     ?>
-    <div class="watProfiel tweev vriendbar">Vrienden (<?php if($aantal == 0){echo 0;}else{echo $aantal;} ?>)</div>
+    <div class="watProfiel tweev vriendbar">Vrienden (<?php if($aantal2 == 0){echo 0;}else{echo $aantal2;} ?>)</div>
   </div>
   <div class="meer underline"><a href="Profielvrienden.php">Meer Vrienden...</a></div>
 </div>

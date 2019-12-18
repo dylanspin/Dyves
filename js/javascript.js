@@ -18,6 +18,17 @@ function scrollmid(){
   window.scrollTo(0, 250);
 }
 
+var vorige;
+function zeker(t){
+  var id = "t"+t.id;
+  if(vorige){
+    document.getElementById(vorige).style.display = "none";
+  }
+  document.getElementById(id).style.display = "block";
+
+  vorige = id;
+}
+
 function checkCookie(check){
   var wachtwoord = getCookie("wachtwoordCheck");
   if (wachtwoord == "true") { //als de pagina word ingeladen na dat er cookies zijn gezet

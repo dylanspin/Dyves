@@ -4,7 +4,7 @@
     include 'connect.php';
     include 'block.php';
 
-    $sql = "SELECT Gebruikersnaam,Email,Geboortedatum,ProfielFoto,Achtergrond,AanmeldTijd,Woonplaats,Voornaam,Achternaam,Man,AantalVrienden,Permisie,Voted FROM `notusers` WHERE UNIQ = '$current';";
+    $sql = "SELECT Gebruikersnaam,Email,Geboortedatum,ProfielFoto,Achtergrond,Font,AanmeldTijd,Woonplaats,Voornaam,Achternaam,Man,AantalVrienden,Permisie,Voted FROM `notusers` WHERE UNIQ = '$current';";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
@@ -21,6 +21,7 @@
             $aantalVrienden = $row['AantalVrienden'];
             $per = $row['Permisie'];
             $voted = $row['Voted'];
+            $font = $row['Font'];
         }
     }
     if(strlen($profielfoto_) <= 1){

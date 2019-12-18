@@ -1,6 +1,7 @@
 
 <div class="Delete">
   <?php
+      $zoek = $_POST['Zoekdel'];
 
       $sql = "SELECT Vrienden FROM `allfriends` WHERE Gebruikersnaam = '$current';";
       $result = $conn->query($sql);
@@ -59,11 +60,11 @@
           else{
               $liveFoto = $vrienden[$i].$foto_;
           }
-
+          
           echo "<form class='vriend' method='post'>
-                  <button type='button' class='vriendenButton'>
+                  <button type='button' class='vriendenButton' id='$i' onclick='zeker(this)'>
                     <img src='pic/profilepics/$liveFoto' class='vriendenImage'>
-                    <button name='Delete' class='ZekerDelete' value='$i'>
+                    <button name='Delete' class='ZekerDelete' value='$i' id='t$i'>
                       Delete
                     </button>
                   </button>
