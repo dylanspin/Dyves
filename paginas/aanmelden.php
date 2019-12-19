@@ -36,33 +36,72 @@
 
     <div class="body">
       <div class="aanmelden_info grijs">Maak vrienden , stuur elkaar berichten en maak je eigen profiel.</div>
-
       <div class="text2 grijs">
         <div class="space"></div>
       </div>
       <div>
       </div>
-      <!-- <label class="label"><i class="fa fa-exclamation-circle fa-3x" id="2"></i></label> -->
       <form class="aanmelden_form" method="post">
-        <input type="text" name="voornaam" placeholder="Voornaam" class="aanmelden_in" id="naam">
-
-        <input type="text" name="achternaam" placeholder="Achternaam" class="aanmelden_in" id="achternaam">
-
-        <input type="text" name="woonplaats" placeholder="Woonplaats" class="aanmelden_in" id="woonplaats">
-
-        <input type="date" name="geboortedatum" placeholder="Geboortedatum"class="aanmelden_in" id="geboortedatum">
-
-        <input type="text" name="gebruikersnaam" placeholder="Gebruikersnaam"class="aanmelden_in" id="gebruikersnaam">
-
-        <input type="email" name="email" placeholder="Email"class="aanmelden_in" id="email">
-
+        <?php
+            if($foutMelding[9]){
+                echo "<div class='foutmelding'>Je hebt geen Voornaam ingevult.</div>";
+            }
+         ?>
+        <input type="text" name="voornaam" placeholder="Voornaam" class="aanmelden_in" value='<?php echo $sumbmited[0]; ?>'>
+        <?php
+            if($foutMelding[10]){
+                echo "<div class='foutmelding'>Je hebt geen Achternaam ingevult.</div>";
+            }
+         ?>
+        <input type="text" name="achternaam" placeholder="Achternaam" class="aanmelden_in" value='<?php echo $sumbmited[1]; ?>'>
+        <?php
+            if($foutMelding[11]){
+                echo "<div class='foutmelding'>Je hebt geen woonplaats ingevult.</div>";
+            }
+         ?>
+        <input type="text" name="woonplaats" placeholder="Woonplaats" class="aanmelden_in" value='<?php echo $sumbmited[2]; ?>'>
+        <?php
+            if($foutMelding[4]){
+                echo "<div class='foutmelding'>Geen geboortedatum ingevult.</div>";
+            }
+        ?>
+        <input type="date" name="geboortedatum" placeholder="Geboortedatum"class="aanmelden_in" value='<?php echo $sumbmited[3]; ?>'>
+        <?php
+            if($foutMelding[6]){
+                echo "<div class='foutmelding'>Geen gebruikersnaam ingevult.</div>";
+            }
+            elseif ($foutMelding[5]) {
+                echo "<div class='foutmelding'>Je gebruikersnaam is te lang.</div>";
+            }
+            elseif ($foutMelding[7]) {
+                echo "<div class='foutmelding'>De gebruikersnaam is all in gebruik.</div>";
+            }
+        ?>
+        <input type="text" name="gebruikersnaam" placeholder="Gebruikersnaam"class="aanmelden_in" value='<?php echo $sumbmited[4]; ?>'>
+        <?php
+            if($foutMelding[1]){
+                echo "<div class='foutmelding'>Geen of geen goede Email ingevult.</div>";
+            }
+            elseif ($foutMelding[8]) {
+              echo "<div class='foutmelding'>Email is all ingebruik.</div>";
+            }
+        ?>
+        <input type="email" name="email" placeholder="Email"class="aanmelden_in" value='<?php echo $sumbmited[5]; ?>'>
         <input type="radio" name="gender" value="1" class="aanmelden_in gender" checked >Man
         <input type="radio" name="gender" value="0" class="aanmelden_in gender">Vrouw
 
-        <label class="label"><i class="fa fa-exclamation-circle fa-3x text_form" id="10"></i></label>
-
-        <input type="password" name="password1" placeholder="Wachtwoord"class="aanmelden_in"id="wachtwoord1">
-
+        <input type="password" name="password1" placeholder="Wachtwoord"class="aanmelden_in">
+        <?php
+            if($foutMelding[3]){
+                echo "<div class='foutmelding'>Je wachtwoord moet 8 lang zijn met een hoofd letter en een special teken.</div>";
+            }
+            elseif ($foutMelding[2]) {
+              echo "<div class='foutmelding'>De wachtwoorden zijn niet het zelfde.</div>";
+            }
+            if($foutMelding[0]){
+                echo "Er is script gedetect in je inputs.";
+            }
+         ?>
         <input type="password" name="password2" placeholder="herhaal"class="aanmelden_in" id="wachtwoord2">
 
         <button type="submit" name='formSub' class='aanmelden_button2' id="button">Registreren</button>

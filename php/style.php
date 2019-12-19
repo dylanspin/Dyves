@@ -17,7 +17,8 @@
     //           "DejaVu Sans Mono, monospace","monospace","Comic Sans MS, Comic Sans, cursive","Apple Chancery, cursive","Bradley Hand, cursive","Brush Script MT, Brush Script Std, cursive",
     //           "Snell Roundhand, cursive","URW Chancery L, cursive","cursive","Impact, fantasy","Luminari, fantasy","Chalkduster, fantasy","Jazz LET, fantasy","Blippo, fantasy",
     //           "Stencil Std, fantasy","Marker Felt, fantasy","Trattatello, fantasy","fantasy"];
-    $fonts = ["","Oswald","Cardo","Girassol","Bitter","Lobster","Righteous","Bungee","Monoton","Shrikhand"];
+    $fonts = ["","Oswald","Girassol","Lobster","Righteous","Lato","Ubuntu","Alatsi","Arvo","Acme","Caveat","Calistoga","Mansalva","Fondamento"];
+    //werkende fonts :Lobster,Oswald,Girassol,Righteous
 
     //standaard thema
     $t0 = "";
@@ -72,6 +73,7 @@
             }
             body{
               $kleuren[5];
+              background-size: cover;
               font-family:$fonts[$font];
             }
             .header_div , .kop , .meer{

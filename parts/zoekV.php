@@ -3,7 +3,7 @@
    <?php
      include 'php/connect.php';
      if(isset($_POST['Zoek'])){
-         $_SESSION["zoek"] = $_POST['zoekResultaat']; //dit moet nog gecheckt worden op script
+         $_SESSION["zoek"] = mysql_real_escape_string($_POST['zoekResultaat']); //dit moet nog gecheckt worden op script
          reloadPost();
      }
 
@@ -66,7 +66,7 @@
      }
 
      $number = 0;
-     $zoek = $_SESSION["zoek"];
+     $zoek = mysql_real_escape_string($_SESSION["zoek"]);
      $sql = "SELECT Gebruikersnaam,Man,ProfielFoto FROM `notusers` WHERE Gebruikersnaam LIKE '%$zoek%'"; /*pakt de opties uit de tabel*/
      $result = $conn->query($sql);
      if ($result->num_rows > 0) {

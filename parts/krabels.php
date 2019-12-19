@@ -24,7 +24,7 @@
 
           for($i=12; $i<=91; $i++){
             $id = "sm".$i;
-            //met echo dee de id raar daarom gwn html mischien fix later
+            //met echo doet het id raar daarom html mischien fix later
         ?>
             <input type="button" class="Smiley" id="<?php echo $id;?>" onclick="smiley('<?php echo $id;?>')" value="&#1285<?php echo $i;?>;">
         <?php

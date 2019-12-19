@@ -68,6 +68,7 @@
 
     if(!$pstFont == $font){
         $update2[$t2] = "`Font` = '$pstFont'";
+        $_SESSION['test'] = "test font";
         $t2 ++;
     }
     if ($inputVal != $achtergrond_) {
