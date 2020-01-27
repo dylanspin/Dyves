@@ -65,10 +65,9 @@
         $update[$t1] = "`MuziekAan` = '$MuziekAan'";
         $t1 ++;
     }
-
-    if(!$pstFont == $font){
+    if($pstFont != $font){
         $update2[$t2] = "`Font` = '$pstFont'";
-        $_SESSION['test'] = "test font";
+        $_SESSION['test'] = $pstFont;
         $t2 ++;
     }
     if ($inputVal != $achtergrond_) {

@@ -16,9 +16,9 @@
           $sql = "SELECT UNIQ FROM `notusers` Where Gebruikersnaam = '$vrienden[$welk]';";
           $result = $conn->query($sql);
           if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-              $naamGo = $row['UNIQ'];
-            }
+              while($row = $result->fetch_assoc()) {
+                  $naamGo = $row['UNIQ'];
+              }
           }
           $sql = "SELECT Vrienden FROM `allfriends` WHERE Gebruikersnaam = '$naamGo';";
           $result = $conn->query($sql);
@@ -60,7 +60,7 @@
           else{
               $liveFoto = $vrienden[$i].$foto_;
           }
-          
+
           echo "<form class='vriend' method='post'>
                   <button type='button' class='vriendenButton' id='$i' onclick='zeker(this)'>
                     <img src='pic/profilepics/$liveFoto' class='vriendenImage'>

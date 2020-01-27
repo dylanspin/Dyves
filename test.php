@@ -120,9 +120,9 @@
 
     echo $_SESSION['test'] ."<br>";
     // echo $_SESSION['test2']."<br>";
-    print_r($_SESSION['fout']);
+    print_r($_SESSION['Aantal']);
     echo "<br>";
-    print_r($_SESSION['test2']);
+    print_r($_SESSION['Start']);
     //
     // $_SESSION['pogingen'] = 5;
     // $woorden = [ "scherm","laptop","apple","oplader","mobiel","water","stoel","leven","school",

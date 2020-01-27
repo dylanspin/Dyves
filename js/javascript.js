@@ -21,11 +21,11 @@ function scrollmid(){
 var vorige;
 function zeker(t){
   var id = "t"+t.id;
-  if(vorige){
+  if(vorige = id){
     document.getElementById(vorige).style.display = "none";
   }
   document.getElementById(id).style.display = "block";
-
+  console.log(id);
   vorige = id;
 }
 

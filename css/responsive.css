@@ -1,315 +1,49 @@
 
-
-@media only screen/*iphone 6/7/8*/
-and (min-device-width : 375px)
-and (max-device-width : 667px) {
-
-  body{
-    width: 78vw;
+@media only screen and (max-width: 600px) {
+  /* body {background: red;} */
+  .header{
+    top: 0;
   }
-  .text{
-    font-size: 3vw;
-  }
-  .text2{
-    font-size: 2.6vw;
-  }
-  .iphone{/*hidden on iphone*/
+  .header_buttons{
     display: none;
   }
-  .space{
-    height: 1.5vw;
-  }
-  .cookie{
-    width: 103vw;
-  }
-  /*header*/
-  .header{
-    top: 3vh;
-  }
-  .header_div{
-    font-size: 4.4vw;
-  }
-  .header_buttons{
-    width: 100%;
-    top: -6%;
-    z-index: 100;
-  }
-  /*searchbar*/
-  .searchbar{
-    /* display: none; */
-    top: 4.8vw;
-    height: 10vw;
-    left: 2.5%;
-    width: 98%;
-  }
-  .search{
-    top: 18%;
-    left: 30%;
-  }
   .logotext{
-    bottom:8%;
-    font-size: 460%;
+    font-size: 5.2vh;
   }
   .header_in{
-    width: 60%;
-    font-size: 5vw;
-  }
-  .header_buttons{
-    left: 2.6%;
-  }
-  .fa-1x{
-    border-left: 0.1vw solid rgba(0,0,0,0.3);
-    position: absolute;
-    background-color: #FEF5EB;
-    padding: 3%;
-    padding-left: 5%;
-    width: 10%;
-    height: 46%;
-    top: 3%;
-    font-size: 3vw!important;
-  }
-
-
-  /*Body section ---------------*/
-  .body{
     position: relative;
-    top: 8vh;
+    font-size: 9vw;
+    width: 40vw;
+    left: 10vw;
   }
-  .kop{
+  .search{
+    top: 15%;
+    left: 30vw;
+  }
+  .header_zoek{
     position: absolute;
-    font-size: 5vw;
-    left: 20.5%;
-    top: -0vh;
+    font-size: 8vw;
+    left: 50vw;
+    height: 101.8%;
+    width: 15vw;
   }
-  .niews{
-    width: 95%;
-    height: 33vw;
-  }
-  .uitschuif{
-    font-size: 2.8vw;
-  }
-  .vandaag{
-    top: 110vw;
-  }
-  /*poll*/
-  .poll{
-    width: 70%;
-    height: 44vw;
-    top: 103vw;
-    left: 3.5vw;
-  }
-  .procent{
-    font-size: 3vw;
-  }
-  .inlog_ver{
-    font-size: 3.5vw;
-  }
-  /*weer*/
-  .weer{
-    left: 3.5vw;
-    top: 152vw;
-    width: 70%;
-    height: 23vw;
-  }
-  .dag{
-    font-size: 4vw;
-    width: 6vw;
-    height: 6vw;
-  }
-  .nacht{
-    font-size: 4vw;
-    width: 6vw;
-    height: 6vw;
-  }
-  /*live chat*/
-  .recentchat{
-    top: 185vw;
-    width: 96%;
-    left: 3.5vw;
-  }
-  /*recent nieuws*/
-  .nieuws_sec{
-    top: 40vw;
-    width: 100%;
-    height: 28vh;
-  }
-  .artikel{
-    left: -1vw;
-    width: 46%;
-  }
-  .artikel_text{
-    font-size: 2.1vw;
-  }
-  .datum{
-    font-size: 1.8vw;
-  }
-
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  /* body {background: green;} */
 }
 
-@media only screen /*iphone X*/
-    and (device-width : 375px)
-    and (device-height : 812px)
-    and (-webkit-device-pixel-ratio : 3) {
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  /* body {background: blue;} */
+}
 
-        /*cookies*/
-        .cookie{
-          height: 6vh;
-          font-size: 2vh;
-        }
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  /* body {background: orange;} */
+}
 
-        /*header*/
-        .header_div{
-          font-size: 4.6vw;
-        }
-        .searchbar{
-          top: 2vh;
-        }
-        .poll{
-          top: 110vw;
-        }
-        .weer{
-          top: 161vw;
-        }
-        .artikel_text{
-          font-size: 2.6vw;
-        }
-        .datum{
-          font-size: 2.4vw;
-        }
-        .recentchat{
-          height: 130vw;
-          top: 195vw;
-        }
-    }
-
-    @media only screen /*Ipad*/
-      and (min-device-width : 768px)
-      and (max-device-width : 1024px)  {
-
-        .text{
-          font-size: 2.5vw;
-        }
-        .text2{
-          font-size: 2vw;
-        }
-        .cookie{
-          width: 135vw;
-        }
-        .inlog{
-          height: 6vw;
-        }
-        .inlog_ver{
-          font-size: 2vw;
-          margin-top: 0.5%;
-        }
-        .header_div{
-          font-size: 2.6vw;
-        }
-        .logotext{
-          bottom: 10%;
-          font-size: 5vw;
-        }
-        .header_in{
-          position: relative;
-          left: 15%;
-          padding: 0.5vw;
-          font-size: 2.6vw;
-        }
-        .fa-1x{
-          font-size: 3vw!important;
-          padding: 2% 0% 4% 6%;
-          left:78%;
-          padding-right:4%;
-          height: 54%;
-        }
-        .inlog{
-          left: 69vw;
-          top: -0.4vw;
-          width: 60vw;
-        }
-        .searchbar{
-          height: 6vw;
-          width: 132vw;
-          top: 3vw;
-        }
-        .header_buttons{
-          width: 100%;
-          top: -6%;
-          z-index: 100;
-        }
-
-        /*Body*/
-        .body{
-          top: 15vw;
-          height: 220vw;
-        }
-        /*aanmelden*/
-        .aanmelden{
-         right: -30.5%;
-        }
-        .aanmelden_button{
-          font-size: 2.5vw;
-        }
-
-        /*nieuws*/
-        .niews{
-          width: 90%;
-          top: 7vw;
-          height: 32.5vw;
-        }
-        .nieuws_sec{
-          width: 74%;
-          height: 30vw;
-          top: 43vw;
-        }
-        .datum{
-          font-size: 1.6vw;
-        }
-        .artikel_text{
-          font-size: 1.5vw;
-        }
-        /*poll*/
-        .poll{
-          height: 30vw;
-          top: 8vw;
-          right: -30vw;
-        }
-        .pol_info{
-          font-size: 1.8vw;
-        }
-        .procent{
-          font-size: 1.6vw;
-        }
-        .weer{
-          height: 15vw;
-          right: -30vw;
-          top: 51.5vw;
-          width: 50vw;
-        }
-        .dag{
-          font-size: 3vw;
-          width: 6vw;
-          height: 4vw;
-        }
-        .nacht{
-          left: 7vw;
-          font-size: 3vw;
-          width: 6vw;
-          height: 4vw;
-        }
-
-        /*films*/
-        .vandaag{
-          top: 72vw;
-          width: 50vw;
-          height: 60vw;
-          right: -30vw;
-        }
-
-        /*recentchat*/
-        .recentchat{
-          top: 90vw;
-          height: 50vw;
-        }
-
-      }
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  /* body {background: pink;} */
+}

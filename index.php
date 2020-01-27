@@ -103,8 +103,9 @@
     elseif(isset($_POST['Nieuws'])){
         $_SESSION['Waar'] = "Nieuws";
         $_SESSION['label'] = $_POST['Nieuws'];
-        $_SESSION['Aantal']  = 13;
-        $_SESSION['Start'] = 0;
+        include 'php/get.php';
+        $_SESSION['Aantal'] = $_SESSION['aantall']-13;
+        $_SESSION['Start'] = $_SESSION['aantall'];
         reloadPost();
     }
     elseif(isset($_POST['zoeken'])){
@@ -120,6 +121,7 @@
         $_SESSION['Waar'] = "Agenda";
         $_SESSION['Agenda'] = 1;
         $_SESSION['Jaar'] = 2;
+        $_SESSION['Maand'] = 5;
         reloadPost();
     }
     if(!strlen($_SESSION['Waar']) > 0){

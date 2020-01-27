@@ -119,4 +119,27 @@
                   </style>";
         }
     }
+
+    $label = $_SESSION['label'];
+    $plus2 = 0;
+    if($label == "nieuws"){
+        $sql = "SELECT Artikel,Text_,Img,Status,Datum,Id FROM `artikels`;";
+    }
+    else{
+        $sql = "SELECT Artikel,Text_,Img,Status,Datum,Id FROM `artikels` WHERE Label = '$label';";
+    }
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $Labelartikel[$plus2] = $row['Artikel'];
+            $LabeltextArtikel[$plus2] = $row['Text_'];
+            $LabelimgArtikel[$plus2] = $row['Img'];
+            $LabelstatusArtikel[$plus2] = $row['Status'];
+            $LabeldatumArtikel[$plus2] = $row['Datum'];
+            $LabelidArtikel[$plus2] = $row['Id'];
+            $plus2 ++;
+        }
+    }
+    $_SESSION['aantall'] = $plus2-1;
+
  ?>
