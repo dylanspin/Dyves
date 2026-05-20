@@ -1,37 +1,39 @@
 <?php
-    include 'connect.php';
-    include 'block.php';
+require_once __DIR__ . '/bootstrap.php';
+require_once __DIR__ . '/connect.php';
 
-    function reload(){
-        echo "<script>
-                  if (window.history.replaceState) {
-                    window.history.replaceState( null, null, window.location.href);
-                    location.reload(true);
-                  }
-              </script>";
-    }
+function reload() {
+    echo "<script>
+            if (window.history.replaceState) {
+              window.history.replaceState(null, null, window.location.href);
+              location.reload(true);
+            }
+          </script>";
+}
 
-    $artikelFoto  = $_FILES["artikel_foto"]["name"];
-    $ArtikelTitle  = $_POST['ArtikelTitle'];
-    $ArtikelText =  $_POST['ArtikelText'];
-    $ArtikelLabel =  $_POST['ArtikelLabel'];
-    $ArtikelStatus =  $_POST['ArtikelStatus'];
+if (!isset($_POST['Post'])) {
+    return;
+}
+if (!is_admin($_SESSION['nu'] ?? '')) {
+    http_response_code(403);
+    return;
+}
+csrf_check();
 
-    $naamFoto = "Artikel".$artikelFoto;
+$ArtikelTitle  = (string)($_POST['ArtikelTitle']  ?? '');
+$ArtikelText   = (string)($_POST['ArtikelText']   ?? '');
+$ArtikelLabel  = (string)($_POST['ArtikelLabel']  ?? '');
+$ArtikelStatus = (string)($_POST['ArtikelStatus'] ?? '');
 
-    if(isset($_POST['Post'])){
-        $loc = "pic/artikels/";
-        $IMG = "artikel_foto";
-        UploadIMG($loc,$IMG);
-        $sql = "INSERT INTO `artikels` (`Artikel`,`Text_`,`Label`,`Img`,`Status`) VALUES ('$ArtikelTitle','$ArtikelText','$ArtikelLabel','$naamFoto','$ArtikelStatus');";
-        if ($conn->query($sql) === true){
-        }
-        if(strlen($artikelFoto) > 0){
-            $loc = "pic/artikels/";
-            $IMG = "artikel_foto";
-            UploadIMG($loc,$IMG);//foto function
-            rename("pic/artikels/$artikelFoto","pic/artikels/Artikel$artikelFoto");
-        }
-        reload();
-    }
-?>
+$naamFoto = dyves_upload_image('artikel_foto', __DIR__ . '/../pic/artikels');
+if ($naamFoto === null) {
+    $naamFoto = '';
+}
+
+db_query(
+    $conn,
+    'INSERT INTO `artikels` (`Artikel`,`Text_`,`Label`,`Img`,`Status`) VALUES (?, ?, ?, ?, ?)',
+    'sssss',
+    $ArtikelTitle, $ArtikelText, $ArtikelLabel, $naamFoto, $ArtikelStatus
+);
+reload();

@@ -1,6 +1,6 @@
-
 <div class='outsideAgenda'>
   <form method='post'>
+    <?php require_once __DIR__ . '/../php/bootstrap.php'; csrf_field(); ?>
     <div class='navDiv'>
       <button class='nonbutton agendaNav' type='submit' name='BackY'><i class='fa fa-arrow-left'></i></button>
       <button class='nonbutton agendaNav typeAgenda' type='submit' name='Jaar'>Jaren</button>
@@ -14,303 +14,226 @@
   </form>
 
 <?php
+    require_once __DIR__ . '/../php/connect.php';
 
-    include 'php/connect.php';
-
-    function reload(){// is een andere versie dan die op de index
+    function reload() {
         echo "<script>
-                  if ( window.history.replaceState ) {
-                    window.history.replaceState( null, null, window.location.href );
-                  }
+                if (window.history.replaceState) {
+                  window.history.replaceState(null, null, window.location.href);
+                }
               </script>";
     }
 
-    function translatedag($Dag){
-      switch ($Dag) {
-      case "Mon": return "Maandag";
-      break;
-      case "Tue": return "Dinsdag";
-      break;
-      case "Wed": return "Woensdag";
-      break;
-      case "Thu": return "Donderdag";
-      break;
-      case "Fri": return "Vrijdag";
-      break;
-      case "Sat": return "Zaterdag";
-      break;
-      case "Sun": return "Zondag";
-      break;
-      default: return "Een dag";
-      }
-    }
-
-    function KrijgGB($jarenNum,$geboortedatumAG,$timestamp,$aantal,$J,$vrienden){
-      $check2 = false;
-      for($b=0; $b<=$aantal-1; $b++){
-          $vriendGB = $jarenNum[$J].substr($geboortedatumAG[$b], 4);
-          if($geboortedatumAG[$b]{5} == 0){
-              $vriendMaand = $geboortedatumAG[$b]{6};
-          }
-          else{
-              $vriendMaand = $geboortedatumAG[$b]{5}.$geboortedatumAG[$b]{6};
-          }
-          if($geboortedatumAG[$b]{8} == 0){
-              $vriendag = $geboortedatumAG[$b]{9};
-          }
-          else{
-              $vriendag = $geboortedatumAG[$b]{8}.$geboortedatumAG[$b]{9};
-          }
-          $vriendGEB = $jarenNum[$J]."-".$vriendMaand."-".$vriendag;
-
-          if(strtotime($vriendGEB) == $timestamp){
-              $check2 = true;
-              // return $check2;
-              return $vrienden[$b];
-          }
-      }
-    }
-
-    $sql = "SELECT Vrienden FROM `allfriends` Where Gebruikersnaam = '$current';";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            $vrienden = unserialize($row['Vrienden']);
-            $aantal = count($vrienden);
+    function translatedag($Dag) {
+        switch ($Dag) {
+            case 'Mon': return 'Maandag';
+            case 'Tue': return 'Dinsdag';
+            case 'Wed': return 'Woensdag';
+            case 'Thu': return 'Donderdag';
+            case 'Fri': return 'Vrijdag';
+            case 'Sat': return 'Zaterdag';
+            case 'Sun': return 'Zondag';
+            default:    return 'Een dag';
         }
     }
 
-    $GB = 0;
-    for($i=0;$i<=$aantal-1;$i++){
-        $sql = "SELECT Geboortedatum FROM `notusers` Where Gebruikersnaam = '$vrienden[$i]';";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                $geboortedatumAG[$GB] = $row['Geboortedatum'];
-                $GB ++;
+    function KrijgGB(array $jarenNum, array $geboortedatumAG, int $timestamp, int $aantal, int $J, array $vrienden) {
+        for ($b = 0; $b < $aantal; $b++) {
+            $gd = (string)($geboortedatumAG[$b] ?? '');
+            if (strlen($gd) < 10) {
+                continue;
+            }
+            $vriendMaand = ltrim(substr($gd, 5, 2), '0');
+            $vriendag    = ltrim(substr($gd, 8, 2), '0');
+            if ($vriendMaand === '' || $vriendag === '') {
+                continue;
+            }
+            $vriendGEB = $jarenNum[$J] . '-' . $vriendMaand . '-' . $vriendag;
+            if (strtotime($vriendGEB) === $timestamp) {
+                return $vrienden[$b] ?? null;
             }
         }
+        return null;
     }
 
-    $agenda = $_SESSION['Agenda'];
+    $row = db_one($conn, 'SELECT Vrienden FROM `allfriends` WHERE Gebruikersnaam = ? LIMIT 1', 's', (string)$current);
+    $vrienden = $row !== null ? dyves_decode($row['Vrienden']) : [];
+    $aantal   = count($vrienden);
 
-    //veel issets...........
-    if(isset($_POST['NextY'])){
-        if($_SESSION['Jaar'] <= 7){
-            $_SESSION['Jaar'] += 1;
-        }
-        else{
-            $_SESSION['Jaar'] = 0;
-        }
+    $geboortedatumAG = [];
+    for ($i = 0; $i < $aantal; $i++) {
+        $row = db_one($conn, 'SELECT Geboortedatum FROM `notusers` WHERE Gebruikersnaam = ? LIMIT 1', 's', (string)$vrienden[$i]);
+        $geboortedatumAG[$i] = $row !== null ? (string)$row['Geboortedatum'] : '';
+    }
+
+    $isPost = $_SERVER['REQUEST_METHOD'] === 'POST';
+    if ($isPost && (isset($_POST['NextY']) || isset($_POST['BackY']) || isset($_POST['NextM']) || isset($_POST['BackM']) ||
+                    isset($_POST['Jaar'])  || isset($_POST['Maand'])  || isset($_POST['planning']) || isset($_POST['close']) ||
+                    isset($_POST['Dag']))) {
+        csrf_check();
+    }
+
+    if (isset($_POST['NextY'])) {
+        $_SESSION['Jaar'] = ($_SESSION['Jaar'] <= 7) ? $_SESSION['Jaar'] + 1 : 0;
         reload();
     }
-    if(isset($_POST['BackY'])){
-        if(!$_SESSION['Jaar'] == 0){
-            $_SESSION['Jaar'] -= 1;
-        }
-        else{
-            $_SESSION['Jaar'] = 8;
-        }
+    if (isset($_POST['BackY'])) {
+        $_SESSION['Jaar'] = ($_SESSION['Jaar'] != 0) ? $_SESSION['Jaar'] - 1 : 8;
         reload();
     }
-    if(isset($_POST['NextM'])){
-        if($_SESSION['Maand'] <= 10){
-            $_SESSION['Maand'] += 1;
-        }
-        else{
-            $_SESSION['Maand'] = 0;
-        }
+    if (isset($_POST['NextM'])) {
+        $_SESSION['Maand'] = ($_SESSION['Maand'] <= 10) ? $_SESSION['Maand'] + 1 : 0;
         reload();
     }
-    if(isset($_POST['BackM'])){
-        if($_SESSION['Maand'] > 0){
-            $_SESSION['Maand'] -= 1;
-        }
-        else{
-            $_SESSION['Maand'] = 11;
-        }
+    if (isset($_POST['BackM'])) {
+        $_SESSION['Maand'] = ($_SESSION['Maand'] > 0) ? $_SESSION['Maand'] - 1 : 11;
         reload();
     }
-    if(isset($_POST['Jaar'])){
-        $_SESSION['Agenda'] = 1;
-        reload();
-    }
-    if(isset($_POST['Maand'])){
-        $_SESSION['Agenda'] = 0;
-        reload();
-    }
-    if(isset($_POST['planning'])){
-        reload();
-    }
-    if(isset($_POST['close'])){
-        $_SESSION['ShowForm'] = "false";
+    if (isset($_POST['Jaar']))  { $_SESSION['Agenda'] = 1; reload(); }
+    if (isset($_POST['Maand'])) { $_SESSION['Agenda'] = 0; reload(); }
+    if (isset($_POST['planning'])) { reload(); }
+    if (isset($_POST['close'])) {
+        $_SESSION['ShowForm'] = 'false';
         reload();
     }
 
-    $sql = "SELECT Agenda FROM `agenda` WHERE Gebruikersnaam = '$current';";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            $agendaDB = $row['Agenda'];
-        }
-    }
-    $uncompressedAgenda = unserialize($agendaDB);
+    $row = db_one($conn, 'SELECT Agenda FROM `agenda` WHERE Gebruikersnaam = ? LIMIT 1', 's', (string)$current);
+    $agendaDB = $row !== null ? $row['Agenda'] : '';
+    $uncompressedAgenda = dyves_decode($agendaDB);
 
-
-    $maanden = ["Januari","Februari","Maart","April","Mei","Juni","Juli","Augustus","September","Oktober","November","December"];
-    $jarenNum = [2017,2018,2019,2020,2021,2022,2023,2024,2025]; //moet nog anders moet de current jaar pakken en daar -2 doen en plus 5 ong
-    $J =  $_SESSION['Jaar'];
-    $agenda = $_SESSION['Agenda'];
+    $maanden  = ['Januari','Februari','Maart','April','Mei','Juni','Juli','Augustus','September','Oktober','November','December'];
+    $jarenNum = [2017,2018,2019,2020,2021,2022,2023,2024,2025];
+    $J        = (int)$_SESSION['Jaar'];
+    $agenda   = (int)$_SESSION['Agenda'];
     $t = 0;
-    $jaren = array();
+    $jaren = [];
+    $dagen = [];
 
-    for($i = 2017; $i < 2026; $i++) { //dit Later in De setup page
-        for($b=1; $b<=12; $b++){
-            $dagen[$t] = cal_days_in_month(CAL_GREGORIAN, $b, $i); //dit was in de hoop dat die de schrikkel jaren zou pakken......
+    for ($i = 2017; $i < 2026; $i++) {
+        for ($b = 1; $b <= 12; $b++) {
+            $dagen[$t] = cal_days_in_month(CAL_GREGORIAN, $b, $i);
             $t++;
         }
-        array_push($jaren,array($dagen));
+        $jaren[] = [$dagen];
     }
 
-
-    if(isset($_POST['Dag'])){
-        $_SESSION['ShowForm'] = "true";
-        $_SESSION['dag'] = $_POST['Dag'];
-        $_SESSION['maandPOST'] = $_POST['agendaHidden'];
+    if (isset($_POST['Dag'])) {
+        if (is_numeric($_POST['Dag']) && isset($_POST['agendaHidden']) && is_numeric($_POST['agendaHidden'])) {
+            $_SESSION['ShowForm']    = 'true';
+            $_SESSION['dag']         = (int)$_POST['Dag'];
+            $_SESSION['maandPOST']   = (int)$_POST['agendaHidden'];
+        }
     }
 
-    if($_SESSION['ShowForm'] == "true"){
-        $dag = $_SESSION['dag'];
-        $maandPOST = $_SESSION['maandPOST'];
-        $datum = $jarenNum[$J]."-".($maandPOST+1)."-".$dag;
+    if (($_SESSION['ShowForm'] ?? '') === 'true') {
+        $dag       = (int)$_SESSION['dag'];
+        $maandPOST = (int)$_SESSION['maandPOST'];
+        $datum     = $jarenNum[$J] . '-' . ($maandPOST + 1) . '-' . $dag;
         $timestamp = strtotime($datum);
-        $date =  date("D", $timestamp);
-        $dagNaam = translatedag($date);
+        $dagNaam   = translatedag(date('D', $timestamp));
 
-        if(isset($_POST['planning'])){ //Doet de informatie in de database
-            $textAG = $_POST['AgendaTextarea'];
-            if(!strlen($uncompressedAgenda[2]) > 0){
-                $uncompressedAgenda = ['',''];
-                array_push($uncompressedAgenda,$timestamp);
-                array_push($uncompressedAgenda, str_replace("'", "",$_POST['AgendaTextarea']));//moet later mis nog anders met de replace van ''
+        if (isset($_POST['planning'])) {
+            $textAG = (string)($_POST['AgendaTextarea'] ?? '');
+            if (count($uncompressedAgenda) < 3) {
+                $uncompressedAgenda = ['', ''];
             }
-            else{
-                array_push($uncompressedAgenda,$timestamp);
-                array_push($uncompressedAgenda, str_replace("'", "''",$_POST['AgendaTextarea']));
-            }
-            $compresAgenda = serialize($uncompressedAgenda);
-
-            $sql = "UPDATE `agenda` SET `Agenda` = '$compresAgenda' WHERE Gebruikersnaam = '$current';";
-            if ($conn->query($sql) === true) {
-            }
+            $uncompressedAgenda[] = $timestamp;
+            $uncompressedAgenda[] = $textAG;
+            db_query($conn, 'UPDATE `agenda` SET `Agenda` = ? WHERE Gebruikersnaam = ?', 'ss', dyves_encode($uncompressedAgenda), (string)$current);
             reload();
         }
 
+        echo "<form class='AgendaDiv' method='post'>";
+        csrf_field();
+        echo "<div class='AgendaDatum'>" . e($dagNaam) . ' ' . (int)$dag . ' ' . e($maanden[$maandPOST]) . "</div>" .
+             "<textarea rows='7' cols='50' class='AgendaTextarea' name='AgendaTextarea'></textarea>" .
+             "<button class='AgendaSave buttonnone scale' type='submit' name='planning' value='Save'><i class='fa fa-plus'></i></button>" .
+             "<button class='AgendaClose buttonnone scale' type='submit' name='close'><i class='fa fa-times'></i></button>" .
+             "<div class='agendaPlaningen'>";
 
-        echo "<form class='AgendaDiv' method='post'>
-                <div class='AgendaDatum'>$dagNaam $dag $maanden[$maandPOST]</div>
-                <textarea rows='7' cols='50' class='AgendaTextarea' name='AgendaTextarea'></textarea>
-                <button class='AgendaSave buttonnone scale' type='submit' name='planning' value='Save'><i class='fa fa-plus'></i></button>
-                <button class='AgendaClose buttonnone scale' type='submit' name='close'><i class='fa fa-times'></i></button>
-                <div class='agendaPlaningen'>";
-
-        for($i=1; $i<=count($uncompressedAgenda); $i++){
-            if($timestamp == $uncompressedAgenda[$i]){ //checkt als er een planning is die dag
-                echo "<div class='planning'>".$uncompressedAgenda[$i+1]."</div>";//De melding
+        for ($i = 1; $i < count($uncompressedAgenda); $i++) {
+            if ((int)$uncompressedAgenda[$i] === (int)$timestamp && isset($uncompressedAgenda[$i + 1])) {
+                echo "<div class='planning'>" . e($uncompressedAgenda[$i + 1]) . "</div>";
             }
         }
-        if(KrijgGB($jarenNum,$geboortedatumAG,$timestamp,$aantal,$J,$vrienden)){
-            echo "<div class='planning'>".KrijgGB($jarenNum,$geboortedatumAG,$timestamp,$aantal,$J,$vrienden)." is jarig</div>";//De melding
+        $jarig = KrijgGB($jarenNum, $geboortedatumAG, (int)$timestamp, $aantal, $J, $vrienden);
+        if ($jarig !== null) {
+            echo "<div class='planning'>" . e($jarig) . " is jarig</div>";
         }
 
-        echo "   </div>
-              </form>";
+        echo "</div></form>";
     }
 
+    if ($agenda) {
+        echo "<div class='Jaar'>" . (int)$jarenNum[$J] . "</div><div class='Maanden'>";
+        for ($M = 0; $M <= 11; $M++) {
+            echo "<form class='outside' method='post'>";
+            csrf_field();
+            echo "<div class='Maand'>" . e($maanden[$M]) . "</div>";
+            for ($D = 1; $D <= $jaren[$J][0][$M]; $D++) {
+                $datum     = $jarenNum[$J] . '-' . ($M + 1) . '-' . $D;
+                $timestamp = strtotime($datum);
+                $check     = false;
+                for ($i = 1; $i < count($uncompressedAgenda); $i++) {
+                    if ((int)$uncompressedAgenda[$i] === (int)$timestamp) {
+                        $check = true;
+                    }
+                }
+                $check2 = KrijgGB($jarenNum, $geboortedatumAG, (int)$timestamp, $aantal, $J, $vrienden);
+                $hasBoth = $check && $check2;
 
-    if($agenda){ //print de agenda uit in een heel jaar of in een maand
-          echo "<div class='Jaar'>$jarenNum[$J]</div><div class='Maanden'>";
-          for($M=0; $M<=11; $M++){
-              echo "<form class='outside' method='post'><div class='Maand'>$maanden[$M]</div>";
-              for($D=1; $D<=$jaren[$J][0][$M]; $D++){
-
-                  $datum = $jarenNum[$J]."-".($M+1)."-".$D;
-                  $timestamp = strtotime($datum);
-                  $check = false;
-                  $check3 = false;
-
-                  for($i=1; $i<=count($uncompressedAgenda); $i++){
-                     if($timestamp == $uncompressedAgenda[$i]){
-                         $check = true;
-                     }
-                  }
-
-                  $check2 = KrijgGB($jarenNum,$geboortedatumAG,$timestamp,$aantal,$J,$vrienden);
-
-                  if($check && $check2){
-                    $check3 = true;
-                  }
-                  if(!$check3){
-                      if($check){
-                          echo "<button class='dag' type='submit' value='$D' name='Dag'>$D<div class='AgendaMelding'>&#10071;</div></button>";
-                      }
-                      elseif($check2){
-                          echo "<button class='dag' type='submit' value='$D' name='Dag'>$D<div class='AgendaMelding2'>&#127874;</div></button>";
-                      }
-                      else{
-                          echo "<button class='dag' type='submit' value='$D' name='Dag'>$D</button>";
-                      }
-                  }
-                  else{
-                      echo "<button class='dag' type='submit' value='$D' name='Dag'>$D
-                              <div class='AgendaMelding'>&#10071;</div>
-                              <div class='AgendaMelding2'>&#127874;</div>
-                            </button>";
-                  }
-                  echo "<input type='hidden' name='agendaHidden' value='$M'>";
+                if (!$hasBoth) {
+                    if ($check) {
+                        echo "<button class='dag' type='submit' value='$D' name='Dag'>$D<div class='AgendaMelding'>&#10071;</div></button>";
+                    } elseif ($check2) {
+                        echo "<button class='dag' type='submit' value='$D' name='Dag'>$D<div class='AgendaMelding2'>&#127874;</div></button>";
+                    } else {
+                        echo "<button class='dag' type='submit' value='$D' name='Dag'>$D</button>";
+                    }
+                } else {
+                    echo "<button class='dag' type='submit' value='$D' name='Dag'>$D" .
+                           "<div class='AgendaMelding'>&#10071;</div>" .
+                           "<div class='AgendaMelding2'>&#127874;</div>" .
+                         "</button>";
+                }
+                echo "<input type='hidden' name='agendaHidden' value='$M'>";
             }
             echo "</form>";
         }
         echo "</div><br>";
+    } else {
+        $Maand = (int)$_SESSION['Maand'];
+        echo "<form class='GroteMaand' method='post'>";
+        csrf_field();
+        echo "<div class='GroteNaam'>" . (int)$jarenNum[$J] . ' ' . e($maanden[$Maand]) . "</div>";
+        for ($D = 1; $D <= $jaren[$J][0][$Maand]; $D++) {
+            $datum     = $jarenNum[$J] . '-' . ($Maand + 1) . '-' . $D;
+            $timestamp = strtotime($datum);
+            $check     = false;
+            $check2    = KrijgGB($jarenNum, $geboortedatumAG, (int)$timestamp, $aantal, $J, $vrienden);
+            for ($i = 1; $i < count($uncompressedAgenda); $i++) {
+                if ((int)$uncompressedAgenda[$i] === (int)$timestamp) {
+                    $check = true;
+                }
+            }
+            $hasBoth = $check && $check2;
+            if (!$hasBoth) {
+                if ($check) {
+                    echo "<button class='dag Grote' type='submit' value='$D' name='Dag'>$D<div class='AgendaMelding GrotereMelding'>&#10071;</div></button>";
+                } elseif ($check2) {
+                    echo "<button class='dag Grote' type='submit' value='$D' name='Dag'>$D<div class='AgendaMelding GrotereMelding2'>&#127874;</div></button>";
+                } else {
+                    echo "<button class='dag Grote' type='submit' value='$D' name='Dag'>$D</button>";
+                }
+            } else {
+                echo "<button class='dag Grote' type='submit' value='$D' name='Dag'>$D" .
+                       "<div class='AgendaMelding GrotereMelding'>&#10071;</div>" .
+                       "<div class='AgendaMelding GrotereMelding2'>&#127874;</div>" .
+                     "</button>";
+            }
+            echo "<input type='hidden' name='agendaHidden' value='$Maand'>";
+        }
+        echo "</form></div>";
     }
-    else{
-      $Maand = $_SESSION['Maand'];
-      echo "<form class='GroteMaand' method='post'><div class='GroteNaam'>$jarenNum[$J] $maanden[$Maand]</div>";
-      for($D=1; $D<=$jaren[$J][0][$Maand]; $D++){
-          $datum = $jarenNum[$J]."-".($Maand+1)."-".$D;
-          $timestamp = strtotime($datum);
-          $check = false;
-          $check2 = false;
-          $check3 = false;
-          $check2 = KrijgGB($jarenNum,$geboortedatumAG,$timestamp,$aantal,$J,$vrienden);
-          for($i=1; $i<=count($uncompressedAgenda); $i++){
-              if($timestamp == $uncompressedAgenda[$i]){ //checkt als er een planning is die dag
-                  $check = true;
-              }
-          }
-          if($check && $check2){
-              $check3 = true;
-          }
-          if(!$check3){
-              if($check){
-                  echo "<button class='dag Grote' type='submit' value='$D' name='Dag'>$D<div class='AgendaMelding GrotereMelding'>&#10071;</div></button>";
-              }
-              elseif ($check2) {
-                echo "<button class='dag Grote' type='submit' value='$D' name='Dag'>$D<div class='AgendaMelding GrotereMelding2'>&#127874;</div></button>";
-              }
-              else{
-                  echo "<button class='dag Grote' type='submit' value='$D' name='Dag'>$D</button>";
-              }
-          }
-          else{
-            echo "<button class='dag Grote' type='submit' value='$D' name='Dag'>$D
-                    <div class='AgendaMelding GrotereMelding'>&#10071;</div>
-                    <div class='AgendaMelding GrotereMelding2'>&#127874;</div>
-                  </button>";
-          }
-          echo "<input type='hidden' name='agendaHidden' value='$Maand'>";
-      }
-      echo "</form></div>";
-    }
-
- ?>
+?>
+</div>

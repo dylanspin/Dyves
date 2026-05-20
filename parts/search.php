@@ -1,4 +1,5 @@
 <form class="search"  method="post">
+    <?php csrf_field(); ?>
     <input type="text" class="header_in" id="header" name="zoekinfor">
     <label>
       <button type="submit" name="zoeken" class="header_zoek">

@@ -15,6 +15,7 @@
         }
        ?>
        <form method="post">
+         <?php csrf_field(); ?>
          <button class="buttonProfiel profielkleur anderhalfv underline" type="submit" name="ganaar" value="cv">
            CV
          </button>

@@ -42,6 +42,7 @@
       <div>
       </div>
       <form class="aanmelden_form" method="post">
+        <?php csrf_field(); ?>
         <?php
             if($foutMelding[9]){
                 echo "<div class='foutmelding'>Je hebt geen Voornaam ingevult.</div>";

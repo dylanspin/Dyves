@@ -1,47 +1,41 @@
 <?php
+  require_once __DIR__ . '/../php/bootstrap.php';
 
-  if(strlen($_SESSION["bezoek"]) >= 1){
-      $wie =  $_SESSION["bezoek"];
-  }
-  else{
-      $wie = $gebruikersnaam_;
-  }
+  $wie = (strlen((string)($_SESSION['bezoek'] ?? '')) >= 1)
+         ? (string)$_SESSION['bezoek']
+         : (string)($gebruikersnaam_ ?? '');
 
-  $sql = "SELECT Fotos FROM `notusers` WHERE Gebruikersnaam = '$wie';";
-  $result = $conn->query($sql);
-  if ($result->num_rows > 0) {
-      while($row = $result->fetch_assoc()) {
-          $fotoDB = $row['Fotos'];
-      }
-  }
-  $uncompressed = unserialize($fotoDB);
+  $row = db_one($conn, 'SELECT Fotos FROM `notusers` WHERE Gebruikersnaam = ? LIMIT 1', 's', $wie);
+  $uncompressed = $row !== null ? dyves_decode($row['Fotos']) : [];
   $tell = 0;
 
-  if($_SESSION['Waar'] == "fotos"){
-      if(count($uncompressed) > 0 && strpos($uncompressed[0], $wie) !== false){
-          for($i=0; $i<=count($uncompressed)-1; $i++){
-              echo "<div class='foto2 hoverscale'><img id='$i'onclick='modal(this)'src='pic/fotos/$uncompressed[$i]' class='nieuws_img'></div>";
+  if (($_SESSION['Waar'] ?? '') === 'fotos') {
+      if (!empty($uncompressed)) {
+          foreach ($uncompressed as $i => $foto) {
+              echo "<div class='foto2 hoverscale'>" .
+                     "<img id='" . e($i) . "' onclick='modal(this)' src='pic/fotos/" . e($foto) . "' class='nieuws_img'>" .
+                   "</div>";
           }
       }
-  }
-  else{
+  } else {
 ?>
   <div class="fotos profielkleur2">
     <div class="watProfiel tweev">Foto's & Video's</div>
     <?php
-      if((is_array($uncompressed) ? count($uncompressed) : 0) > 0 && strpos($uncompressed[0], $wie) !== false){
-          for($i=0; $i<=count($uncompressed)-1; $i++){
-              $tell ++;
-              if($tell <= 5){
-                  echo "<div class='foto hoverscale'>
-                          <img id='$i'onclick='modal(this)'src='pic/fotos/$uncompressed[$i]' class='nieuws_img'>
-                        </div>";
+      if (!empty($uncompressed)) {
+          foreach ($uncompressed as $i => $foto) {
+              $tell++;
+              if ($tell <= 5) {
+                  echo "<div class='foto hoverscale'>" .
+                         "<img id='" . e($i) . "' onclick='modal(this)' src='pic/fotos/" . e($foto) . "' class='nieuws_img'>" .
+                       "</div>";
               }
           }
       }
-     ?>
+    ?>
 
     <form class="meer underline" method="post">
+      <?php csrf_field(); ?>
       <button class="Buttonnone underline" type="submit" name="Meerfotos">Bekijk meer...</button>
     </form>
 

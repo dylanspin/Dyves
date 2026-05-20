@@ -7,6 +7,7 @@
   <body>
 
     <form class="inlog iphone" action="" method="post">
+      <?php require_once __DIR__ . '/../php/bootstrap.php'; csrf_field(); ?>
       <input type="text" name="gebruiker" id="gebruiker" class="inlog_in">
       <input type="password" name="wachtwoord" id="wachtwoord" class="inlog_in">
       <button class="inlog_button" id="inlog_button" name="inlog_button">Inloggen</button><br>

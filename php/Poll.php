@@ -1,30 +1,39 @@
 <?php
-    include 'connect.php';
-    include 'block.php';
+require_once __DIR__ . '/bootstrap.php';
+require_once __DIR__ . '/connect.php';
 
-    function reload(){
-        echo "<script>
-                  if (window.history.replaceState) {
-                    window.history.replaceState( null, null, window.location.href);
-                    location.reload(true);
-                  }
-              </script>";
-    }
+function reload() {
+    echo "<script>
+            if (window.history.replaceState) {
+              window.history.replaceState(null, null, window.location.href);
+              location.reload(true);
+            }
+          </script>";
+}
 
-    $PollTitle  = $_POST['PollTitle'];
-    $PollVraag1 = $_POST['Vraag1'];
-    $PollVraag2 = $_POST['Vraag2'];
-    $PollVraag3 = $_POST['Vraag3'];
-    $PollVraag4 = $_POST['Vraag4'];
-    $PollStatus =  $_POST['AanPoll'];
+if (!isset($_POST['Post'])) {
+    return;
+}
+if (!is_admin($_SESSION['nu'] ?? '')) {
+    http_response_code(403);
+    return;
+}
+csrf_check();
 
-    $vragen = [$PollVraag1,$PollVraag2,$PollVraag3,$PollVraag4];
-    $compresvragen = serialize($vragen);
+$PollTitle  = (string)($_POST['PollTitle'] ?? '');
+$PollStatus = (string)($_POST['AanPoll']   ?? '');
+$vragen = [
+    (string)($_POST['Vraag1'] ?? ''),
+    (string)($_POST['Vraag2'] ?? ''),
+    (string)($_POST['Vraag3'] ?? ''),
+    (string)($_POST['Vraag4'] ?? ''),
+];
+$compresvragen = dyves_encode($vragen);
 
-    if(isset($_POST['Post'])){
-        $sql = "INSERT INTO `poll` (`Naam`,`Status`,`Vragen`) VALUES ('$PollTitle','$PollStatus','$compresvragen');";
-        if ($conn->query($sql) === true) {
-        }
-        reload();
-    }
-?>
+db_query(
+    $conn,
+    'INSERT INTO `poll` (`Naam`,`Status`,`Vragen`) VALUES (?, ?, ?)',
+    'sss',
+    $PollTitle, $PollStatus, $compresvragen
+);
+reload();

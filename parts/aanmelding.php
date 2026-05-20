@@ -1,32 +1,18 @@
 
 <?php
-    if (session_status() !== PHP_SESSION_ACTIVE) {
-        session_start();
+    require_once __DIR__ . '/../php/bootstrap.php';
+    $checkwachtwoord = $_SESSION['wachtwoordCheck'] ?? '';
+    if ($checkwachtwoord !== 'true') {
+        $token = e(csrf_token());
+        echo "
+        <form class='aanmelden iphone' id='aanmeldVak' method='post'>
+            <input type='hidden' name='_csrf' value='$token'>
+            <button type='submit' name='Aanmelden' class='aanmelden_button'>
+              Geen account? Meld je gratis aan!
+            </button><br>
+            <button class='inlog_ver'>
+              <span class='blauw'>Vragen of hulp nodig ?</span>
+            </button>
+        </form>";
     }
-    $checkwachtwoord = isset($_SESSION["wachtwoordCheck"]) ? $_SESSION["wachtwoordCheck"] : '';
-    if($checkwachtwoord != "true"){
-      echo "
-      <form class='aanmelden iphone' id='aanmeldVak' method='post'>
-          <button type='submit' name='Aanmelden' class='aanmelden_button'>
-            Geen account? Meld je gratis aan!
-          </button><br>
-          <button class='inlog_ver'>
-            <span class='blauw'>Vragen of hulp nodig ?</span>
-          </button>
-        </div>
-      </form>";
-    }
-    elseif ($checkwachtwoord == "false") {
-      echo "
-       <form class='aanmelden iphone' id='aanmeldVak' method='post'>
-          <button type='submit' name='Aanmelden'class='aanmelden_button'>
-            Geen account? Meld je gratis aan!
-          </button><br>
-          <button class='inlog_ver'>
-            <span class='blauw'>Vragen of hulp nodig ?</span>
-          </button>
-        </div>
-      </form>";
-    }
-
- ?>
+?>

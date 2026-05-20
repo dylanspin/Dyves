@@ -1,10 +1,10 @@
-
 <div class="krabels profielkleur2">
   <div class="watProfiel tweev">Krabels</div>
     <div class="Krabelss" id="Krabelss">
       <form class="hide" method="post" id="show1">
+        <?php require_once __DIR__ . '/../php/bootstrap.php'; csrf_field(); ?>
         <textarea name="textarea" rows="8" cols="80" id="textarea" class="textarea anderhalfv" placeholder="Krabel"></textarea>
-        <button type="submit" name="PostKrabel" class="PostKrabel profielkleur"><i class="fa fa-paper-plane"></i></i></button>
+        <button type="submit" name="PostKrabel" class="PostKrabel profielkleur"><i class="fa fa-paper-plane"></i></button>
       </form>
       <button name="closekr" onclick="showK()" id="hide" class="close"><i class="fa fa-comments profielkleur"></i></button>
       <button name="closekr" onclick="showK()" id="hide2" class="close hide"><i class="fa fa-times profielkleur"></i></button>
@@ -22,41 +22,32 @@
                       '129420','129421','129422','129423','129424','129425','129427','129428','129430','129497','129499','129502','129501','129500',
                       '128375','128376','128374','128330','128293','128286','128277','128276','128275','128266','128178','128176','128141','',''];
 
-          for($i=12; $i<=91; $i++){
-            $id = "sm".$i;
-            //met echo doet het id raar daarom html mischien fix later
+          for ($i = 12; $i <= 91; $i++) {
+              $id = 'sm' . $i;
         ?>
-            <input type="button" class="Smiley" id="<?php echo $id;?>" onclick="smiley('<?php echo $id;?>')" value="&#1285<?php echo $i;?>;">
+            <input type="button" class="Smiley" id="<?php echo e($id); ?>" onclick="smiley('<?php echo e($id); ?>')" value="&#1285<?php echo (int)$i; ?>;">
         <?php
           }
-          for($b=0; $b<=count($smileys)-1; $b++){
-            $id = "smi".$b;
+          for ($b = 0; $b < count($smileys); $b++) {
+              $id = 'smi' . $b;
         ?>
-            <input type="button" class="Smiley" id="<?php echo $id;?>" onclick="smiley('<?php echo $id;?>')" value="&#<?php echo $smileys[$b];;?>;">
+            <input type="button" class="Smiley" id="<?php echo e($id); ?>" onclick="smiley('<?php echo e($id); ?>')" value="&#<?php echo (int)($smileys[$b] ?: 0); ?>;">
         <?php
           }
         ?>
       </div>
       <?php
-        if($_SESSION['Waar'] == "bezoek"){
-          $naar  = $_SESSION["bezoek"];
+        $naar = (($_SESSION['Waar'] ?? '') === 'bezoek')
+                ? (string)($_SESSION['bezoek'] ?? '')
+                : (string)($gebruikersnaam_ ?? '');
+        foreach (db_all($conn, 'SELECT Gebruikersnaam, Postnaam, Text_ FROM `krabels` WHERE Postnaam = ?', 's', $naar) as $row) {
+            $Stuurder = (string)$row['Gebruikersnaam'];
+            $text_    = (string)$row['Text_'];
+            echo "<div class='Krabelpost profielkleur'>" .
+                   "<div class='NaamKrabel tweev'>" . e($Stuurder) . "</div>" .
+                   "<div class='berichtKrabel anderhalfv'>" . nl2br(e($text_)) . "</div>" .
+                 "</div>";
         }
-        else{
-          $naar = $gebruikersnaam_;
-        }
-        $sql = "SELECT Gebruikersnaam,Postnaam,Text_ FROM `krabels` WHERE Postnaam = '$naar';";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-          while($row = $result->fetch_assoc()) {
-            $Stuurder = $row['Gebruikersnaam'];
-            $ontvanger = $row['Postnaam'];
-            $text_ = $row['Text_'];
-            echo "<div class='Krabelpost profielkleur'>
-                    <div class='NaamKrabel tweev'>$Stuurder</div>
-                    <div class='berichtKrabel anderhalfv'>$text_</div>
-                  </div>";
-          }
-        }
-       ?>
+      ?>
    </div>
 </div>

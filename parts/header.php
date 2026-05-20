@@ -7,6 +7,7 @@
     <div class="header_div">
       Vrienden
       <form class="overlay iphone twee" method="post">
+        <?php csrf_field(); ?>
         <button class="overlay_button tweeBu" type="submit" name="vrienden">
           <i class="fa fa-list icon"></i><div class="textbutton blauw">Vrienden beheeren</div>
         </button>
@@ -18,6 +19,7 @@
     <div class="header_div">
       Agenda
       <form class="overlay iphone twee" method="post">
+        <?php csrf_field(); ?>
         <button class="overlay_button tweeBu" type="submit" name="Agenda">
           <i class="fa fa-calendar icon"></i><div class="textbutton blauw">Agenda</div>
         </button>
@@ -38,6 +40,7 @@
       </div>
     </div>
     <form class="header_div" method="post">
+      <?php csrf_field(); ?>
       Nieuws
       <div class="overlay iphone">
         <button class="overlay_button" type="submit" name="Nieuws" value="nieuws">
@@ -55,11 +58,12 @@
     <div class="header_div iphone">
       Meer...
       <form class="overlay" method="post">
+        <?php csrf_field(); ?>
         <button class="overlay_button" type="submit" name="Menu">
           <i class="fa fa-square icon"></i><div class="textbutton blauw">Menu</div>
         </button>
         <?php
-          if($current=="ZS39R35ulltAv235JPYeSY35R"){
+          if (is_admin($current ?? '')) {
             echo "<button class='overlay_button' type='submit' name='backend'>
                     <i class='fa fa-square icon'></i><div class='textbutton blauw'>backend</div>
                   </button>";
@@ -87,6 +91,7 @@
       if(isset($_SESSION["wachtwoordCheck"]) && $_SESSION["wachtwoordCheck"] == "true"){
      ?>
         <form class="header_div iphone uitlogg" id="profiel" method="post">
+          <?php csrf_field(); ?>
           <div class="uitlogimg">
             <div class="meldingIcon"></div>
             <img src="pic/profilepics/<?php echo $liveFoto2?>" class="nieuws_img">

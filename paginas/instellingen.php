@@ -44,6 +44,7 @@
 
       <!--De profiel pagina instellingen-->
       <form class="intellingenForm" method="post" enctype="multipart/form-data">
+        <?php csrf_field(); ?>
         <div class="sectie blauw">Profiel Foto: </div>
           <input type="file" name="fileToUpload" id="fileToUpload" class="instelling" accept="image/*">
           <span class="anderhalfv">2MB</span>

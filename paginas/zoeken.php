@@ -41,6 +41,7 @@
 
       <div class="zoekheader">
         <form class="" action="" method="post">
+          <?php csrf_field(); ?>
           <div class="zoek">
             <input type="text" class="zoekbalk" name="zoekResultaat" placeholder="Zoek...">
             <button type="submit" name="Zoek" class="zoekButton"><i class="fa fa-search icon2"></i>Zoek</button>

@@ -1,58 +1,48 @@
 <?php
-      if (session_status() !== PHP_SESSION_ACTIVE) {
-        session_start();
-      }
-      include 'connect.php';
-      include 'block.php';
+require_once __DIR__ . '/bootstrap.php';
+require_once __DIR__ . '/connect.php';
 
-      $username = isset($_POST['gebruiker']) ? $_POST['gebruiker'] : '';
-      $password = isset($_POST['wachtwoord']) ? $_POST['wachtwoord'] : '';
-      $button = isset($_POST['inlog_button']) ? $_POST['inlog_button'] : null;
-      $true = 0; //een tel voor het kijken of
+$button = $_POST['inlog_button'] ?? null;
+if (!isset($button)) {
+    return;
+}
+csrf_check();
 
-      function updateIp($user,$conn){
-          if(!empty($_SERVER['HTTP_CLIENT_IP'])){
-              $ip = $_SERVER['HTTP_CLIENT_IP'];
-          }
-          elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
-              $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-          }
-          else{
-              $ip = $_SERVER['REMOTE_ADDR'];
-          }
-          $sql = "UPDATE `notusers` SET `Ip` = '$ip' WHERE Gebruikersnaam = '$user';";
-          if ($conn->query($sql) === true) {
-          }
-      }
+$username = isset($_POST['gebruiker'])   ? (string)$_POST['gebruiker']   : '';
+$password = isset($_POST['wachtwoord']) ? (string)$_POST['wachtwoord'] : '';
 
-     if(isset($button)){
-        $sql = "SELECT Gebruikersnaam,Wachtwoord,UNIQ FROM `notusers` WHERE Gebruikersnaam = '$username';";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                $unicID = $row['UNIQ'];
-                if($password == $row['Wachtwoord']){
-                  $true ++;
-                }
-                if($username == $row['Gebruikersnaam']){
-                  $true ++;
-                }
-                if($true == 2){
-                  $_SESSION["wachtwoordCheck"] = "true";
-                  $_SESSION["nu"] = $unicID;
-                  $_SESSION['Waar'] = "profiel";
-                  updateIp($username,$conn);
-                }
-                else{
-                  $_SESSION["wachtwoordCheck"] = "false";
-                  reloadPost();
-               }
-            }
-        }
-        else {
-            $_SESSION["wachtwoordCheck"] = "false";
-            reloadPost();
-        }
-        reloadPost();
+function updateIp(string $user, mysqli $conn): void {
+    $ip = $_SERVER['REMOTE_ADDR'] ?? '';
+    db_query($conn, 'UPDATE `notusers` SET `Ip` = ? WHERE Gebruikersnaam = ?', 'ss', $ip, $user);
+}
+
+$row = db_one(
+    $conn,
+    'SELECT Gebruikersnaam, Wachtwoord, UNIQ FROM `notusers` WHERE Gebruikersnaam = ? LIMIT 1',
+    's',
+    $username
+);
+
+$ok = false;
+if ($row !== null) {
+    $stored = (string)$row['Wachtwoord'];
+    // Only password_verify is supported. Plaintext rows must be migrated by
+    // an external script before users can log in again.
+    if ($stored !== '' && password_verify($password, $stored)) {
+        $ok = true;
     }
- ?>
+}
+
+if ($ok) {
+    session_regenerate_id(true);
+    $_SESSION['wachtwoordCheck'] = 'true';
+    $_SESSION['nu']              = $row['UNIQ'];
+    $_SESSION['Waar']            = 'profiel';
+    updateIp($username, $conn);
+} else {
+    $_SESSION['wachtwoordCheck'] = 'false';
+}
+
+if (function_exists('reloadPost')) {
+    reloadPost();
+}

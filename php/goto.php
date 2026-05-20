@@ -1,70 +1,52 @@
-
 <?php
-    if (session_status() !== PHP_SESSION_ACTIVE) {
-        session_start();
+require_once __DIR__ . '/bootstrap.php';
+require_once __DIR__ . '/connect.php';
+require_once __DIR__ . '/block.php';
+
+if (!isset($_POST['bezoek'])) {
+    return;
+}
+csrf_check();
+
+$num = $_POST['bezoek'];
+if (!is_numeric($num) || (int)$num < 0) {
+    return;
+}
+$num = (int)$num;
+
+if (empty($_SESSION['bezoek'])) {
+    $currentt = $current;
+} else {
+    $row = db_one($conn, 'SELECT UNIQ FROM `notusers` WHERE Gebruikersnaam = ? LIMIT 1', 's', (string)$_SESSION['bezoek']);
+    if ($row === null) {
+        return;
     }
-  include 'block.php';
-  include 'connect.php';
+    $currentt = $row['UNIQ'];
+}
 
-      if(isset($_POST['bezoek'])){
+$row    = db_one($conn, 'SELECT Vrienden FROM `allfriends` WHERE Gebruikersnaam = ? LIMIT 1', 's', (string)$currentt);
+$naamGo = $row !== null ? dyves_decode($row['Vrienden']) : [];
 
-          if(strlen($_SESSION["bezoek"]) == 0){
-              $currentt = $current;
-          }
-          else{
-              $wie = $_SESSION["bezoek"];
-              $sql = "SELECT UNIQ FROM `notusers` Where Gebruikersnaam = '$wie';";
-              $result = $conn->query($sql);
-              if ($result->num_rows > 0) {
-                  while($row = $result->fetch_assoc()) {
-                      $currentt = $row['UNIQ'];
-                  }
-              }
-          }
-          
-          $sql = "SELECT Vrienden FROM `allfriends` Where Gebruikersnaam = '$currentt';";
-          $result = $conn->query($sql);
-          if ($result->num_rows > 0) {
-              while($row = $result->fetch_assoc()) {
-                  $naamGo = unserialize($row['Vrienden']);
-              }
-          }
+if (!isset($naamGo[$num])) {
+    return;
+}
+$naamGo = (string)$naamGo[$num];
+if ($naamGo === '') {
+    return;
+}
 
-          $num = $_POST['bezoek'];
-          $naamGo = $naamGo[$num];
+$row = db_one($conn, 'SELECT Private FROM `over` WHERE Wie = ? LIMIT 1', 's', $naamGo);
+$privateCheck = $row !== null ? (int)$row['Private'] : 0;
 
-          $sql = "SELECT Private FROM `over` WHERE wie = '$naamGo';";
-          $result = $conn->query($sql);
-          if ($result->num_rows > 0) {
-              while($row = $result->fetch_assoc()) {
-                  $privateCheck = $row['Private'];
-              }
-          }
+$row = db_one($conn, 'SELECT Vrienden FROM `allfriends` WHERE Gebruikersnaam = ? LIMIT 1', 's', (string)$current);
+$checkvrienden = $row !== null ? dyves_decode($row['Vrienden']) : [];
 
-          $sql = "SELECT Vrienden FROM `allfriends` WHERE Gebruikersnaam = '$current';";
-          $result = $conn->query($sql);
-          if ($result->num_rows > 0) {
-              while($row = $result->fetch_assoc()) {
-                  $checkvrienden = unserialize($row['Vrienden']);
-              }
-          }
+$vriendcheck = in_array($naamGo, $checkvrienden, true);
 
-          for($i=0; $i<=count($checkvrienden); $i++){
-            if($checkvrienden[$i] == $naamGo){
-              $vriendcheck = true;
-            }
-          }
+if ($vriendcheck || !$privateCheck) {
+    $_SESSION['bezoek'] = $naamGo;
+}
 
-          if($vriendcheck){
-              $_SESSION["bezoek"] = $naamGo;
-          }
-          else{
-            if(!$privateCheck){
-                $_SESSION["bezoek"] = $naamGo;
-            }
-          }
-
-          reloadPost();
-      }
-
- ?>
+if (function_exists('reloadPost')) {
+    reloadPost();
+}

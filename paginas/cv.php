@@ -40,7 +40,7 @@
     <div class="body" id="body">
       <div class="kop">
         <?php
-          echo $gebruikersnaam_; //krijgt de Gebruikers naam van de database
+          echo e($gebruikersnaam_); //krijgt de Gebruikers naam van de database
         ?>
       </div>
     </div>

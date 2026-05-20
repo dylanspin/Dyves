@@ -1,163 +1,97 @@
-
 <div class='Vrienden'>
-   <?php
-     include 'php/connect.php';
-     if(isset($_POST['Zoek'])){
-         $_SESSION["zoek"] = mysql_real_escape_string($_POST['zoekResultaat']); //dit moet nog gecheckt worden op script
-         reloadPost();
-     }
+  <?php
+    require_once __DIR__ . '/../php/bootstrap.php';
+    require_once __DIR__ . '/../php/connect.php';
 
-     if(isset($_POST['buttonSU'])){
+    if (isset($_POST['Zoek'])) {
+        csrf_check();
+        $_SESSION['zoek'] = isset($_POST['zoekResultaat']) ? trim((string)$_POST['zoekResultaat']) : '';
+        if (function_exists('reloadPost')) {
+            reloadPost();
+        }
+    }
 
-         $userIN = $_POST['buttonSU'];
+    if (isset($_POST['buttonSU'])) {
+        csrf_check();
+        $userIN = (string)$_POST['buttonSU'];
 
-         $sql = "SELECT UNIQ FROM `notusers` WHERE Gebruikersnaam = '$userIN';";
-         $result = $conn->query($sql);
-         if ($result->num_rows > 0) {
-             while($row = $result->fetch_assoc()) {
-                $IDDB = $row['UNIQ'];
-             }
-         }
+        $row = db_one($conn, 'SELECT UNIQ FROM `notusers` WHERE Gebruikersnaam = ? LIMIT 1', 's', $userIN);
+        if ($row !== null) {
+            $IDDB = (string)$row['UNIQ'];
 
-         $sql = "SELECT To_user,SendUsers FROM `friend_invite` WHERE User = '$current';";
-         $result = $conn->query($sql); $ToUser = unserialize($row['To_user']);
-         if ($result->num_rows > 0) {
-             while($row = $result->fetch_assoc()){
-                $SendUsers = unserialize($row['SendUsers']);
-             }
+            $r1 = db_one($conn, 'SELECT SendUsers FROM `friend_invite` WHERE User = ? LIMIT 1', 's', (string)$current);
+            $SendUsers = $r1 !== null ? dyves_decode($r1['SendUsers']) : [];
 
-             $sql = "SELECT To_user,SendUsers FROM `friend_invite` WHERE User = '$IDDB';";
-             $result = $conn->query($sql);
-             if ($result->num_rows > 0) {
-                 while($row = $result->fetch_assoc()){
-                    $ToUser = unserialize($row['To_user']);
-                 }
-             }
+            $r2 = db_one($conn, 'SELECT To_user FROM `friend_invite` WHERE User = ? LIMIT 1', 's', $IDDB);
+            $ToUser = $r2 !== null ? dyves_decode($r2['To_user']) : [];
 
-             if(strlen($ToUser[0]) == 0){
-                $ToUser = [$gebruikersnaam_];
-             }
-             else{
-                array_push($ToUser,$gebruikersnaam_);
-             }
+            $ToUser[]    = (string)($gebruikersnaam_ ?? '');
+            $SendUsers[] = $IDDB;
 
-             if(strlen($SendUsers[0]) == 0){
-                $SendUsers = [$IDDB];
-             }
-             else{
-                array_push($SendUsers,$IDDB);
-             }
+            if (db_query($conn, 'UPDATE `friend_invite` SET `To_user` = ? WHERE User = ?', 'ss', dyves_encode($ToUser), $IDDB)) {
+                db_query($conn, 'UPDATE `friend_invite` SET `SendUsers` = ? WHERE User = ?', 'ss', dyves_encode($SendUsers), (string)$current);
+                echo "<script>
+                        if (window.history.replaceState) {
+                          window.history.replaceState(null, null, window.location.href);
+                        }
+                      </script>";
+            }
+        }
+        if (function_exists('reloadPost')) {
+            reloadPost();
+        }
+    }
 
-             $compresInvites = serialize($ToUser);
-             $compresSend = serialize($SendUsers);
-             $sql = "UPDATE `friend_invite` SET `To_user` = '$compresInvites' WHERE User = '$IDDB';";
-             if ($conn->query($sql) === true) {
-                 $sql = "UPDATE `friend_invite` SET `SendUsers` = '$compresSend' WHERE User = '$current';";
-                 if ($conn->query($sql) === true) {
-                 }
-                 echo "<script>
-                         if ( window.history.replaceState ) {
-                           window.history.replaceState( null, null, window.location.href );
-                         }
-                       </script>";
-             }
-         }
-         reloadPost();
-     }
+    $number = 0;
+    $zoek = (string)($_SESSION['zoek'] ?? '');
+    if ($zoek === '') {
+        return;
+    }
+    $like = '%' . $zoek . '%';
+    $rows = db_all($conn, 'SELECT Gebruikersnaam, Man, ProfielFoto FROM `notusers` WHERE Gebruikersnaam LIKE ?', 's', $like);
 
-     $number = 0;
-     $zoek = mysql_real_escape_string($_SESSION["zoek"]);
-     $sql = "SELECT Gebruikersnaam,Man,ProfielFoto FROM `notusers` WHERE Gebruikersnaam LIKE '%$zoek%'"; /*pakt de opties uit de tabel*/
-     $result = $conn->query($sql);
-     if ($result->num_rows > 0) {
-         while($row = $result->fetch_assoc()) {
-             $check_ = true;
-             $number++;
-             $remainder = $number % 2;
-             $gender = $row['Man'];
-             $naam = $row['Gebruikersnaam'];
-             $foto = $row['ProfielFoto'];
-             if($naam == $current){
+    $r2 = db_one($conn, 'SELECT Vrienden FROM `allfriends` WHERE Gebruikersnaam = ? LIMIT 1', 's', (string)$current);
+    $vrienden = $r2 !== null ? dyves_decode($r2['Vrienden']) : [];
+
+    $r3 = db_one($conn, 'SELECT SendUsers FROM `friend_invite` WHERE User = ? LIMIT 1', 's', (string)$current);
+    $SendUsers = $r3 !== null ? dyves_decode($r3['SendUsers']) : [];
+
+    foreach ($rows as $row) {
+        $check_ = true;
+        $number++;
+        $remainder = $number % 2;
+        $gender = $row['Man'];
+        $naam   = (string)$row['Gebruikersnaam'];
+        $foto   = (string)$row['ProfielFoto'];
+
+        if ($naam === (string)$current) { $check_ = false; }
+        if (in_array($naam, $vrienden, true)) { $check_ = false; }
+        if ($naam === (string)($gebruikersnaam_ ?? '')) { $check_ = false; }
+        if (strlen((string)($gebruikersnaam_ ?? '')) <= 1) { $check_ = false; }
+
+        if ($check_) {
+            $r4 = db_one($conn, 'SELECT UNIQ FROM `notusers` WHERE Gebruikersnaam = ? LIMIT 1', 's', $naam);
+            $IDDB = $r4 !== null ? (string)$r4['UNIQ'] : '';
+            if ($IDDB !== '' && in_array($IDDB, $SendUsers, true)) {
                 $check_ = false;
-             }
-             $sql2 = "SELECT Vrienden FROM `allfriends` Where Gebruikersnaam = '$current';";
-             $result2 = $conn->query($sql2);
-             if ($result2->num_rows > 0) {
-                 while($row = $result2->fetch_assoc()) {
-                     $vrienden = unserialize($row['Vrienden']);
-                     for($i=0; $i<=count($vrienden)-1; $i++){
-                         if($vrienden[$i] == $naam){
-                            $check_ = false;
-                         }
-                     }
-                 }
-             }
+            }
+        }
 
-             $sql3 = "SELECT SendUsers FROM `friend_invite` WHERE User = '$current';";
-             $result2 = $conn->query($sql3);
-             if ($result2->num_rows > 0) {
-                 while($row2 = $result2->fetch_assoc()) {
-                    $SendUsers = unserialize($row2['SendUsers']);
-                 }
-             }
-
-             for($i=0; $i<=count($SendUsers); $i++){
-                 $sql2 = "SELECT UNIQ FROM `notusers` WHERE Gebruikersnaam = '$naam';";
-                 $result2 = $conn->query($sql2);
-                 if ($result2->num_rows > 0) {
-                     while($row = $result2->fetch_assoc()) {
-                        $IDDB = $row['UNIQ'];
-                     }
-                 }
-                 if($SendUsers[$i] == $IDDB){
-                    $check_ = false;
-                 }
-             }
-             if($naam == $gebruikersnaam_){
-                $check_ = false;
-             }
-             if(strlen($gebruikersnaam_) <= 1){
-                $check_ = false;
-             }
-             if(strlen($foto) <= 1){
-                $liveFoto = "g".$gender.".jpg";
-             }
-             else{
-                $liveFoto = $naam.$foto;
-             }
-             if($remainder == 0){
-                 echo "<div class='VriendVak'>
-                         <img src='pic/profilepics/$liveFoto' class='profielVriend'>
-                         <div class='vriendText blauw underline'>
-                           $naam
-                         </div>";
-                 if($check_){
-                   echo "<form method='post' class='voegF'>
-                           <button class='addV' type='submit' value='$naam' name='buttonSU'>
-                             <i class='fa fa-plus-circle blauw'></i>
-                             <span class='blauw underline'>Vriend Toevoegen</span>
-                           </button>
-                         </form>";
-                 }
-                 echo "</div>";
-             }
-             else{
-                 echo "<div class='VriendVak backgroundV'>
-                         <img src='pic/profilepics/$liveFoto' class='profielVriend'>
-                         <div class='vriendText blauw underline'>
-                           $naam
-                         </div>";
-                 if($check_){
-                   echo "<form method='post' class='voegF'>
-                           <button class='addV' type='submit' value='$naam' name='buttonSU'>
-                             <i class='fa fa-plus-circle blauw'></i>
-                             <span class='blauw underline'>Vriend Toevoegen</span>
-                           </button>
-                         </form>";
-                 }
-                 echo "</div>";
-             }
-         }
-     }
-    ?>
+        $liveFoto = strlen($foto) <= 1 ? 'g' . $gender . '.jpg' : $foto;
+        $cls = ($remainder === 0) ? 'VriendVak' : 'VriendVak backgroundV';
+        echo "<div class='" . e($cls) . "'>" .
+               "<img src='pic/profilepics/" . e($liveFoto) . "' class='profielVriend'>" .
+               "<div class='vriendText blauw underline'>" . e($naam) . "</div>";
+        if ($check_) {
+            echo "<form method='post' class='voegF'>";
+            csrf_field();
+            echo "<button class='addV' type='submit' value='" . e($naam) . "' name='buttonSU'>" .
+                   "<i class='fa fa-plus-circle blauw'></i>" .
+                   "<span class='blauw underline'>Vriend Toevoegen</span>" .
+                 "</button>" .
+               "</form>";
+        }
+        echo "</div>";
+    }
+  ?>
 </div>

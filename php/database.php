@@ -1,123 +1,104 @@
 <?php
-    if (session_status() !== PHP_SESSION_ACTIVE) {
-        session_start();
+require_once __DIR__ . '/bootstrap.php';
+require_once __DIR__ . '/connect.php';
+
+$voornaam      = isset($_POST['voornaam'])       ? trim(strip_tags((string)$_POST['voornaam']))       : '';
+$achternaam    = isset($_POST['achternaam'])     ? trim(strip_tags((string)$_POST['achternaam']))     : '';
+$woonplaats    = isset($_POST['woonplaats'])     ? trim(strip_tags((string)$_POST['woonplaats']))     : '';
+$geboortedatum = isset($_POST['geboortedatum'])  ? trim((string)$_POST['geboortedatum'])              : '';
+$gebruiker     = isset($_POST['gebruikersnaam']) ? trim(strip_tags((string)$_POST['gebruikersnaam'])) : '';
+$email         = isset($_POST['email'])          ? trim(strip_tags((string)$_POST['email']))          : '';
+$gender        = isset($_POST['gender'])         ? (string)$_POST['gender']                          : '';
+$wachtwoord    = isset($_POST['password1'])      ? (string)$_POST['password1']                       : '';
+$wachtwoord2   = isset($_POST['password2'])      ? (string)$_POST['password2']                       : '';
+
+$checkAR = [$voornaam, $achternaam, $woonplaats, $geboortedatum, $gebruiker, $email, $gender, $wachtwoord, $wachtwoord2];
+
+$goed = true;
+$reg1 = "/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/i";
+$reg3 = "/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i";
+$reg4 = "(script|php)";
+$fout = [0,0,0,0,0,0,0,0,0,0,0,0];
+
+if (isset($_POST['formSub'])) {
+    csrf_check();
+    $ingevult = [$voornaam, $achternaam, $woonplaats, $geboortedatum, $gebruiker, $email];
+
+    $existingUser  = db_one($conn, 'SELECT Gebruikersnaam FROM `notusers` WHERE Gebruikersnaam = ? LIMIT 1', 's', $gebruiker);
+    $existingEmail = db_one($conn, 'SELECT Email FROM `notusers` WHERE Email = ? LIMIT 1', 's', $email);
+
+    $checks = [$voornaam, $achternaam, $woonplaats];
+    for ($b = 9; $b <= 11; $b++) {
+        if (strlen($checks[$b - 9]) <= 1) {
+            $fout[$b] = 1;
+        }
+    }
+    foreach ($checkAR as $val) {
+        if (preg_match($reg4, $val)) {
+            $goed = false;
+            $fout[0] = 1;
+        }
+    }
+    if (!preg_match($reg3, $email)) {
+        $goed = false;
+        $fout[1] = 1;
+    }
+    if (preg_match($reg1, $wachtwoord) && preg_match($reg1, $wachtwoord2)) {
+        if ($wachtwoord !== $wachtwoord2) {
+            $goed = false;
+            $fout[2] = 1;
+        }
+    } else {
+        $goed = false;
+        $fout[3] = 1;
+    }
+    if (strtotime($geboortedatum) === false || strtotime($geboortedatum) <= 0) {
+        $goed = false;
+        $fout[4] = 1;
+    }
+    if (strlen($gebruiker) > 30) {
+        $goed = false;
+        $fout[5] = 1;
+    }
+    if (strlen($gebruiker) <= 1) {
+        $goed = false;
+        $fout[6] = 1;
+    }
+    if ($existingUser !== null) {
+        $goed = false;
+        $fout[7] = 1;
+    }
+    if ($existingEmail !== null) {
+        $goed = false;
+        $fout[8] = 1;
     }
 
-  include 'connect.php';
-  include 'block.php';
+    if ($goed) {
+        $_SESSION['test'] = 'Gelukt met een account aan maken.';
+        $UNIC = check(randomId(20), $conn);
+        $fout = [0,0,0,0,0,0,0,0,0,0,0,0];
+        $ingevult = ['', '', '', '', '', ''];
 
-    $voornaam  = isset($_POST['voornaam']) ? $conn->real_escape_string(strip_tags($_POST['voornaam'])) : '';
-    $achternaam = isset($_POST['achternaam']) ? $conn->real_escape_string(strip_tags($_POST['achternaam'])) : '';
-    $woonplaats = isset($_POST['woonplaats']) ? $conn->real_escape_string(strip_tags($_POST['woonplaats'])) : '';
-    $geboortedatum = isset($_POST['geboortedatum']) ? $conn->real_escape_string($_POST['geboortedatum']) : '';
-    $gebruiker = isset($_POST['gebruikersnaam']) ? $conn->real_escape_string(strip_tags(trim($_POST['gebruikersnaam']))) : '';
-    $email = isset($_POST['email']) ? $conn->real_escape_string(strip_tags($_POST['email'])) : '';
-    $gender = isset($_POST['gender']) ? $conn->real_escape_string(strip_tags($_POST['gender'])) : '';
-    $wachtwoord = isset($_POST['password1']) ? $conn->real_escape_string(strip_tags($_POST['password1'])) : '';
-    $wachtwoord2 = isset($_POST['password2']) ? $conn->real_escape_string(strip_tags($_POST['password2'])) : '';
-  $checkAR = [$voornaam,$achternaam,$woonplaats,$geboortedatum,$gebruiker,$email,$gender,$wachtwoord,$wachtwoord2];
+        $hashed = password_hash($wachtwoord, PASSWORD_DEFAULT);
 
-  $goed = true;
-  $reg1 = "/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/i";//wachtwoord check.
-  $reg2 = "/^[^<,\"@/{}()*$%?=>:|;#]*$/i";//standaard check
-  $reg3 = "/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i";//email check
-  $reg4 = "(script|php)";
-  $fout = [0,0,0,0,0,0,0,0,0,0,0,0];
+        db_query(
+            $conn,
+            "INSERT INTO `notusers` (`Gebruikersnaam`,`UNIQ`,`Wachtwoord`,`Email`,`Geboortedatum`,`ProfielFoto`,`Achtergrond`,`Permisie`,`Voornaam`,`Achternaam`,`Woonplaats`,`Man`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+            'ssssssssssss',
+            $gebruiker, $UNIC, $hashed, $email, $geboortedatum, '1', '1', '0', $voornaam, $achternaam, $woonplaats, $gender
+        );
+        db_query($conn, 'INSERT INTO `over` (`Wie`) VALUES (?)',                's', $gebruiker);
+        db_query($conn, 'INSERT INTO `agenda` (`Gebruikersnaam`) VALUES (?)',   's', $UNIC);
+        db_query($conn, 'INSERT INTO `allfriends` (`Gebruikersnaam`) VALUES (?)','s', $UNIC);
+        db_query($conn, 'INSERT INTO `friend_invite` (`User`) VALUES (?)',      's', $UNIC);
+        $_SESSION['Waar'] = 'hoofdmenu';
+    }
+    $_SESSION['fout'] = $fout;
+    $_SESSION['sumbmited'] = $ingevult;
+    if (function_exists('reloadPost')) {
+        reloadPost();
+    }
+}
 
-  if(isset($_POST['formSub'])){
-      $ingevult = [$voornaam,$achternaam,$woonplaats,$geboortedatum,$gebruiker,$email];
-      $sql2 = "SELECT Gebruikersnaam FROM `notusers` WHERE Gebruikersnaam = '$gebruiker';";
-      $result = $conn->query($sql2);
-      if ($result->num_rows > 0) {
-          while($row = $result->fetch_assoc()) {
-              $vergelijk = $row['Gebruikersnaam'];
-          }
-      }
-
-      $sql = "SELECT Email FROM `notusers` WHERE Email = '$email';";
-      $result = $conn->query($sql);
-      if ($result->num_rows > 0) {
-          while($row = $result->fetch_assoc()) {
-              $vergelijk2 = $row['Email'];
-          }
-      }
-
-      $checks = [$voornaam,$achternaam,$woonplaats];
-      for($b=9; $b<=11; $b++){
-        if(strlen($checks[$b-9]) <= 1){
-          $fout[$b] = 1;
-        }
-      }
-      for($i=0; $i<=count($checkAR)-1; $i++){//script check
-        if(preg_match($reg4,$checkAR[$i])){
-          $goed = false;
-          $fout[0] = 1;
-        }
-      }
-      if(!preg_match($reg3,$email)){//email check
-          $goed = false;
-          $fout[1] = 1;
-      }
-      if(preg_match($reg1,$wachtwoord) && preg_match($reg1,$wachtwoord2)){//wachtwoord check
-          if(!$wachtwoord == $wachtwoord2){//double check wachtwoord
-              $goed = false;
-              $fout[2] = 1;
-          }
-      }
-      else{//als de wachtwoord check fout was
-          $goed = false;
-          $fout[3] = 1;
-      }
-      if(!strtotime($geboortedatum) > 0){ //checkt als de hele geboortedatum is ingevult
-          $goed = false;
-          $fout[4] = 1;
-      }
-      if(strlen($gebruiker) > 30){//Gebruikersnaam checkt als de naam niet langer is dan 30 chars
-          $goed = false;
-          $fout[5] = 1;
-      }
-      if(strlen($gebruiker) <= 1){//checkt als er een gebruikersnaam is invult
-          $goed = false;
-          $fout[6] = 1;
-      }
-      if(strlen($vergelijk)>0){//checkt als de gebruikersnaam all bestaat
-          $goed = false;
-          $fout[7] = 1;
-      }
-
-      if(strlen($vergelijk2)>0){//checkt voor als de email all in gebruik is.
-          $goed = false;
-          $fout[8] = 1;
-      }
-      if($goed){
-          $_SESSION['test'] = "Gelukt met een account aan maken.";
-          $UNIC = check(randomId(20),$conn);
-          $fout = [0,0,0,0,0,0,0,0,0,0,0,0];
-          $ingevult = ["","","","","",""];
-          $sql = "INSERT INTO `notusers` (`Gebruikersnaam`,`UNIQ`,`Wachtwoord`,`Email`,`Geboortedatum`,`ProfielFoto`,`Achtergrond`,`Permisie`,`Voornaam`,`Achternaam`,`Woonplaats`,`Man`) VALUES
-          ('$gebruiker','$UNIC','$wachtwoord','$email','$geboortedatum','1','1','0','$voornaam','$achternaam','$woonplaats','$gender');";
-          if ($conn->query($sql) === true) {
-          }
-          $sql = "INSERT INTO `over` (`Wie`) VALUES ('$gebruiker');";
-          if ($conn->query($sql) === true) {
-          }
-          $sql = "INSERT INTO `agenda` (`Gebruikersnaam`) VALUES ('$UNIC');";
-          if ($conn->query($sql) === true) {
-          }
-          $sql = "INSERT INTO `allfriends` (`Gebruikersnaam`) VALUES ('$UNIC');";
-          if ($conn->query($sql) === true) {
-          }
-          $sql2 = "INSERT INTO `friend_invite` (`User`) VALUES ('$UNIC');";
-          if ($conn->query($sql2) === true) {}
-          $_SESSION['Waar'] = "hoofdmenu";
-      }
-      $goed = true;
-      $_SESSION['fout'] = $fout;
-      $_SESSION['sumbmited'] = $ingevult;
-      reloadPost();
-  }
-
-    $sumbmited = isset($_SESSION['sumbmited']) ? $_SESSION['sumbmited'] : ["","","","","",""];
-    $foutMelding = isset($_SESSION['fout']) ? $_SESSION['fout'] : [0,0,0,0,0,0,0,0,0,0,0,0];
- ?>
- 
+$sumbmited   = $_SESSION['sumbmited'] ?? ['', '', '', '', '', ''];
+$foutMelding = $_SESSION['fout']      ?? [0,0,0,0,0,0,0,0,0,0,0,0];

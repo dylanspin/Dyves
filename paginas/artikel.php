@@ -42,6 +42,7 @@
       </div>
 
       <form class="intellingenForm" method="post" enctype="multipart/form-data">
+        <?php csrf_field(); ?>
         <div class="sectie blauw">Artikel Foto: </div>
           <input type="file" name="artikel_foto" id="artikel_foto" class="instelling" accept="image/*">
           <span class="anderhalfv">2MB</span>

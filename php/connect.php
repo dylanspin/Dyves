@@ -1,18 +1,20 @@
 <?php
-    include 'block.php';
+require_once __DIR__ . '/bootstrap.php';
+require_once __DIR__ . '/block.php';
 
-    $dbServername = 'localhost';
-    $dbUsername = 'root';
-    $dbPassword = '';
-    $dbName = 'dyves';
-
-    $conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
-
-    if (!$conn) {
-        $errNo = mysqli_connect_errno();
-        $errStr = mysqli_connect_error();
-        die("Database connection failed (".$errNo."): ".htmlspecialchars($errStr).".\nPlease create the database 'dyves' or update php/connect.php with the correct database name and credentials.");
+if (!isset($conn) || !($conn instanceof mysqli)) {
+    $db = dyves_config()['db'] ?? [];
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+    try {
+        $conn = new mysqli(
+            $db['host']     ?? 'localhost',
+            $db['user']     ?? '',
+            $db['password'] ?? '',
+            $db['name']     ?? ''
+        );
+        $conn->set_charset($db['charset'] ?? 'utf8mb4');
+    } catch (mysqli_sql_exception $e) {
+        http_response_code(500);
+        die('Database connection failed. Configure php/config.local.php (copy from php/config.example.php).');
     }
-
-
-?>
+}

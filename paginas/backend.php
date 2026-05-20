@@ -42,6 +42,7 @@
       </div>
 
       <form class="intellingenForm" method="post" enctype="multipart/form-data">
+      <?php csrf_field(); ?>
 
       <div class="enter"></div>
       <div class="sectie blauw">Backend: </div>

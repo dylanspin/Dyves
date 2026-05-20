@@ -1,107 +1,80 @@
-
 <?php
+  require_once __DIR__ . '/../php/bootstrap.php';
 
-  function deleteInvite($conn,$Username,$from,$current){
-    for($i=0; $i<=count($from); $i++){
-      if($from[$i] == $Username){
-        unset($from[$i]);
-        $compresInvites = serialize($from);
-        $sql = "UPDATE `friend_invite` SET `To_user` = '$compresInvites' WHERE User = '$current';";
-        if ($conn->query($sql) === true) {
-        }
+  function deleteInvite(mysqli $conn, string $Username, array $from, string $current): void {
+      $from = array_values(array_filter($from, fn($v) => (string)$v !== $Username));
+      db_query($conn, 'UPDATE `friend_invite` SET `To_user` = ? WHERE User = ?', 'ss', dyves_encode($from), $current);
+      if (function_exists('reloadPost')) {
+          reloadPost();
       }
-    }
-    reloadPost();
   }
 
-  $sql = "SELECT To_user FROM `friend_invite` WHERE User = '$current';";
-  $result = $conn->query($sql);
-  if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-      $from = unserialize($row['To_user']);
-    }
+  $row = db_one($conn, 'SELECT To_user FROM `friend_invite` WHERE User = ? LIMIT 1', 's', (string)$current);
+  $from = $row !== null ? dyves_decode($row['To_user']) : [];
+
+  if (isset($_POST['buttonneg'])) {
+      csrf_check();
+      if (!is_numeric($_POST['buttonneg'])) {
+          return;
+      }
+      $idx = (int)$_POST['buttonneg'];
+      if (!isset($from[$idx])) {
+          return;
+      }
+      deleteInvite($conn, (string)$from[$idx], $from, (string)$current);
   }
 
-  if (isset($_POST['buttonneg'])){// delete invite code
-    $Username = $_POST['buttonneg'];
-    $Username = $from[$Username];
-    deleteInvite($conn,$Username,$from,$current);
+  if (isset($_POST['buttonac'])) {
+      csrf_check();
+      if (!is_numeric($_POST['buttonac'])) {
+          return;
+      }
+      $idx = (int)$_POST['buttonac'];
+      if (!isset($from[$idx])) {
+          return;
+      }
+      $Username = (string)$from[$idx];
+
+      $r1 = db_one($conn, 'SELECT UNIQ FROM `notusers` WHERE Gebruikersnaam = ? LIMIT 1', 's', $Username);
+      if ($r1 === null) {
+          return;
+      }
+      $UsernameDB = (string)$r1['UNIQ'];
+
+      $r2 = db_one($conn, 'SELECT Vrienden FROM `allfriends` WHERE Gebruikersnaam = ? LIMIT 1', 's', (string)$current);
+      $vrienden = $r2 !== null ? dyves_decode($r2['Vrienden']) : [];
+
+      $r3 = db_one($conn, 'SELECT Vrienden FROM `allfriends` WHERE Gebruikersnaam = ? LIMIT 1', 's', $UsernameDB);
+      $vrienden2 = $r3 !== null ? dyves_decode($r3['Vrienden']) : [];
+
+      if (!in_array($Username, $vrienden, true)) {
+          $vrienden[] = $Username;
+      }
+      if (!in_array((string)($gebruikersnaam_ ?? ''), $vrienden2, true)) {
+          $vrienden2[] = (string)($gebruikersnaam_ ?? '');
+      }
+
+      if (db_query($conn, 'UPDATE `allfriends` SET `Vrienden` = ? WHERE Gebruikersnaam = ?', 'ss', dyves_encode($vrienden), (string)$current)) {
+          db_query($conn, 'UPDATE `allfriends` SET `Vrienden` = ? WHERE Gebruikersnaam = ?', 'ss', dyves_encode($vrienden2), $UsernameDB);
+      }
+      deleteInvite($conn, $Username, $from, (string)$current);
   }
-
-  if(isset($_POST['buttonac'])){  //voegt vriend toe
-    $Username = $_POST['buttonac'];
-    $Username = $from[$Username];
-    $sql = "SELECT UNIQ FROM `notusers` WHERE Gebruikersnaam = '$Username';";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-      while($row = $result->fetch_assoc()) {
-        $UsernameDB = $row['UNIQ'];
-      }
-    }
-
-    $sql = "SELECT Vrienden FROM `allfriends` Where Gebruikersnaam = '$current' ;";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-      while($row = $result->fetch_assoc()) {
-        $vrienden = unserialize($row['Vrienden']);
-      }
-    }
-
-    $sql = "SELECT Vrienden FROM `allfriends` Where Gebruikersnaam = '$UsernameDB' ;";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-      while($row = $result->fetch_assoc()) {
-        $vrienden2 = unserialize($row['Vrienden']);
-      }
-    }
-
-    if(!strlen($vrienden[0]) > 0){
-      $vrienden = [$Username];
-    }
-    else{
-      array_push($vrienden,$Username);
-    }
-
-    if(!strlen($vrienden2[0]) > 0){
-      $vrienden2 = [$gebruikersnaam_];
-    }
-    else{
-      array_push($vrienden2,$gebruikersnaam_);
-    }
-
-    $compresvrienden = serialize($vrienden);
-    $compresvrienden2 = serialize($vrienden2);
-
-    for($i=0; $i<=count($vrienden)-1; $i++){
-      if($vrienden[$i] == $Username){
-        $gelijk2 = true;
-      }
-    }
-
-    $sql = "UPDATE `allfriends` SET `Vrienden` = '$compresvrienden' WHERE Gebruikersnaam = '$current';";
-    if ($conn->query($sql) === true) {
-      $sql = "UPDATE `allfriends` SET `Vrienden` = '$compresvrienden2' WHERE Gebruikersnaam = '$UsernameDB';";
-      if ($conn->query($sql) === true) {
-      }
-    }
-    deleteInvite($conn,$Username,$from,$current);//delete de invite
-  }
- ?>
+?>
 
 <div class="Meldingen">
   <?php
-    for($i=0; $i<=count($from)-1; $i++){
-      if(!count($from) == 0 && !strlen($from[0]) == 0){
-        echo "<div class='Melding'>
-                <div class='vriendText blauw'>
-                  Je hebt een vriend invite van $from[$i]
-                </div>
-                <form method='post'>
-                  <button type='submite' name='buttonac'  value='$i' class='meldingButton accepteer'>Accepteer</button>
-                  <button type='submite' name='buttonneg' value='$i' class='meldingButton negeer'>Negeer</button>
-                </form>
-              </div>";
-      }
+    foreach ($from as $i => $sender) {
+        if ((string)$sender === '') {
+            continue;
+        }
+        echo "<div class='Melding'>" .
+               "<div class='vriendText blauw'>Je hebt een vriend invite van " . e($sender) . "</div>" .
+               "<form method='post'>";
+        csrf_field();
+        echo     "<button type='submit' name='buttonac' value='" . e($i) . "' class='meldingButton accepteer'>Accepteer</button>" .
+                 "<button type='submit' name='buttonneg' value='" . e($i) . "' class='meldingButton negeer'>Negeer</button>" .
+               "</form>" .
+             "</div>";
     }
   ?>
 </div>

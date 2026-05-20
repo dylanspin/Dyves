@@ -1,89 +1,72 @@
-
 <div class="vrienden profielkleur2">
   <div class="vrienden_inner">
     <?php
-      if($_SESSION['Waar'] == "bezoek"){
-        $bezoekAC = $_SESSION["bezoek"];
-        $sql = "SELECT UNIQ FROM `notusers` Where Gebruikersnaam = '$bezoekAC';";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-          while($row = $result->fetch_assoc()) {
-            $naamGo = $row['UNIQ'];
-          }
-        }
-        $currentt = $naamGo;
-      }
-      else{
-        $currentt = $current;
+      require_once __DIR__ . '/../php/bootstrap.php';
+
+      if (($_SESSION['Waar'] ?? '') === 'bezoek') {
+          $bezoekAC = (string)($_SESSION['bezoek'] ?? '');
+          $row = db_one($conn, 'SELECT UNIQ FROM `notusers` WHERE Gebruikersnaam = ? LIMIT 1', 's', $bezoekAC);
+          $currentt = $row !== null ? (string)$row['UNIQ'] : '';
+      } else {
+          $currentt = (string)($current ?? '');
       }
 
-      $sql = "SELECT Vrienden FROM `allfriends` Where Gebruikersnaam = '$currentt';";
-      $result = $conn->query($sql);
-      if ($result->num_rows > 0) {
-          while($row = $result->fetch_assoc()) {
-              $vrienden = unserialize($row['Vrienden']);
+      $row = db_one($conn, 'SELECT Vrienden FROM `allfriends` WHERE Gebruikersnaam = ? LIMIT 1', 's', $currentt);
+      $vrienden = $row !== null ? dyves_decode($row['Vrienden']) : [];
+      $aantal   = count($vrienden);
+      $aantal2  = 0;
+
+      for ($i = 0; $i < $aantal; $i++) {
+          $friendName = (string)($vrienden[$i] ?? '');
+          if ($friendName === '') {
+              continue;
           }
-          
-          $aantal = is_array($vrienden) ? count($vrienden) : 0;
-          $aantal2 = 0;
+          $row2 = db_one(
+              $conn,
+              'SELECT ProfielFoto, Man, Gebruikersnaam, AantalVrienden FROM `notusers` WHERE Gebruikersnaam = ? LIMIT 1',
+              's',
+              $friendName
+          );
+          if ($row2 === null) {
+              continue;
+          }
+          $aantal2++;
+          $foto_    = $row2['ProfielFoto'];
+          $gender_  = $row2['Man'];
+          $vriend_  = $row2['Gebruikersnaam'];
+          $totaalV  = $row2['AantalVrienden'];
+          $liveFoto = strlen((string)$foto_) <= 1 ? 'g' . $gender_ . '.jpg' : (string)$foto_;
 
-          for($i=0; $i<=$aantal-1; $i++){
-                if(!count($vrienden) == 0 && !strlen($vrienden[0]) == 0){
-                  $sql2 = "SELECT ProfielFoto,Man,Gebruikersnaam,AantalVrienden FROM `notusers` WHERE Gebruikersnaam = '$vrienden[$i]';"; /*pakt de opties uit de tabel*/
-                  $result2 = $conn->query($sql2);
-                  if ($result2->num_rows > 0) {
-                      while($row = $result2->fetch_assoc()) {
-                          $aantal2 ++;
-                          $foto_ = $row['ProfielFoto'];
-                          $gender_ = $row['Man'];
-                          $vriend_ = $row['Gebruikersnaam'];
-                          $totaalV = $row['AantalVrienden'];
-                      }
-                  }
-
-                  if(strlen($foto_) <= 1){
-                      $liveFoto = "g".$gender_.".jpg";
-                  }
-                  else{
-                      $liveFoto = $vriend_.$foto_;
-                  }
-                  if($i < 9 && count($vrienden) >= 1){
-                      echo "<div class='vriend'>
-                              <form method='post'>
-                                <button type='submit' class='vriendenButton' name='bezoek' value='$i'>";
-                      if($vrienden[$i] == "Dylanspin"){
-                          echo "  <img src='pic/kroon.png' class='kroon'>
-                                  <img src='pic/profilepics/$liveFoto' class='vriendenImage img2'>";
-                      }
-                      else{
-                          echo "    <img src='pic/profilepics/$liveFoto' class='vriendenImage'>";
-                      }
-                      echo "    </button>
-                              </form>
-                            <span class='profielkleur'>($totaalV)
-                            <span class='underline'>
-                              $vrienden[$i]
-                            </span>
-                          </span>
-                        </div>";
-                  }
+          if ($i < 9) {
+              echo "<div class='vriend'>" .
+                   "<form method='post'>";
+              csrf_field();
+              echo   "<button type='submit' class='vriendenButton' name='bezoek' value='" . e($i) . "'>";
+              if ($friendName === 'Dylanspin') {
+                  echo "<img src='pic/kroon.png' class='kroon'>" .
+                       "<img src='pic/profilepics/" . e($liveFoto) . "' class='vriendenImage img2'>";
+              } else {
+                  echo "<img src='pic/profilepics/" . e($liveFoto) . "' class='vriendenImage'>";
               }
+              echo   "</button>" .
+                   "</form>" .
+                   "<span class='profielkleur'>(" . e($totaalV) . ")" .
+                     "<span class='underline'>" . e($friendName) . "</span>" .
+                   "</span>" .
+                 "</div>";
           }
       }
 
-      if($_SESSION['Waar'] == "profiel"){
-          $sql = "UPDATE `notusers` SET `AantalVrienden` = '$aantal2' WHERE Gebruikersnaam = '$gebruikersnaam_';";
-          if ($conn->query($sql) === true) {
-          }
-      }
-      else{
-          $Change =  $_SESSION["bezoek"];
-          $sql = "UPDATE `notusers` SET `AantalVrienden` = '$aantal2' WHERE Gebruikersnaam = '$Change';";
-          if ($conn->query($sql) === true) {
+      if (($_SESSION['Waar'] ?? '') === 'profiel') {
+          db_query($conn, 'UPDATE `notusers` SET `AantalVrienden` = ? WHERE Gebruikersnaam = ?', 'is', $aantal2, (string)($gebruikersnaam_ ?? ''));
+      } else {
+          $Change = (string)($_SESSION['bezoek'] ?? '');
+          if ($Change !== '') {
+              db_query($conn, 'UPDATE `notusers` SET `AantalVrienden` = ? WHERE Gebruikersnaam = ?', 'is', $aantal2, $Change);
           }
       }
     ?>
-    <div class="watProfiel tweev vriendbar">Vrienden (<?php if($aantal2 == 0){echo 0;}else{echo $aantal2;} ?>)</div>
+    <div class="watProfiel tweev vriendbar">Vrienden (<?php echo (int)$aantal2; ?>)</div>
   </div>
   <div class="meer underline"><a href="Profielvrienden.php">Meer Vrienden...</a></div>
 </div>
